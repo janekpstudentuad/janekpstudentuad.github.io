@@ -1,3 +1,9 @@
 # Hackviser Scenarios and Labs
 
-Coming soon!
+It is my understanding that writeups for Hackviser Scenarios are not permitted (see Discord rules). As such, no full Scenario writeups will be published here. A list of completed Scenarios is included below, with an associated writeup hiding in the wings in case Hackviser ever change their stance on this.
+
+## Scenarios
+PasteZone
+
+## Labs
+Coming soon.
