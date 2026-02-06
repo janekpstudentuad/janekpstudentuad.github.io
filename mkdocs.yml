@@ -1,0 +1,30 @@
+site_name: CTF articles by humbledragon669
+site_description: Writups for CTF challenges and security labs
+site_author: janekpstudentad
+
+theme:
+  name: material
+  features:
+    - navigation.expand
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    scheme: slate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.snippets
+
+nav:
+  - Home: index.md
+  - Hackviser:
+    - Coming Soon: hackviser/index.md
+  - Hack The Box:
+    - Coming Soon: hackthebox/index.md
+  - TryHackMe:
+    - Coming Soon: tryhackme/index.md
