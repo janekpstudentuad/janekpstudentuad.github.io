@@ -9,8 +9,12 @@ theme:
     - navigation.sections
     - content.code.copy
     - content.code.annotate
+    - search.suggest
   palette:
+    primary: purple
     scheme: slate
+  logo: assets/user_logo.png
+  favicon: assets/user_logo.png
 
 markdown_extensions:
   - admonition
@@ -19,9 +23,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.details
   - pymdownx.snippets
+  - attr_list
 
 plugins:
   - tags
+  - search
 
 nav:
   - Home: index.md
@@ -32,3 +38,11 @@ nav:
   - TryHackMe:
     - Coming Soon: tryhackme/index.md
   - Tags: tags.md
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/janekpstudentuad
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/jane-kocan-payne-662692166/
