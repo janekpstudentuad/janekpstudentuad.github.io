@@ -10,6 +10,8 @@ It is my understanding that writeups for Hackviser Scenarios are not permitted (
 ## Scenarios
 - Anchor
 - Void
+- HackTrace
+- PasteZone
 
 ## Labs
 Coming soon.

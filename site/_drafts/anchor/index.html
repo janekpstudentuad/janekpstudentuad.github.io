@@ -564,13 +564,52 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Initial Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#further-headings-as-required" class="md-nav__link">
+  <a href="#initial-foothold" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Further headings as required...
+        Initial Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privileged-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privileged Enumeration
       
     </span>
   </a>
@@ -598,7 +637,35 @@
       
       
       
+        <a href="../../tags/#tag:basic" class="md-tag">basic</a>
+      
+    
+      
+      
+      
+      
         <a href="../../tags/#tag:hackviser" class="md-tag">hackviser</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:metasploit" class="md-tag">metasploit</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
       
     
       
@@ -608,26 +675,117 @@
         <a href="../../tags/#tag:scenario" class="md-tag">scenario</a>
       
     
+      
+      
+      
+      
+        <a href="../../tags/#tag:system" class="md-tag">system</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:vulnerable_service" class="md-tag">vulnerable_service</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:web" class="md-tag">web</a>
+      
+    
   </nav>
 
 
 
 <h1 id="anchor">Anchor</h1>
-<p><strong>Platform:</strong> Hackviser</p>
-<p><strong>Type:</strong> Scenario</p>
-<p><strong>Difficulty:</strong> Basic</p>
-<p><strong>Link:</strong> <a href="https://app.hackviser.com/scenarios/anchor">Anchor</a></p>
-<p class="center"><img alt="Anchor Logo" src="anchor_logo.png" /></p>
+<p><img alt="Anchor Logo" src="anchor_logo.png" /></p>
+<p><strong>Platform:</strong> Hackviser<br />
+<strong>Type:</strong> Scenario<br />
+<strong>Difficulty:</strong> Basic<br />
+<strong>Link:</strong> <a href="https://app.hackviser.com/scenarios/anchor">Anchor</a></p>
 <h2 id="description">Description</h2>
 <p>"We have discovered that Nexcorp, a company we serve, has been cyber-attacked and its data has been stolen, and that this data has been uploaded to a website used for illegal file transfer. It is believed that the leaked data is hosted on the server of this website. Your task is to recover the leaked data and identify the attackers. Good luck!"</p>
 <h2 id="initial-enumeration">Initial Enumeration</h2>
-<p>[Enumeration Body]</p>
-<h2 id="further-headings-as-required">Further headings as required...</h2>
-<p>[Section Body]</p>
-<p><strong>Tools Used</strong>
-[tools]</p>
-<p><strong>Date completed:</strong> 02/02/2026
-<strong>Date published:</strong> [date]</p>
+<p>This particular scenario gives us the domain/machine name for the target, rather than the IP address. I started by ascertaining the IP address for the target:
+<img alt="Ping scan output" src="initial_ping.png" /><br />
+<em>Target host can be added to <code>/etc/hosts</code> if required but was not necessary for this scenario</em></p>
+<p>I generated a list of open ports for more comprehensive enumeration with the following:
+<code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)</code><br />
+This revealed the following open ports:<br />
+- 21<br />
+- 22<br />
+- 80 (obviously, given the provided URL)  </p>
+<p>I ran a full <code>nmap</code> scan to query the services for version information, as well as querying the target system for OS information with <code>nmap -p$ports -A -T4 TARGET_IP_ADDRESS</code>, which revealed:
+<img alt="nmap scan results" src="nmap_scan.png" /></p>
+<h3 id="ftp">FTP</h3>
+<p>The <code>nmap</code> scan shows that login to the FTP service is possible with both <code>ftp</code> and <code>anonymous</code> users, however the directory appeared empty after successful login using both of these usernames.</p>
+<p>Using <code>anonymous:anonymous</code>:<br />
+<img alt="FTP dir listing for anonymous user" src="anonymous_ftp_dir.png" /></p>
+<p>Using <code>ftp:ftp</code>:<br />
+<img alt="FTP dir listing for ftp user" src="ftp_ftp_dir.png" /></p>
+<h3 id="http">HTTP</h3>
+<p>I used my go-to <code>ffuf</code> command to enumerate the website:<br />
+<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic</code>  </p>
+<p>Nothing interesting there:<br />
+<img alt="ffuf scan results" src="ffuf_scan.png" /></p>
+<p>Navigating to the URL provided reveals a static website:<br />
+<img alt="Home page" src="home_page.png" /></p>
+<p>That static web page actually gives us the answer to the first question:</p>
+<details class="task">
+<summary>How many files have been transferred to date?</summary>
+<p>2,424,521</p>
+</details>
+<p>The source code of the site shows us two new possible pages we can enumerate:<br />
+<img alt="Home page source code" src="home_page_source_code.png" /></p>
+<p>Looking at the <code>styles.css</code> file reveals nothing of interest and the <code>script.js</code> file returns a <code>404 - Not Found</code> error.</p>
+<h2 id="initial-foothold">Initial Foothold</h2>
+<p>With no usernames, no input forms, no secret directories, and no secrets in the available source code, I decided to return to the <code>nmap</code> results to start looking into possible vulnerabilities I could exploit with service versions. It didn't take me long to find a promising lead:<br />
+<img alt="Searchsploit results" src="searchsploit_ftp.png" /></p>
+<p>I opened Metasploit, searched for the relevant exploit (<code>search vsftpd 2.3.4</code>) and selected it. Looking at the required config options for the exploit, we can see the only thing needed is the target IP (<code>RHOSTS</code>):<br />
+<img alt="Metasploit exploit options" src="metasploit_exploit_options.png" /></p>
+<p>After setting the target IP, I ran the exploit, which initially appeared to be unsuccessful:<br />
+<img alt="Metasploit exploit run" src="metasploit_exploit_run.png" /></p>
+<p>However, attempting to run the exploit again (sometimes they can be flaky and require multiple attempts) shows that a session had in fact been created:<br />
+<img alt="Metasploit successful shell" src="metasploit_shell.png" /></p>
+<p>Starting an interaction with the session reveals that we have a <code>root</code> shell:<br />
+<img alt="Metasploit root shell" src="metasploit_shell_root.png" /></p>
+<h2 id="privileged-enumeration">Privileged Enumeration</h2>
+<p>Given the shell we have is very flaky, I used the <code>post/multi/manage/shell_to_meterpreter</code> module to upgrade the existing shell to a <code>meterpreter</code> shell:<br />
+<img alt="Upgrading Metasploit shell" src="metasploit_meterpreter_upgrade.png" /></p>
+<p>Doing some basic directory enumeration, we find an interesting looking file in the <code>root</code> user directory:<br />
+<img alt="WhatsApp chat file" src="root_dir.png" /></p>
+<p>Reading the contents of the file gives us the answer to the next task.<br />
+<img alt="WhatsApp chat transcript" src="whatsapp_transcript.png" />  </p>
+<details class="task">
+<summary>What is the IBAN address to which the money from the data sale will be transferred?</summary>
+<div class="highlight"><pre><span></span><code>DE89370400440532013000
+</code></pre></div>
+</details>
+<p>Using the next task wording, it sounds like we need to look at some HTTP logs. Enumerating the <code>/var/log</code> directory reveals an interesting-looking file:
+<img alt="Uploads log file" src="log_dir.png" /></p>
+<p>Reading the contents of the log file gives us the answer to the next task:<br />
+<img alt="Uploads log contents" src="uploads_log.png" />  </p>
+<details class="task">
+<summary>From which IP address was the file with the company's data uploaded?</summary>
+<div class="highlight"><pre><span></span><code>198.51.100.5
+</code></pre></div>
+</details>
+<p>Switching to a <code>bash</code> shell to look for the <code>nexcorp.sql</code> file reveals the file is still on the server. After exiting the <code>bash</code> shell, we can use the inbuilt <code>download</code> command to obtain the file on our local machine:<br />
+<img alt="Nexcorp sensitive file" src="nexcorp.sql_file.png" /></p>
+<p>Reading the contents of the downloaded file on our local machine gives us the answer to the final task:<br />
+<img alt="Nexcorp sensitive file contents" src="database_file_contents.png" />  </p>
+<details class="task">
+<summary>What is the password of the admin user in the leaked data?</summary>
+<div class="highlight"><pre><span></span><code>AdminPass1234!
+</code></pre></div>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>metasploit</code></p>
+<p><strong>Date completed:</strong> 02/02/2026<br />
+<strong>Date published:</strong> CURRENTLY NOT PUBLISHED</p>
 
 
 
