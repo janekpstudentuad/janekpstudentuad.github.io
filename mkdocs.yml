@@ -46,3 +46,6 @@ extra:
       link: https://github.com/janekpstudentuad
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/jane-kocan-payne-662692166/
+
+exclude_docs:
+  _drafts/*
