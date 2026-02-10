@@ -37,6 +37,8 @@ nav:
     - Coming Soon: hackthebox/index.md
   - TryHackMe:
     - Coming Soon: tryhackme/index.md
+  - MSc:
+    - Coming Soon: msc/msc.md
   - Tags: tags.md
 
 extra:
