@@ -31,14 +31,12 @@ plugins:
 
 nav:
   - Home: index.md
-  - Hackviser:
-    - Scenarios and Labs: hackviser/index.md
+  - Hackviser Scenarios and Labs: hackviser/index.md
   - Hack The Box:
     - Coming Soon: hackthebox/index.md
   - TryHackMe:
     - Coming Soon: tryhackme/index.md
-  - MSc:
-    - Coming Soon: msc/msc.md
+  - MSc: msc/msc.md
   - Tags: tags.md
 
 extra:
