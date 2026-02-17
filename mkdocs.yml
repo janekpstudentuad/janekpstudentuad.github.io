@@ -35,7 +35,8 @@ nav:
   - Hack The Box:
     - Coming Soon: hackthebox/index.md
   - TryHackMe:
-    - Coming Soon: tryhackme/index.md
+    - Rooms: tryhackme/index.md
+    - Love at First Breach: tryhackme/love_at_first_breach/index.md
   - MSc: msc/msc.md
   - Tags: tags.md
 
