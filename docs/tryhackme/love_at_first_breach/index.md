@@ -15,7 +15,7 @@ Love at First Breach was a Valentine's-themed CTF event that had two parts:
 - [Speed Chatting](./speed_chatting.md)  
 - [TryHeartMe](./tryheartme.md)  
 - [Valendind](./valenfind.md)  
-- Signed Messages - *coming soon!*  
+- [Signed Messages](./signed_messages.md)  
 
 **Still to complete**  
 I am intending on completing the final two rooms and to go through the CTF content. I will add these here once they are complete:  

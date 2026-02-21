@@ -23,7 +23,7 @@
     
     
       
-        <title>TryHeartMe - Offense, Defense, and Everything Between</title>
+        <title>Corp Website - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tryheartme" class="md-skip">
+        <a href="#corp-website" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TryHeartMe
+              Corp Website
             
           </span>
         </div>
@@ -408,7 +408,35 @@
   <span class="md-ellipsis">
     
   
-    Coming Soon
+    Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
   
 
     
@@ -521,10 +549,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enumeration" class="md-nav__link">
+  <a href="#initial-enumeration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enumeration
+        Initial Enumeration
       
     </span>
   </a>
@@ -532,10 +560,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#foothold" class="md-nav__link">
+  <a href="#foothol" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Foothold
+        Foothol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-exploitation-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-exploitation enumeration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege escalation
       
     </span>
   </a>
@@ -563,14 +613,14 @@
       
       
       
-        <a href="../../../tags/#tag:easy" class="md-tag">easy</a>
+        <a href="../../../tags/#tag:medium" class="md-tag">medium</a>
       
     
       
       
       
       
-        <a href="../../../tags/#tag:jwt" class="md-tag">jwt</a>
+        <a href="../../../tags/#tag:metasploit" class="md-tag">metasploit</a>
       
     
       
@@ -578,6 +628,13 @@
       
       
         <a href="../../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:privilege-escalation" class="md-tag">privilege-escalation</a>
       
     
       
@@ -598,6 +655,13 @@
       
       
       
+        <a href="../../../tags/#tag:vulnerability-exploitation" class="md-tag">vulnerability-exploitation</a>
+      
+    
+      
+      
+      
+      
         <a href="../../../tags/#tag:web" class="md-tag">web</a>
       
     
@@ -605,39 +669,53 @@
 
 
 
-<h1 id="tryheartme">TryHeartMe</h1>
+<h1 id="corp-website">Corp Website</h1>
 <p><strong>Platform:</strong> TryHackMe<br />
 <strong>Type:</strong> Room<br />
-<strong>Difficulty:</strong> Easy<br />
-<strong>Link:</strong> <a href="https://tryhackme.com/room/lafb2026e5">TryHeartMe</a></p>
+<strong>Difficulty:</strong> Medium<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/lafb2026e7">Corp Website</a></p>
 <h2 id="description">Description</h2>
-<p><em>Access the hidden item in this Valentine's gift shop.</em>  </p>
-<p>"The TryHeartMe shop is open for business. Can you find a way to purchase the hidden “Valenflag” item? 
-You can access the web app here: http://MACHINE_IP:5000"</p>
-<h2 id="enumeration">Enumeration</h2>
+<p>"Valentine's Day is fast approaching, and 'Romance &amp; Co' are gearing up for their busiest season.</p>
+<p>Behind the scenes, however, things are going wrong. Security alerts suggest that "Romance &amp; Co" has already been compromised. Logs are incomplete, developers defensive and Shareholders want answers now!</p>
+<p>As a security analyst, your mission is to retrace the attacker's, uncover how the attackers exploited the vulnerabilities found on the "Romance &amp; Co" web application and determine exactly how the breach occurred.</p>
+<p>You can find the web application here: http://MACHINE_IP:3000"</p>
+<h2 id="initial-enumeration">Initial Enumeration</h2>
 <p>Given the challenge description, I went straight in for website enumeration. I used my go-to <code>ffuf</code> command to enumerate the website:<br />
-<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c</code>. Nothing much interesting here (not yet anyway):<br />
-<img alt="ffuf scan results" src="ffuf_scan_results.png" /></p>
-<p>After looking around the site, checking for <code>robots.txt</code>, and examining the source code, I concluded there were no low hanging fruits to be had and decided to move into gaining an account using the "Register" link at the top of the page.</p>
-<h2 id="foothold">Foothold</h2>
-<p>Using a fake email address (<code>test@test.com:password</code>) to gain an account was trivial, and as soon as I logged in I was supplied with a site cookie. The name of the cookie suggested it was a JWT token:<br />
-<img alt="JWT cookie" src="jwt_token.png" />  </p>
-<p>Using an online <a href="https://www.jwt.io/">JWT decoder</a> showed the token value was able to be decoded and furthermore had a user role assigned:<br />
-<img alt="JWT contents" src="jwt_contents.png" />  </p>
-<p>Using the same online tool, I moved to the encoding function and changed the user role from "user" to "admin" before copying the encoded value and pasting it into the cookie value on the site (using Developer Tools). Refreshing the page after doing this resulted in a new "Admin" button being made available:<br />
-<img alt="Admin login successful" src="admin_login_successful.png" />  </p>
-<p>Navigating to this admin area reveals the hidden shop item that we are looking for:<br />
-<img alt="valenflag" src="valenflag.png" />  </p>
-<p>Clicking "Open Valenflag" and then "Buy" revealed the flag:<br />
-<img alt="Flag success" src="flag_success.png" />  </p>
+<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c</code>. Nothing that I didn't already know about here (having already visited the site in a web browser):<br />
+<img alt="ffuf scan results" src="ffuf_scan_results.png" />  </p>
+<p>There was no <code>robots.txt</code> file. Inspection of the source code for the discovered pages showed that they had been formatted badly - this was easily fixed with an online prettifier tool. Skimming through there didn't appear to be anything immediately obvious, maybe apart from an odd string at the top of the document:<br />
+<img alt="Encrypted string" src="encrypted_string.png" />  </p>
+<p>I tried to identify the encoding but no joy. At this point, I kept it as something useful for later (spoiler alert, it turned out to be a red herring).</p>
+<p>As a final initial enumeration step, I ran an <code>nmap</code> service scan against the port to check versioning but the only thing that felt vaguely useful was the confirmation of the framework running on the target:<br />
+<img alt="nmap scan results" src="nmap_scan_results.png" /></p>
+<h2 id="foothol">Foothol</h2>
+<p>With no immediately obvious ways to gain a foothold and no idea of any credentials I could possibly use, I took a look at some recent vulnerabilities for the only thing about the web application I could say for sure - it uses the next.js framework. It  didn't take a lot of research to uncover CVE-2025-55182, otherwise known as React2Shell and really the only reason this jumped out at me is because it was pretty big news in the industry when it broke. As I was digging through some of the articles about it, I also found mention that there was a Metasploit module available for it so I fired up <code>msfconsole</code> and did a search for it. Setting the relevant options as required and running its <code>check</code> module suggested the target was vulnerable:<br />
+<img alt="Target vulnerable to React2Shell" src="msfconsole_check_result.png" />  </p>
+<p>Running the exploit gave me a shell almost instantly:<br />
+<img alt="Reverse shell" src="reverse_shell.png" />  </p>
+<h2 id="post-exploitation-enumeration">Post-exploitation enumeration</h2>
+<p>Knowing the typical location for a user flag in THM boxes, I checked the contents of the logged-in user's home directory and got the user flag:<br />
+<img alt="User flag" src="user_flag.png" />  </p>
 <details class="success">
-<summary>What is the flag?</summary>
-<div class="highlight"><pre><span></span><code>THM{v4l3nt1n3_jwt_c00k13_t4mp3r_4dm1n_sh0p}
+<summary>What is the user flag?</summary>
+<div class="highlight"><pre><span></span><code>THM{R34c7_2_5h311_3xpl017}
+</code></pre></div>
+</details>
+<h2 id="privilege-escalation">Privilege escalation</h2>
+<p>One of the first things I do whenever I am looking at quick wins for privilege escalation is check if the user has any <code>sudo</code> privileges with <code>sudo -l</code> and I was in luck with this one:<br />
+<img alt="Sudo rights" src="sudo_rights.png" />  </p>
+<p>A quick search of <a href="https://gtfobins.org/gtfobins/python/">GTFOBins</a> gave me almost the exact piece of code to run with a small tweak (<code>python</code> &gt;&gt; <code>python3</code>). I ran the code and <code>root</code> was achieved:<br />
+<img alt="Privilege escalation" src="privileges_escalated.png" />  </p>
+<p>As with the user flag, I know that root flags are often held in the <code>/root</code> directory. A quick check and the root flag was mine:<br />
+<img alt="Root flag" src="root_flag.png" />  </p>
+<details class="success">
+<summary>What is the root flag?</summary>
+<div class="highlight"><pre><span></span><code>THM{Pr1v_35c_47_175_f1n357}
 </code></pre></div>
 </details>
 <p><strong>Tools Used</strong><br />
-<a href="https://jwt.io">JWT decoder</a></p>
-<p><strong>Date completed:</strong> 14/02.26<br />
+<code>nmap</code> <code>msfconsole</code></p>
+<p><strong>Date completed:</strong> 15/02/26<br />
 <strong>Date published:</strong> 17/02/26</p>
 
 
