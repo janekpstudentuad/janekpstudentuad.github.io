@@ -2,7 +2,7 @@
 tags:
   - tryhackme
   - ctf
-  - easy
+  - hard
   - defensive
   - forensics
   - binary-analysis
@@ -11,7 +11,7 @@ tags:
 
 # Love at First Breach 2026 - Advanced Track - LOVELETTER
 **Platform:** TryHackMe  
-**Type:** CTF 
+**Type:** CTF  
 **Difficulty:** Hard  
 **Link:** [Love at First Breach 2026 - Advanced Track](https://tryhackme.com/room/lafbctf2026-advanced) (Task 2)
 
