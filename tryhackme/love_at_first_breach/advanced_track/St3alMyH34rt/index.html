@@ -1,0 +1,926 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes and write-ups by humbledragon669">
+      
+      
+        <meta name="author" content="janekpstudentad">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/user_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>St3alMyH34rt - Offense, Defense, and Everything Between</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#st3almyh34rt" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Offense, Defense, and Everything Between" class="md-header__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../../../assets/user_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Offense, Defense, and Everything Between
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              St3alMyH34rt
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Offense, Defense, and Everything Between" class="md-nav__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../../../assets/user_logo.png" alt="logo">
+
+    </a>
+    Offense, Defense, and Everything Between
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hackviser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hackviser Scenarios and Labs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TryHackMe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../msc/msc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everything Between
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Everything Between
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/conferences_events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conferences/events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions-on-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions on objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ctf" class="md-tag">ctf</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:defensive" class="md-tag">defensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:hard" class="md-tag">hard</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:potato-attack" class="md-tag">potato-attack</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:red-teaming" class="md-tag">red-teaming</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:seimpersonateprivilege" class="md-tag">seimpersonateprivilege</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:windows" class="md-tag">windows</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="st3almyh34rt">St3alMyH34rt</h1>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> CTF<br />
+<strong>Difficulty:</strong> Hard<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/lafbctf2026-advanced">Love at First Breach 2026 - Advanced Track</a> (Task 4)</p>
+<h2 id="description">Description</h2>
+<p>"This Valentine's Day, someone is waiting to be swept off their feet. Break through the barriers and reach what's most desired.
+Prove it with the Administrator flag, and remember on Valentine's day outbund traffic is not allowed.</p>
+<p>Use this credential to access via RDP:<br />
+User: andrea<br />
+Password: Cupid@2026!"</p>
+<h2 id="initial-enumeration">Initial Enumeration</h2>
+<p>Alright, first thing to say about this particular challenge. This is NOT your normal CTF scenario, and whilst I did start with enumeration of the provided machine as would be usual, approaching red team focussed challenges requires a shift in mindset from pre- to post-exploitation enumeration from the off. To be clearer, consider where you are in the attack chain in this situation - access and credentials have been provided to you. Usually CTF challenges start with "how do I get access to the target" - that process is redundant in the scenario. Effectively we're at the privilege escalation stage of the attack chain already (or possibly lateral movement if this were part of a network challenge), having done absolutely nothing on our part. With that in mind, I needed to change my approach for this box - my first steps here weren't figuring out what I could do, but what I could do <em>with the user account provided</em>. The difference is subtle but important. Apologies if that was teaching anybody to suck eggs - I thought it was worth mentioning because the difference in approach drastically changes how you go about making progress here - there's no automated scanning activities required (at least not as a first move), and enumeration starts with account access and file system. It is also worth bearing in mind that we have been provided with a definite objective for this challenge - "reach what's most desired", to be proven with the Administrator flag, and (perhaps most importantly), "outbound traffic is not allowed", so no reverse shells!</p>
+<p>Right, caveat made, I proceeded to enumerate the target machine using this <a href="../../../../everything_between/red_team_method_credentialed/">red team checklist</a> I'd been working on. I'm not about to put up the entire enumeration process (because, yawn) - all I'll do here is include the findings that were relevant to the completion of the challenge, which are all to do with the contents of the <code>C:\valentine</code> directory. It caught my attention early on because (aside from the challenge-appropriate name) it was a non-standard directory in the <code>C:\</code> root folder.<br />
+<img alt="valentine directory contents" src="valentine_contents.png" /></p>
+<p>Looking at the contents of <code>venv\Lib</code>, it's pretty obvious that this is a Flask web application. Sadly the so-called <code>config.py</code> file didn't actually contain any configuration settings, with the file appearing to act more as a form of string storage/glorified dictionary rather than as a true config file. The <code>run.py</code> file showed that the main application was being called from the <code>app.pyd</code> file. Unfortunately this meant that reading the contents of the main app file to learn its secrets wasn't an option - <code>.pyd</code> is a format used for compiling the byte code of a Python module and is by design intended to obfuscate the raw data. No matter, there's more to be uncovered in the directory itself - the templates folder (which holds the HTML files for individual web pages) has a number of pages to look through, including one called <code>secret.html</code>.<br />
+<img alt="templates directory contents" src="templates_contents.png" /></p>
+<p>Sadly, that mostly seems to be there as a secret page for visitors to the web page. Having looked around all the files in the directory, I figured it was about time to fire up the web site and see how it actually functions for users.<br />
+<img alt="Starting the web app" src="start_web_app.png" /></p>
+<p>Navigating around the web site showed a functioning web page, including an <code>upload</code> function, though it claims only to accept <code>.txt</code> files. The <code>secret.html</code> page was, understandably, not advertised on the page itself - I tried to navigate directly to it by following the addressing convention used for the other pages (e.g., <code>events.html</code> went to <code>/events</code>) but it wasn't there. Often there would be a <code>routes.py</code> file within a Flask web application that would detail the routes applicable to the templates, but this was absent, and as said previously, I was unable to read the main <code>app.pyd</code> file to look for the information. Not to worry, the underlying routing system is exposed through the <code>url_map</code> class of a Flask instance.<br />
+<img alt="app.url_map" src="url_map.png" /></p>
+<p>There we go, a non-standard (for this web app) naming convention for the <code>secret.html</code> file. And what's this! Another endpoint that previously I had not known existed - <code>/api/love-fortune</code>. Digging into this endpoint a little further shows that whilst it <em>can</em> be interacted with using a <code>GET</code> request, it's actually designed as an interactive element on the <code>secret.html</code> page. Interacting with it using both the intended and unintended methods suggested that the web service returns a randomly chosen string held in one of the dictionaries in the <code>config.py</code> file.</p>
+<p>Digging a little into the permissions of the various files and directory, there is something crafty at play. Trying to make a POC edit to one of the template files was unsuccessful. However, trying the same trick with the <code>config.py</code> file was successful. Looking at the permissions for the directories, the <code>andrea</code> user appears to have only read access, but the <code>Users</code> group for the machine actually has write access to <code>config.py</code>. With NTFS permissions, higher levels of permissions take precedence with "Allow" rules, and since there are no "Deny" rules in place, the effective permissions that apply to the <code>andrea</code> user here are at the write level. Great, that means that we can modify the <code>config.py</code> file, potentially giving us a degree of control over the web app functionality.</p>
+<h2 id="privilege-escalation">Privilege escalation</h2>
+<p>So let's have a look at how this exploit would theoretically work:  </p>
+<ul>
+<li>When the web application is launched using <code>run.py</code>, it imports the application from <code>app.pyd</code>.  </li>
+<li>We can presume that somewhere in the <code>app.pyd</code> code, there is an instruction to import <code>config.py</code> - as it stands, it appears to use the file as a dictionary for strings to display on the pages.  </li>
+<li>Whatever functionality we can insert into the <code>config.py</code> file will run under whatever user context that the web application runs in. At the very least this provides us with arbitrary code execution but could extend to privilege escalation depending on the user context of the web application.</li>
+</ul>
+<p>None of the above is relevant unless I can trigger the loading of the <code>config.py</code> file as a user other than the standard "andrea" user that I currently have access to. Lucky for me, that might be possible using the previously discovered API endpoint - reloading this page may trigger a dynamic load of the <code>config.py</code> file, triggering any code inserted into the file, in the user context that the web service is actually running in (because requests to the API are handled internally by the web service itself).</p>
+<p>Alright, so how do we move this from "theoretically" to "proof"? Crucially, we need some mechanism that will prove that whatever commands we insert into the <code>config.py</code> are actually executing seeing as we have no terminal output. That aspect should be easy enough to get around - we can redirect output to a file in a location we have read access to. We also need to be able to issue Windows commands from with a Python context - this is easily achieved by importing the <code>os</code> or <code>subprocess</code> libraries into the <code>config.py</code> file. In order to ensure the exploit is as clean as possible, I chose a location that the web app has proven write access to - <code>uploads</code>.</p>
+<p>I started with a very simple POC line of code - print "Hello world" to a file in my chosen directory, achieved with the following code at the top of the <code>config.py</code> file:<br />
+<div class="highlight"><pre><span></span><code>import os
+
+with open(r&quot;C:\valentine\uploads\test.txt&quot;, &quot;w&quot;) as f:
+    f.write(&quot;Hello world&quot;)
+</code></pre></div></p>
+<p>I navigated directly to the <code>/api/love-fortune</code> endpoint in a browser and... success!<br />
+<img alt="POC file" src="poc_file.png" /></p>
+<p>That's pretty great news - arbitrary code execution achieved 😎<br />
+The next big piece of information I needed, which would dictate my next move, is what user context this code is executing in. For that I changed the code at the top of <code>config.py</code> to the following:<br />
+<div class="highlight"><pre><span></span><code>import subprocess
+
+result = subprocess.check_output(&quot;whoami&quot;, shell=True)
+with open(r&quot;C:\valentine\uploads\test.txt&quot;, &quot;wb&quot;) as f:
+    f.write(result)
+</code></pre></div></p>
+<p>Reloading the API page in a browser returned some fairly promising information:<br />
+<img alt="Privileged service proof" src="privileged_user_proof.png" />  </p>
+<p>Next up I need to find out what sort of privileges this user has - a small tweak to the code at the top of the config file will get me that:<br />
+<div class="highlight"><pre><span></span><code>import subprocess
+
+result = subprocess.check_output(&quot;whoami /priv&quot;, shell=True)
+with open(r&quot;C:\valentine\uploads\test.txt&quot;, &quot;wb&quot;) as f:
+    f.write(result)
+</code></pre></div></p>
+<p>The output for this is very good news indeed:<br />
+<img alt="Privileges proof" src="privileges_proof.png" />  </p>
+<p>That <code>SeImpersonatePrivilege</code> is notorious as a privilege escalation weakness - the attacks are commonly known with a naming convention including the word "potato". Potato attacks have evolved over time, with new versions being developed in line with new Windows OS releases. The most recent iteration, <a href="https://medium.com/@iamkumarraj/godpotato-empowering-windows-privilege-escalation-techniques-400b88403a71">GodPotato</a>, has been developed to run on any Windows OS version and has the ability to chain commands with the execution of the exploit. Its only requirement to work is that all-important <code>SeImpersonatePrivilege</code>. Using <code>remmina</code> to RDP to the target machine also makes it a doddle to upload the exploit to the machine too - simply copy and paste between attacker and victim machine.</p>
+<h2 id="actions-on-objectives">Actions on objectives</h2>
+<p>Great, with all the puzzle pieces in place, I wanted to recap on the stated objectives before I decided my next move and this was important because the brief tells you exactly what is needed to complete the challenge. It also lays down a big blocker for one potential pathway - no outbound traffic. OK, so no reverse shell to make any sort of snooping around the system a bit more user-friendly. No biggie, all I really need (and this is as per the brief, not just being lazy and CTF-y), is the Administrator flag, so if I can execute GodPotato with a chained command to read the contents of the file holding the flag and redirect the output, that should be challenge complete. One last hurdle - I don't know where the flag is or what its filename is. With that in mind, I updated the code inserted into <code>config.py</code> with the intention of enumerating the Administrator's Desktop folder, seeing as that's usually where CTF flags are kept:<br />
+<div class="highlight"><pre><span></span><code>import subprocess
+
+result = subprocess.run(
+    [r&quot;C:\valentine\uploads\gp.exe&quot;, &quot;-cmd&quot;, r&#39;cmd /c dir C:\Users\Administrator\Desktop&#39;],
+    capture_output=True, text=True
+)
+
+with open(r&quot;C:\valentine\uploads\test.txt&quot;, &quot;w&quot;) as f:
+    f.write(result.stdout)
+</code></pre></div></p>
+<p>After saving the file and reloading the API, I have a good result in my test file:<br />
+<img alt="Successful privilege escalation" src="successful_priv_esc.png" /></p>
+<p>This tells me two things:  </p>
+<ul>
+<li>The GodPotato exploit has successfully executed a command as SYSTEM.</li>
+<li>The name of the flag file is <code>flag-8765.txt</code>.</li>
+</ul>
+<p>From here, reading the contents of the flag file is trivial with the following update to the injected <code>config.py</code> code:<br />
+<div class="highlight"><pre><span></span><code>import subprocess
+
+result = subprocess.run(
+    [r&quot;C:\valentine\uploads\gp.exe&quot;, &quot;-cmd&quot;, r&#39;cmd /c type C:\Users\Administrator\Desktop\flag-8765.txt&#39;],
+    capture_output=True, text=True
+)
+
+with open(r&quot;C:\valentine\uploads\test.txt&quot;, &quot;w&quot;) as f:
+    f.write(result.stdout)
+</code></pre></div></p>
+<p>Save the file, reload the API, and the contents of the test file contain the flag:<br />
+<img alt="Flag success" src="flag_success.png" />  </p>
+<details class="success">
+<summary>What's the Administrator's flag?</summary>
+<p>THM{s3rv1c3_4cc_t0_SYSTEM_pr1v3sc_ftw!}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>VSCode</code> <code>remmina</code></p>
+<p><strong>Date completed:</strong> 07/03/2026<br />
+<strong>Date published:</strong> 07/03/2026</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/janekpstudentuad" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/jane-kocan-payne-662692166/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.expand", "navigation.sections", "content.code.copy", "content.code.annotate", "search.suggest"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
