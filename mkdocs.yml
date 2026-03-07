@@ -32,12 +32,15 @@ plugins:
 nav:
   - Home: index.md
   - Hackviser Scenarios and Labs: hackviser/index.md
-  - Hack The Box:
-    - Coming Soon: hackthebox/index.md
   - TryHackMe:
     - Rooms: tryhackme/index.md
     - Love at First Breach: tryhackme/love_at_first_breach/index.md
   - MSc: msc/msc.md
+  - Everything Between:
+    - Articles: everything_between/articles.md
+    - Blog: everything_between/blog.md
+    - Conferences/events: everything_between/conferences_events.md
+    - Resources: everything_between/resources.md
   - Tags: tags.md
 
 extra:
