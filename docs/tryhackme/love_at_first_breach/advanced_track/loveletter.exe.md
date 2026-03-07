@@ -56,7 +56,7 @@ This revealed the following open ports:
 * 8080  
 
 I ran a full `nmap` scan to query the services for version information, as well as querying the target system for OS information with `nmap -p$ports -A -T4 TARGET_IP_ADDRESS`, which revealed the following:  
-![nmap initial scan](task_1_loveletter.exe/nmap_initial_scan.png)  
+![nmap initial scan](loveletter.exe/nmap_initial_scan.png)  
 
 Navigating to the page at port 8080 (as found in the `nmap` scan) resulted in a `401` JSON response. The `nmap` scan told me the request is being refused because of a missing `WWW-Authenticate` header, but without knowing the expected values, I can't do much with this. There's a good article about this header in the [Mozilla Developers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/WWW-Authenticate) documentation.
 
@@ -64,10 +64,10 @@ I used my go-to `ffuf` command to enumerate the website at port 80:
 `ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c`
 
 Nothing interesting there:  
-![ffuf initial scan](task_1_loveletter.exe/ffuf_initial_scan.png)
+![ffuf initial scan](loveletter.exe/ffuf_initial_scan.png)
 
 I followed that up with a scan of the 8080 port. Nothing useful here either:  
-![ffuf 8080 scan](task_1_loveletter.exe/ffuf_8080_scan.png)  
+![ffuf 8080 scan](loveletter.exe/ffuf_8080_scan.png)  
 
 Knowing that there's a subdomain in play, I decided to try a DNS zone transfer with `dig` to see if there were others, but this was rejected. I moved on to enumeration with `gobuster` but the errors started piling up within the first few attempts, so I figured this was likely throttling as per the challenge description. Finally, I tried a `vhost` scan with `gobuster` as an alternative, but got no results here either (with both the 80 and 8080 ports). I did a recursive directory enumeration on the main site and found a JS endpoint at `javascript/jquery/jquery` but this appeared to be a standard jquery library (at least according tto ChatGPT - I had to ask it very forcefully to read the file properly, it was trying to be very lazy).
 
@@ -87,10 +87,10 @@ I did a quick round of research for the following software versions identified i
 Considering the challenge specifically (and pointedly) mentions Windows hosts, I also looked at whether the decompressed email file had an alternative data stream with PowerShell (`Get-Item <fileName> -Stream *`) but no joy there. This step did however make me think - if the payload is specifically targeting Windows users, could it be that there is a user-agent check being used by the web app that would refuse or grant access to the `card.html` link contained in the original e-mail? I fired up Burp, redirected the traffic in my browser with FoxyProxy, and sent the request to Repeater. I'm using Firefox on my attack box so in theory all I needed to do is change the user-agent value so that the request appears to be coming from a Windows device. A list of valid user agents can be found [here](https://www.whatismybrowser.com/guides/the-latest-user-agent/firefox). Replacing the Linux value with a Windows value in the Repeater request returned different responses - `403` for the `delivery` subdomain, `400` for the `card.html` and `unsubscribe` endpoints. Thinking that perhaps this was an issue with the way that requests are rendered within Burp, I went back to the browser to see if I could force a change of user-agent there.
 
 In the Web Developer tools of the browser, there is a inbuilt tool for testing how a web page will appear on particular devices - it's called Responsive Mode:  
-![Responsive mode](task_1_loveletter.exe/responsive_mode.png)  
+![Responsive mode](loveletter.exe/responsive_mode.png)  
 
 Using this mode, a menu appears at the top of the browser, allowing you to emulate browsing web pages from specific devices. By choosing any device with a Windows OS and reloading the `card.html` page, I finally got access to something that looked useful (the `delivery` and `unsubscribe` endpoints still returned a `404` error):  
-![Download card](task_1_loveletter.exe/download_payload.png)  
+![Download card](loveletter.exe/download_payload.png)  
 
 Downloading the file delivered a file called `LOVE_LETTER.pdf.iso` to my attacker machine. Whilst I was here, I also checked the source code, which revealed a JS script on the remote machine (`valentine-animations.js`). Looking at the contents, it was clear it was heavily obfuscated, which seemed out of context for a simple animation element for a web page. I saved it off for possible further exploration.
 
@@ -107,16 +107,16 @@ No additional malicious functionality is present in this script - the "payload" 
 
 ## LOVE_LETTER.pdf.iso downloaded file (analysis)
 Running `file` on the downloaded file revealed that it was in fact a .iso compressed image:  
-![ISO file](task_1_loveletter.exe/iso_file.png)  
+![ISO file](loveletter.exe/iso_file.png)  
 
 Opening that with the inbuilt Archive Manager utility on Kali revealed a Windows shortcut file:  
-![Compressed shortcut file](task_1_loveletter.exe/compressed_shortcut_file.png)  
+![Compressed shortcut file](loveletter.exe/compressed_shortcut_file.png)  
 
 Extracting that and running `file` again provided some useful information:  
-![.lnk file](task_1_loveletter.exe/link_file.png)  
+![.lnk file](loveletter.exe/link_file.png)  
 
 Using `exiftool` to examine the .lnk file provides some information about what the shortcut is likely to do:  
-![exiftool output](task_1_loveletter.exe/exiftool_output.png)
+![exiftool output](loveletter.exe/exiftool_output.png)
 
 Breaking this output down, it appears that clicking this shortcut would do the following:  
 
@@ -129,13 +129,13 @@ The purpose of the shortcut is hidden by the name of the shortcut "Valentine's D
 The Mshta technique for dropping malicious payloads on victim machines is well documented. I used the [Red Canary](https://redcanary.com/threat-detection-report/techniques/mshta/) report to help me understand the attack flow. In this instance I think it likely that it will be used the "paste and run" technique to download an apparent payload from the `love.hta` endpoint, a technique that would go undetected as the Mshta binary is signed and trusted by Windows (referred to as a "Living-off-the-Land Binary", or LOLBIN).
 
 After adding the new domain to the `/etc/hosts` file, navigating to the URL contained within the .lnk file resulted in the same customised `404` error I had been seeing with the site from the beginning of the challenge. Remembering the techniques used to hide the malicious files earlier on, I wondered whether it might only be obtainable if contacted by the Mshta tool. A quick Google gave me a user-agent string I could use with the Responsive Design Mode in Firefox (`Mozilla/5.0 (Windows NT 10.0; Win64; x64; Trident/7.0; rv:11.0) like Gecko`):  
-![Custom UA string](task_1_loveletter.exe/custom_ua_string.png)  
+![Custom UA string](loveletter.exe/custom_ua_string.png)  
 
 After setting the custom UA string, I refreshed the page and the `love.hta` file downloaded to my attacker machine automatically.
 
 ## love.hta downloaded file (analysis)
 Running `file` on this new file showed that it was, as expected, a .hta file, readable as ASCII:  
-![.hta file output](task_1_loveletter.exe/hta_file_output.png)  
+![.hta file output](loveletter.exe/hta_file_output.png)  
 
 Reading the file with `cat` showed it was, once again, heavily obfuscated, though this time I was looking at a VBScript. Intent masquerading is continued with the use of the title "Valentine". The program would be launched in a hidden/minimised state. The obfuscation is achieved by building the payload, character by character, using ASCII character representation. After deobfuscation (this can be done in a number of ways, I used AI for speed), the content of the file is as follows:  
 ```
@@ -178,21 +178,21 @@ Downloading the .cpl file with `certutil` ensures the resulting download is trus
 
 ## bthprops.cpl downloaded file (analysis)
 Running `file` on the .cpl file suggested it was actually a DLL file:  
-![.cpl file out](task_1_loveletter.exe/cpl_file_output.png)  
+![.cpl file out](loveletter.exe/cpl_file_output.png)  
 
 With this information, it became evident that the previous VBScript was executing a DLL sideloading attack - having a legitimate Windows binary load an attacker DLL file.
 
 Windows executable files can be examined in detail using Ghidra, so I went ahead and created a new proect, importing the DLL into the CodeBrowser. After Ghidra did its magic (analysis and decompilation), I went about looking for the `main` function. Because this is a DLL file, I was specifically looking for a `DllMain` function. Lucky for me, there's one here:  
-![DllMain function](task_1_loveletter.exe/dllmain_function.png)  
+![DllMain function](loveletter.exe/dllmain_function.png)  
 
 Unlucky for me, it simply contains a reference to a function elsewhere, `_p`:  
-![Decompiled DllMain function](task_1_loveletter.exe/decompiled_dllmain_function.png)  
+![Decompiled DllMain function](loveletter.exe/decompiled_dllmain_function.png)  
 
 Loading up the `_p` is a bit more fruitful, but it's pretty obvious it relies heavily on another function, `_d`:  
-![_p function](task_1_loveletter.exe/p_function.png)  
+![_p function](loveletter.exe/p_function.png)  
 
 Finally, we get to some content that might be usable in the `_d` function:  
-![_d function](task_1_loveletter.exe/d_function.png)  
+![_d function](loveletter.exe/d_function.png)  
 
 So not being great at reverse engineering, at this point I turned to AI to help me understand what was going on. If I understand the explanation correctly, that `_d` function is effectively a decode function, using a transforming XOR key. The key can be seen in the function as `)` but is in fact the ASCII representation of the number "41". The decode is applied to individual characters (it's actually per byte, but for the purposes of this function, that's characters), taking their index position and multiplying it by 41. It takes that multiplied value and uses it to XOR the original value. Finally it takes that resulting value and XORs it by 0x4c. The middle section of this function is what makes this a transforming key - each character has its own primary XOR key dependant on its position in the full string that is being decoded.
 
@@ -232,7 +232,7 @@ Given this script was intended to be downloaded by a command line tool, I used `
 
 ## cupid.ps1 downloaded file (analysis)
 As with the other files, I ran `file` to see what it was. Looks like a readable ASCII file:  
-![cupid.ps1 file output](task_1_loveletter.exe/cupid_file_output.png)  
+![cupid.ps1 file output](loveletter.exe/cupid_file_output.png)  
 
 Surprise, surprise, it was obfuscated, partly through string splitting, partly through hex-encoding at the character level. Given the mix of techniques being applied, I once again turned to AI to perform the deobfuscation task for me. The resulting script performed the following sequence of functions:  
 
@@ -250,7 +250,7 @@ Given this script was intended to be downloaded by a command line tool, I used `
 
 ## roses.jpg downloaded file (analysis)
 As with the other files, I ran `file` to see what it was. Looks like an image file like it claims:  
-![roses.jpg file output](task_1_loveletter.exe/roses_file_output.png)  
+![roses.jpg file output](loveletter.exe/roses_file_output.png)  
 
 If the PowerShell script is to be believed, it should be possible to extract the payload from this downloaded file using the script's functionality as a guide. As with the previous tasks in this challenge, I asked AI to generate a script for me, and this is what I got back (functioning):  
 ```
@@ -315,7 +315,7 @@ I ended up with another .vbs script saved on my attacker machine, ready for furt
 
 ## valentine.vbs extracted file (analysis)
 As with the other files, I ran `file` to see what it was. Looks like a readable ASCII file:  
-![valentine.vbs file output](task_1_loveletter.exe/valentine_file_output.png)  
+![valentine.vbs file output](loveletter.exe/valentine_file_output.png)  
 
 Aaaaaaand obfuscated. I know I shouldn't be surprised, but for for a single challenge in a larger CTF, this is getting a little tedious. Back to AI I went for deobfuscation magic, and this is the result:  
 ```
@@ -349,13 +349,13 @@ So put simply, this script creates a shell object to download an executable fold
 
 ## heartbeat.exe downloaded file (analysis)
 As with the other files, I ran `file` to see what it was. Looks like a Windows executable file, just like it claims to be:  
-![heartbeat.exe file output](task_1_loveletter.exe/heartbeat_file_output.png)
+![heartbeat.exe file output](loveletter.exe/heartbeat_file_output.png)
 
 I used Ghidra again to examine the contents of this new executable file. The `main` function is pretty simple - it displays a message to the screen, calls on another function to build an authorization header, calls a function to exfiltrate files from the file system, and finally calls another function to display a ransom note. With that in mind, I started to look at the component functions, which actually had very helpful names.
 
 `build_auth_header`  
 After printing three lines of text to the screen, this is the first function to be called. Firstly it builds a string object - at first glance this appears to consist of a colon and the string `cupid_agent`. The string agent is then base64 encoded and added to a further string to construct the authorization header. Importantly, this further string tells us that the service it is intended for is using basic authentication. A second header (`Content-Type: application/octet-stream`) is included in this function, indicating that this function is intended for use with a stream of data. Knowing that the first of these two headers is for use with a basic authentication scheme suggests that `cupid_agent` is likely to be a user, but the header would usually include a password as well. Looking at the Listing pane in Ghidra reveals a static string being stored in a pointer on the stack prior to the construction of the string object:  
-![Hidden password](task_1_loveletter.exe/hidden_password.png)  
+![Hidden password](loveletter.exe/hidden_password.png)  
 
 Having found this, we can summise that the header being constructed by this `build_auth_header` function are:  
 ```
@@ -372,7 +372,7 @@ The second of the component functions from `main` performs the main encryption p
 * Per file, receives the encrypted equivalent back from the server and saves it to the local file system.
 
 The important part for this challenge is in the section that sends the files to the attacker server. Looking at this part of the function, we can see that the constructed header from the previous function is used in the request to the server. Furthermore, it identifies the address that the files are being sent to:  
-![Exfil address](task_1_loveletter.exe/exfil_address.png)  
+![Exfil address](loveletter.exe/exfil_address.png)  
 
 Given that `0x1f90` is the hex representation of `8080`, we can infer that this means files are being sent to `http://api.valentinesforever.thm:8080/exfil`, complete with an authorization header, finally bringing us back to the original `nmap` and web enumeration findings.
 
@@ -380,20 +380,20 @@ Given that `0x1f90` is the hex representation of `8080`, we can infer that this 
 The final of the three functions that make up the `main` function is a simple note to display demanding some BitCoin. There's a wallet address here - this isn't much use to us right now (spoiler alert: it's not relevant).
 
 After adding the newly discovered domain to my `/etc/hosts` file, I sent a request to it on the 8080 port found in the executable, capturing it through Burp. Sending this request to Burp and adding the authorization header that I discovered in the `build_auth_header` function resulted in a response other than a `404`:  
-![Auth header success](task_1_loveletter.exe/auth_header_success.png)  
+![Auth header success](loveletter.exe/auth_header_success.png)  
 
 Awesome, that proves the credentials are valid! It also suggests that somewhere in the pipeline, the files are being encrypted with RC4 - a stream cipher. Sadly, that response is the same when you send a request to the `/exfil` endpoint, so that leaves us with the question of what we're supposed to do with it. Looking back at the functions from the executable, I could see that there are calls to `printf`, suggesting this process could be running through some sort of command-line interface. With that in mind, I constructed a `curl` request to the endpoint and got a different response:  
-![curl response](task_1_loveletter.exe/curl_response.png)  
+![curl response](loveletter.exe/curl_response.png)  
 
 We can now adapt our `curl` requests to download each of the files from the server to our local machine for inspection, using the following command:  
 `curl http://api.valentinesforever.thm:8080/exfil/<fileName> -H 'Authorization: Basic Y3VwaWRfYWdlbnQ6UjBzM3M0cjNSM2QhVjEwbDN0czRyM0JsdTMjMjAyNA==' -o <fileName>`
 
 ## Exfiltrated files downloaded files (analysis)
 Running `file` on each of the files downloaded suggests them to be data files:  
-![Exfil file types](task_1_loveletter.exe/exfil_file_types.png)  
+![Exfil file types](loveletter.exe/exfil_file_types.png)  
 
 Reading the headers for the files however reveals them to be encrypted at this point already:  
-![Exfil file contents](task_1_loveletter.exe/exfil_file_contents.png)  
+![Exfil file contents](loveletter.exe/exfil_file_contents.png)  
 
 Thinking back to the response I got from the `api` endpoint, and more specifically about the RC4 stream cipher in use, it may be possible to recover the encrypted data on the server if the keystream in use to perform the encryption is static. This is because stream ciphers encrypt data by XOR'ing cleartext data with a keystream to produce ciphertext. All of that means that if we have a a file whose contents are known as well as the resulting ciphertext, the keystream should be able to be calculated. The keystream can then be used to decrypt other ciphertext from the same encrypting instance. Better still, if we can produce a file of null bytes, the file we have returned from the server will be the keystream exactly (due to the XOR operation - the opposite of the null byte will be the keystream character at the corresponding index position). With that in mind, the first thing to do is create a null byte file, preferably in a size larger than any of those observed on the server - this ensures the keystream is captured in full. We can do this with `dd`:  
 `dd if=/dev/zero of=zeros.bin bs=1 count=8192`  
@@ -426,10 +426,10 @@ xor_decrypt("victim.enc", "keystream.bin", "victim.dec")
 
 Reading the contents of the newly decrpted file with `xxd` reveal a delightful loaf of null bytes, just like the original plaintext did. Now to see if the keystream is static! I tested it with the first file in the list, and the resulting file was a long stream of `A`s. Hmmm, maybe good, maybe bad. I went ahead and ran the rest of the files through the script before running `file` on the outputs:  
 
-![Decrypted file types](task_1_loveletter.exe/decrypted_file_types.png)  
+![Decrypted file types](loveletter.exe/decrypted_file_types.png)  
 
 Alright, nice. I decided to take a look at those files that aren't just very long lines of text, starting with the first in the list and hit gold with the required flag:  
-![Flag success](task_1_loveletter.exe/flag_success.png)  
+![Flag success](loveletter.exe/flag_success.png)  
 ??? success "What is the value of the flag?"
 	THM{l0v3_l3tt3r_fr0m_th3_90s_xoxo}
 
