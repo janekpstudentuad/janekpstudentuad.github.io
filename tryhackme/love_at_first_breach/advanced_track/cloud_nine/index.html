@@ -1,0 +1,924 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes and write-ups by humbledragon669">
+      
+      
+        <meta name="author" content="janekpstudentad">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/user_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Cloud Nine - Offense, Defense, and Everything Between</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cloud-nine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Offense, Defense, and Everything Between" class="md-header__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../../../assets/user_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Offense, Defense, and Everything Between
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloud Nine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Offense, Defense, and Everything Between" class="md-nav__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../../../assets/user_logo.png" alt="logo">
+
+    </a>
+    Offense, Defense, and Everything Between
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../hackviser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hackviser Scenarios and Labs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TryHackMe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../msc/msc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everything Between
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Everything Between
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/conferences_events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conferences/events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../everything_between/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation-cookie-forgery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation - Cookie Forgery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation-sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation - SQL Injection
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:aws" class="md-tag">aws</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:cloud" class="md-tag">cloud</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:cookie-forging" class="md-tag">cookie-forging</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ctf" class="md-tag">ctf</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:hard" class="md-tag">hard</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:python" class="md-tag">python</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:sqli" class="md-tag">sqli</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:ssrf" class="md-tag">ssrf</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:web" class="md-tag">web</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="cloud-nine">Cloud Nine</h1>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> CTF<br />
+<strong>Difficulty:</strong> Hard<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/lafbctf2026-advanced">Love at First Breach 2026 - Advanced Track</a> (Task 6)</p>
+<h2 id="description">Description</h2>
+<p>"This Valentine's Day, Cupid has gone digital with Cupid's Arrow - a revolutionary web application that lets users shoot virtual arrows across a world map to forge connections between people. But Cupid has had a change of heart.</p>
+<p>Tired of playing matchmaker, the legendary deity has gone rogue and twisted their own creation into something sinister. What was meant to spread love is now being weaponized to break relationships apart. Couples worldwide are mysteriously drifting apart after their locations are targeted on the map, and Cupid is watching gleefully from above.</p>
+<p>Your mission: Investigate the Cupid's Arrow application, discover how this fallen angel is manipulating the system, and find the flag hidden in Cloud Nine - Cupid's secret administrative sanctuary where all relationships are controlled.</p>
+<p>Can you outsmart a rogue deity and stop this Valentine's Day catastrophe? Or will you fall victim to Cupid's corrupted arrows?"</p>
+<h2 id="initial-enumeration">Initial Enumeration</h2>
+<p>As with the red team oriented task earlier on in this sequence of challenges, this "cloud" scenario requires a slight change of mindset. There's no machine to deploy - there is instead a publicly available website being served on a non-standard HTTP port. The scope for this challenge is narrowed down from an early stage to JUST that web application and as such the enumeration phase is cut down a little from what I would usually do with an offensive challenge. No machine-wide <code>nmap</code> scanning here, but other it is possible to try to enumerate a bit more information from the port itself:<br />
+<img alt="nmap initial scan" src="nmap_initial_scan.png" />  </p>
+<p>I used my go-to <code>ffuf</code> command to enumerate the website:<br />
+<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c</code> too:<br />
+<img alt="ffuf initial scan" src="ffuf_initial_scan.png" /></p>
+<p>OK, so there are a couple of interesting things there - a <code>login</code> page (which is actually where the root redirects to) and an <code>admin</code> page, though the latter simply redirects to the <code>login</code> page. The <code>shoot</code> page has returned a <code>405</code> error, indicating that <code>GET</code> requests are not permitted - viewing the response with Burp shows the only methods accepted at this endpoint are <code>POST</code> and <code>OPTIONS</code> and submitting an empty <code>POST</code> request to it generates an "unauthorized" error message. There were no <code>robots.txt</code> or <code>sitemap.xml</code> files. Lastly, the <code>status</code> endpoint appears to be a functioning API that returns information about the web application host:<br />
+<img alt="Host machine status" src="host_machine_status.png" />  </p>
+<p>Vulnerability research came up pretty empty - the version of Flask running on the server sounds fairly solid. If the OS does turn out to be Windows XP as per the <code>nmap</code> scan, that might be something to go on but with no foothold, that will have to take a back-burner as well.</p>
+<p>I did try two quick and dirty SQL injection attempts on the login page (<code>'</code> and <code>' OR '1'='1'--</code>) but neither were successful. That left me with the possibility of brute forcing a login, but without even a username that didn't fill me with joy. I do have a very small word list with the most common usernames that I have used in this situation - I have a matching passwords file that contains those usernames plus "password". All told, the total number of combinations of all of the usernames and all of the passwords is less than 75 so Burp can run through them pretty quickly, even with the Community Edition throttling in Intruder. I don't use it often but sometimes it's a quick and dirty way to rule out some of the most common username and password combinations without waiting for <code>rockyou.txt</code> to run through. As it happened, I got lucky in this case:<br />
+<img alt="Brute force credentials" src="brute_force_credentials.png" /></p>
+<p>Upon login, there was a session token allocated to the user session. I fed it to <a href="https://JWT.io">JWT debugger</a> which revealed the content of the header to be <code>{"admin": false, "user": "guest"}</code> but unfortunately the payload couldn't be decoded. I did try to update the <code>admin</code> value to "true" and update the cookie with the new value but refreshing the page just logged me out of the web application. The same was true when changing the <code>user</code> name to "admin".</p>
+<p>I ran a quick <code>nmap</code> discovery over the internal IP disclosed in the <code>status</code> endpoint but got nothing back (in fairness I hadn't expected to, but it's the sort of thing that I would assume and then find out hours later it was <em>exactly</em> what I was supposed to do in the first place). 
+Examining the source code of the <code>status</code> endpoint revealed the query being submitted to the API so I also tried using it to return local files using the <code>file://</code> prefix but got nowhere with any of the files I tried to retrieve so decided to potentially come back to this if I could find some more information about the file system on the back end. At this point I felt like there wasn't an awful lot I'd discovered that was any use but this <code>status</code> endpoint smacked so much of a CTF server-side request forgery (SSRF) challenge that I couldn't let it go. Looking at the output generated on the page revealed that the internal IP address of the web application but furthermore suggested that it was some kind of AWS EC2 instance:<br />
+<img alt="EC2 instance" src="ec2_instance.png" />  </p>
+<p>Now I'm pretty new to cloud/AWS CTF challenges so at this point I turned to Google to see if I could figure out my next steps. It didn't take me long to find <a href="https://hackingthe.cloud/aws/exploitation/ec2-metadata-ssrf/">this</a> excellent article about the exact situation I was facing. Based on the information it held, I decided to try and enumerate the metadata for the instance. Using the URLs provided in it did not prove successful but as the article is a little old, I wondered if there had been any updates in that area. The <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-metadata-endpoint-v2.html">AWS EC2 documentation</a> had what I was looking for - an alternative APIPA address to try to access. Changing the URL in the browser to <code>http://54.205.77.77:8080/status/check?url=http://169.254.170.2/v2/metadata</code> returned something that looked promising:<br />
+<img alt="EC2 metadata" src="ec2_metadata.png" />  </p>
+<p>Nice! There's a Docker container address in that config that should be available for me to pull down to my attacker machine so that I can perform offline analysis on it (<code>docker pull &lt;containerAddress&gt;)</code>. </p>
+<h2 id="foothold">Foothold</h2>
+<p>Once pulled, I ran the container with an interactive shell to take a look around the container and instantly found an <code>app.py</code> file. Reading the contents of the file provided me with a heap of information but also, a flag!<br />
+<img alt="Flag 1 success" src="flag_1_success.png" />  </p>
+<details class="success">
+<summary>What is the value of FLAG 1?</summary>
+<p>THM{CUPID_ARROW_TEST_USER}  </p>
+</details>
+<p>That file also holds some test credentials for the <code>login</code> page, the application logic for how the <code>admin</code> panel can be accessed (essentially you must login to the main portal first - if the token assigned to your session contains an <code>"admin": true</code> value, the <code>admin</code> panel will be rendered), and perhaps most importantly, the app secret value. With this value, that means I should be able to forge an admin token, getting me access to that <code>admin</code> panel.</p>
+<h2 id="privilege-escalation-cookie-forgery">Privilege Escalation - Cookie Forgery</h2>
+<p>Having used JWT debugger earlier on in this challenge, and knowing now that this is a Flask app (evidenced from the code within <code>app.py</code>), it became apparent that the token issued on successful authentication isn't a true JWT but instead a Flask session cookie. The revelation of the app secret also suggests that it's a signed cookie, which likely explains the inability to decrypt the payload earlier on. Lucky for me, <code>flask-unsign</code> can help with this, initially in verifying the theory and later in creating a forged admin token if the theory proves to be true. With a forward plan in mind, I ran the following set of commands to perform the required setup:<br />
+<div class="highlight"><pre><span></span><code>python3 -m venv venv
+source venv/bin/activate
+pip3 install flask-unsign
+</code></pre></div></p>
+<p>Verifying the cookie was signed with the discovered app secret can be achieved with the following command:<br />
+<code>flask-unsign --decode --cookie &lt;cookieValue&gt; --secret &lt;secretValue&gt;</code>  </p>
+<p>The output to this proved successful:<br />
+<img alt="Decode cookie" src="decode_cookie.png" />  </p>
+<p>Great, so in theory all I should need to do is change the content of the cookie to <code>"admin": True</code>, have <code>flask-unsign</code> sign the new value with the app secret, and update the cookie in the browser. Signing the cookie can be achieved with the following code:<br />
+<code>flask-unsign --sign --cookie &lt;cookieValue&gt; --secret &lt;secretValue&gt;</code></p>
+<p>Once I updated the cookie in the browser with the returned value I navigated to the <code>admin</code> endpoint and was not only rewarded with an admin portal but the second flag as well:<br />
+<img alt="Flag 2 success" src="flag_2_success.png" />  </p>
+<details class="success">
+<summary>What is the value of FLAG 2?</summary>
+<p>THM{CUPID_ARROW_FLAG2}</p>
+</details>
+<h2 id="privilege-escalation-sql-injection">Privilege Escalation - SQL Injection</h2>
+<p>Having seen the application logic for this page, I know that it's an interaction for a database. Furthermore, the code doesn't appear to have any input sanitisation, validation, or filtering, making me consider SQLi instantly. To really prove that point, I entered a <code>'</code> into the target username, triggering a server error. Referring back to <code>app.py</code> file, I even have the query being submitted to the database:<br />
+<code>SELECT * FROM \"" + USERS_TABLE + "\" WHERE username = '" + username + "'"</code></p>
+<p>So effectively this becomes:<br />
+<code>SELECT * FROM "users" WHERE username = '&lt;USER_INPUT&gt;'</code>  </p>
+<p>Furthermore, because the input is placed inside single quotes in the code, an attacker (me!) can close the quotes and send arbitrary code to the end of the query, which should be executed server-side. I tried a fairly standard payload to start with (<code>' or '1' = '1</code>) but that triggered the server error. At this point I wondered if it might be necessary to submit a legitimate username in the query in order for it to execute. I have two legitimate users ("guest" and "test") so I updated my query and tried again.
+<img alt="Successful SQLi" src="successful_sqli.png" /></p>
+<p>Well that looks promising. Just to prove the point, I submitted a query just to load the "test" user (without the injection). The details returned were different - that sounds like a successful POC to me! Presumably the BobSmith user is the first entry in the database. Given I know the app is vulnerable to SQLi, I decided to try to use <code>sqlmap</code> at this stage, saving the request from Burp so that the session cookie and form fields were preserved. It successfully found the injection point, and identified the type (boolean-based blind) but couldn't identify the database type so ultimately failed. Examining the source code <code>app.py</code> again revealed the database type to be Dynamo - a serverless NoSQL service from AWS.</p>
+<p>At this point it became apparent a manual blind SQL injection attack was on the cards. With that in mind I turned to AI to generate a helper script that would assume that the table being queried has a "password" column and then enumerate that columns values character-by-character - if the value starts with THM{ (likely the flag), continue to enumerate the rest of the field (else stop enumerating it). Oh, and print the eventual value to the screen! The script I was given did work, but Djalil Ayed has produced a much cleaner, much faster, version that I would recommend <a href="https://github.com/djalilayed/tryhackme/blob/main/Love_at_First_Breach_2026_Advanced_Track/%20Cloud_Nine/blind_sql.py">here</a>.  </p>
+<p>Running this script proved very successful, enumerating that final flag out for me:<br />
+<img alt="Flag 3 success" src="flag_3_success.png" />  </p>
+<details class="success">
+<summary>What is the value of FLAG 3?</summary>
+<p>THM{partiqls_of_love}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>docker</code> <code>python</code></p>
+<p><strong>Date completed:</strong> 08/03/26<br />
+<strong>Date published:</strong> 08/03/26</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/janekpstudentuad" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/jane-kocan-payne-662692166/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.expand", "navigation.sections", "content.code.copy", "content.code.annotate", "search.suggest"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
