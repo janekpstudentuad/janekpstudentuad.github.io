@@ -235,7 +235,7 @@ Great, looks like I either need to disable MFA or forge an MFA response, and con
 Looks like there is no validation taking place after all:  
 ![getseed response](swiper/getseed_response.png)  
 
-Alright, that's progress - I have the seed (static) and I know how to obtain the time-based factor (POST request o `login` endpoint using the targetted user credentials). Now what to do with them? This question actually has two sides:  
+Alright, that's progress - I have the seed (static) and I know how to obtain the time-based factor (POST request to `login` endpoint using the targetted user credentials). Now what to do with them? This question actually has two sides:  
 
 * How can I forge an MFA response?
 * What do I do with it when I do forge one?
@@ -249,7 +249,7 @@ verify_payload = {
 }
 ```
 
-The last of those attributes was optional/nullable, so when it came to it, that was set to `None`. As for forging the response, I originally tried using `oath` to generate the OTP required, but I was never quick enough to make it succeed to I generated a helper script with the following pseudocode:  
+The last of those attributes was optional/nullable, so when it came to it, that was set to `None`. As for forging the response, I originally tried using `oath` to generate the OTP required, but I was never quick enough to make it succeed so I generated a helper script with the following pseudocode:  
 
 * Send a `curl` request to the `/login` endpoint with the credentials captured earlier in the challenge.
 * Capture the `temp_token` value in the server response.

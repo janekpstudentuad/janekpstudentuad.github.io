@@ -14,13 +14,12 @@ Love at First Breach was a Valentine's-themed CTF event that had two parts:
 - [Love Letter Locker](./love_letter_locker.md)  
 - [Speed Chatting](./speed_chatting.md)  
 - [TryHeartMe](./tryheartme.md)  
-- [Valendind](./valenfind.md)  
+- [Valenfind](./valenfind.md)  
 - [Signed Messages](./signed_messages.md)  
+
+**Rooms completed outside of the time limit**  
+
+- [When Hearts Collide](./when_hearts_collide.md)
 
 **CTF room**  
 [Love at First Breach 2026 - Advanced Track](advanced_track/index.md)
-
-**Still to complete**  
-I am intending on completing the final room and will add it here once it is complete:  
-
-- When Hearts Collide ([THM link](https://tryhackme.com/room/lafb2026e1))  
