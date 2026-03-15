@@ -953,7 +953,7 @@ print(f&quot;[+] Finished after {counter-1} likes.&quot;)
 <code>curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" --data-binary '{"user_id":48}'   "$BASE_URL/getseed"</code>  </p>
 <p>Looks like there is no validation taking place after all:<br />
 <img alt="getseed response" src="getseed_response.png" />  </p>
-<p>Alright, that's progress - I have the seed (static) and I know how to obtain the time-based factor (POST request o <code>login</code> endpoint using the targetted user credentials). Now what to do with them? This question actually has two sides:  </p>
+<p>Alright, that's progress - I have the seed (static) and I know how to obtain the time-based factor (POST request to <code>login</code> endpoint using the targetted user credentials). Now what to do with them? This question actually has two sides:  </p>
 <ul>
 <li>How can I forge an MFA response?</li>
 <li>What do I do with it when I do forge one?</li>
@@ -965,7 +965,7 @@ print(f&quot;[+] Finished after {counter-1} likes.&quot;)
     &quot;device_fingerprint&quot;: &quot;...&quot;
 }
 </code></pre></div></p>
-<p>The last of those attributes was optional/nullable, so when it came to it, that was set to <code>None</code>. As for forging the response, I originally tried using <code>oath</code> to generate the OTP required, but I was never quick enough to make it succeed to I generated a helper script with the following pseudocode:  </p>
+<p>The last of those attributes was optional/nullable, so when it came to it, that was set to <code>None</code>. As for forging the response, I originally tried using <code>oath</code> to generate the OTP required, but I was never quick enough to make it succeed so I generated a helper script with the following pseudocode:  </p>
 <ul>
 <li>Send a <code>curl</code> request to the <code>/login</code> endpoint with the credentials captured earlier in the challenge.</li>
 <li>Capture the <code>temp_token</code> value in the server response.</li>
