@@ -1,7 +1,11 @@
 ---
 tags:
-  - linux
+  - tryhackme
+  - challenge
+  - easy
+  - offensive
   - web
+  - vulnerability-exploitation
   - metasploit
 ---
 
