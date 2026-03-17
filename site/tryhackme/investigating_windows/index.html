@@ -1,0 +1,1700 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes and write-ups by humbledragon669">
+      
+      
+        <meta name="author" content="janekpstudentad">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/user_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Investigating Windows - Offense, Defense, and Everything Between</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#investigating-windows" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Offense, Defense, and Everything Between" class="md-header__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../assets/user_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Offense, Defense, and Everything Between
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Investigating Windows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Offense, Defense, and Everything Between" class="md-nav__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../assets/user_logo.png" alt="logo">
+
+    </a>
+    Offense, Defense, and Everything Between
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hackviser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hackviser Scenarios and Labs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TryHackMe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rooms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../love_at_first_breach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../msc/msc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everything Between
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Everything Between
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/conferences_events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conferences/events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-and-artefacts-provided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment and Artefacts provided
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 1:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 2:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 3">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tasks-6-7-and-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks 6, 7, and 8
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tasks 6, 7, and 8">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer (#6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer (#7)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer (#8)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 9
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 9">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 11
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 11">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 12
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#answer_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 13
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#answer_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 14
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 14">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 15
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 15">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#answer_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artefacts-examined_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artefacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:forensics" class="md-tag">forensics</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:windows" class="md-tag">windows</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="investigating-windows">Investigating Windows</h1>
+<p><img alt="Challenge logo" src="investigating_windows_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/investigatingwindows">Investigating Windows</a></p>
+<h2 id="description">Description</h2>
+<p>"A windows machine has been hacked, its your job to go investigate this windows machine and find clues to what the hacker might have done."</p>
+<h2 id="environment-and-artefacts-provided">Environment and Artefacts provided</h2>
+<p>Windows live host - has been previously compromised according to the challenge description.</p>
+<h2 id="task-1">Task 1:</h2>
+<p>Determine OS details.</p>
+<h3 id="analysis">Analysis</h3>
+<p>Nice easy one to get started this one - no artefacts needed. Just open the Start Menu and search for "winver".<br />
+<img alt="Task 1 success" src="task_1_success.png" />  </p>
+<h3 id="answer">Answer</h3>
+<details class="success">
+<summary>Whats the version and year of the windows machine?</summary>
+<div class="highlight"><pre><span></span><code>Windows Server 2016
+</code></pre></div>
+</details>
+<h2 id="task-2">Task 2:</h2>
+<p>Determine user activity (generic).</p>
+<h3 id="artefacts-examined">Artefacts examined</h3>
+<p>File system.</p>
+<h3 id="analysis_1">Analysis</h3>
+<p>Another easy one - navigate to <code>C:\Users</code> in Windows Explorer and check the modifed date on the folders. Most recent data gives you the user that logged in the most recently.<br />
+<img alt="Task 2 success" src="task_2_success.png" />  </p>
+<h3 id="answer_1">Answer</h3>
+<details class="success">
+<summary>Which user logged in last?</summary>
+<p>Administrator</p>
+</details>
+<h2 id="task-3">Task 3</h2>
+<p>Determine user activity (John).</p>
+<h3 id="artefacts-examined_1">Artefacts examined</h3>
+<p>Event logs; user objects</p>
+<h3 id="analysis_2">Analysis</h3>
+<p>This is where it started to get tricky. As I'd already seen, there was no user folder for the "John" user in <code>C:\Users</code>. I went on to open up Event Viewer and filter the Security log by Event ID 4624 (successful logon) but the logs were empty of any events with that ID. They were in fact empty of any events prior to the day I actually did the challenge so it would appear that whatever "compromise" has taken place on this machine included an event log clearance. I did a quick Google to find another way to determine the last logon timestamp for local user and found the following line of PowerShell that returns the information for all local users:<br />
+<code>Get-LocalUser | Sort-Object LastLogon | Select-Object Name, Enabled, SID, Lastlogon</code><br />
+Opening a PowerShell window and using that command gave me the answer I was looking for:<br />
+<img alt="Task 3 success" src="task_3_success.png" />  </p>
+<h3 id="answer_2">Answer</h3>
+<details class="success">
+<summary>When did John log onto the system last?</summary>
+<p>03/02/2019 5:48:32 PM</p>
+</details>
+<h2 id="task-4">Task 4</h2>
+<p>Determine network connectivity.</p>
+<h3 id="artefacts-examined_2">Artefacts examined</h3>
+<p>Scheduled tasks; file system; event logs; registry</p>
+<h3 id="analysis_3">Analysis</h3>
+<p>My first instinct here was to check for any scheduled tasks that opened on system startup.<br />
+<img alt="Scheduled Tasks" src="scheduled_tasks.png" />  </p>
+<p>Clearly there were a couple of tasks there that felt out of place, but investigating the scripts associated with them didn't reveal any connections to IP addresses. Next up I moved to checking the security and system Event Logs for event 5156 (allowed connection) but came up empty there too. I moved on to check the <code>Run</code> key in the Registry (specifies programs that run on system startup) and finally found my answer.<br />
+<img alt="Task 4 success" src="task_4_success.png" />  </p>
+<h3 id="answer_3">Answer</h3>
+<details class="success">
+<summary>What IP does the system connect to when it first starts?</summary>
+<p>10.34.2.3</p>
+</details>
+<h2 id="task-5">Task 5</h2>
+<p>Privilege enumeration.</p>
+<h3 id="artefacts-examined_3">Artefacts examined</h3>
+<p>Group object</p>
+<h3 id="analysis_4">Analysis</h3>
+<p>This was another fairly simple task - open Computer Management &gt; Local Users and Groups &gt; Groups. Right-click on the Administrators group.<br />
+<img alt="Task 5 success" src="task_5_success.png" />  </p>
+<h3 id="answer_4">Answer</h3>
+<details class="success">
+<summary>What two accounts had administrative privileges (other than the Administrator user)?</summary>
+<p>Guest, Jenny  </p>
+</details>
+<p><em>Note: there were actually 3 user accounts in the group when I checked. The reasons for the 3rd user not being included in the answer at this stage will become clear as the challenge progresses.</em></p>
+<h2 id="tasks-6-7-and-8">Tasks 6, 7, and 8</h2>
+<p>Scheduled task enumeration</p>
+<h3 id="artefacts-examined_4">Artefacts examined</h3>
+<p>Scheduled Tasks</p>
+<h3 id="analysis_5">Analysis</h3>
+<p>Returning to the Task Scheduler (I had looked through it when checking for the startup IP address earlier), and having checked the "BADR" script files earlier (they appear related to the lab setup), there was only one Task that looked unusual. Checking the actions command for it provided the answers for tasks 6, 7, and 8 in one go.
+<img alt="Task 6, 7, 8 success" src="task_6_7_8_success.png" />  </p>
+<h3 id="answer-6">Answer (#6)</h3>
+<details class="success">
+<summary>Whats the name of the scheduled task that is malicous.</summary>
+<p>Clean file system</p>
+</details>
+<h3 id="answer-7">Answer (#7)</h3>
+<details class="success">
+<summary>What file was the task trying to run daily?</summary>
+<p>nc.ps1</p>
+</details>
+<h3 id="answer-8">Answer (#8)</h3>
+<details class="success">
+<summary>What port did this file listen locally for?</summary>
+<p>1348</p>
+</details>
+<h2 id="task-9">Task 9</h2>
+<p>Determine user activity (Jenny)</p>
+<h3 id="artefacts-examined_5">Artefacts examined</h3>
+<p>User object</p>
+<h3 id="analysis_6">Analysis</h3>
+<p>I had actually already unwittingly obtained the answer to this question earlier when determining the user activity for <code>John</code>. Returning to the output gave me the answer.</p>
+<h3 id="answer_5">Answer</h3>
+<details class="success">
+<summary>When did Jenny last logon?</summary>
+<p>Never</p>
+</details>
+<h3 id="task-10">Task 10</h3>
+<p>Compromise timeline (foothold)</p>
+<h3 id="artefacts-examined_6">Artefacts examined</h3>
+<p>Task Scheduler</p>
+<h3 id="analysis_7">Analysis</h3>
+<p>Checking the date that the malicious Task was created gave me the answer for this.
+<img alt="Task 10 success" src="task_10_success.png" />  </p>
+<h3 id="answer_6">Answer</h3>
+<details class="success">
+<summary>At what date did the compromise take place?</summary>
+<p>03/02/2019</p>
+</details>
+<h2 id="task-11">Task 11</h2>
+<p>Compromise timeline (privilege escalation)</p>
+<h3 id="artefacts-examined_7">Artefacts examined</h3>
+<p>Event Logs</p>
+<h3 id="analysis_8">Analysis</h3>
+<p>The plan for me here was to check the Security logs for event ID 4735 (special privileges assigned), specifically the earliest of these events that took place on 03/02/2019. Just one issue with that - the Security logs had either rolled or cleared on my particular instance. Cards on the table for transparency - I turned to <a href="https://medium.com/@haircutfish/tryhackme-investigating-windows-task-1-investigating-windows-da65f32cf67f">another walkthrough</a> to see what was going on here - looks like I should have had access to those logs. The walkthrough gave me the answer for this one, but my technique was solid.</p>
+<h3 id="answer_7">Answer</h3>
+<details class="success">
+<summary>During the compromise, at what time did Windows first assign special privileges to a new logon?</summary>
+<p>03/02/2019 4:04:47 PM  </p>
+</details>
+<p><em>Note: this is also the reason for not including that 3rd user for the earlier question - it's added to the Administrators group during the compromise, not before.</em></p>
+<h2 id="task-12">Task 12</h2>
+<p>Compromise timeline (lateral movement)</p>
+<h3 id="artefacts-examined_8">Artefacts examined</h3>
+<p>Registry; file system</p>
+<h2 id="analysis_9">Analysis</h2>
+<p>Checking the startup key in the Registry pointed me towards the location on the file system where output would be saved (<code>C:\TMP</code>). In that folder were two relevant looking files: an executable (<code>mim</code>) and another output file (<code>mim-out</code>). Checking the contents of the latter gave me the answer to this one.<br />
+<img alt="Task 12 success" src="task_12_success.png" />  </p>
+<h3 id="answer_8">Answer</h3>
+<details class="success">
+<summary>What tool was used to get Windows passwords?</summary>
+<p>Mimikatz</p>
+</details>
+<h2 id="task-13">Task 13</h2>
+<p>Compromise timeline (command and control)</p>
+<h3 id="artefacts-examined_9">Artefacts examined</h3>
+<p>Hosts file</p>
+<h2 id="analysis_10">Analysis</h2>
+<p>Looking at the <code>hosts</code> file (<code>C:\Windows\system32\drivers\etc\hosts</code>) two websites with the same IP address:<br />
+<img alt="Task 13 succes" src="task_13_success.png" />  </p>
+<h3 id="answer_9">Answer</h3>
+<details class="success">
+<summary>What was the attackers external control and command servers IP?</summary>
+<p>76.32.97.132</p>
+</details>
+<h2 id="task-14">Task 14</h2>
+<p>Compromise timeline (persistence)</p>
+<h3 id="artefacts-examined_10">Artefacts examined</h3>
+<p>File system</p>
+<h3 id="analysis_11">Analysis</h3>
+<p>Checking the directory associated with a Windows web server (<code>C:\inetpub\wwwroot</code>) gave me the answer here:<br />
+<img alt="Task 14 success" src="task_14_success.png" />  </p>
+<h3 id="answer_10">Answer</h3>
+<details class="success">
+<summary>What was the extension name of the shell uploaded via the servers website?</summary>
+<p>.jsp</p>
+</details>
+<h2 id="task-15">Task 15</h2>
+<p>Compromise timeline (command and control)</p>
+<h3 id="artefacts-examined_11">Artefacts examined</h3>
+<p>Firewall config</p>
+<h2 id="analysis_12">Analysis</h2>
+<p>Looking at the inbound rules in the Windows Firewall with Advanced Security MMC snap-in (because the question asks about "opening" a local port) shows a strangely named rule with a commonly used hacker port:<br />
+<img alt="Task 15 success" src="task_15_success.png" />  </p>
+<h3 id="answer_11">Answer</h3>
+<details class="success">
+<summary>What was the last port the attacker opened?</summary>
+<p>1337</p>
+</details>
+<h2 id="task-16">Task 16</h2>
+<p>Compromise timeline (command and control)</p>
+<h3 id="artefacts-examined_12">Artefacts examined</h3>
+<p>Hosts file</p>
+<h3 id="analysis_13">Analysis</h3>
+<p>Whilst checking the <code>hosts</code> file earlier, I had unwittingly already discovered the answer for this one.</p>
+<h3 id="answer_12">Answer</h3>
+<details class="success">
+<summary>Check for DNS poisoning, what site was targeted?</summary>
+<p>google.com</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>PowerShell</code> <code>Task Scheduler</code> <code>Event Viewer</code> <code>regedit</code></p>
+<p><strong>Date completed:</strong> 16/03/26<br />
+<strong>Date published:</strong> 16/03/26</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/janekpstudentuad" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/jane-kocan-payne-662692166/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.sections", "content.code.copy", "content.code.annotate", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
