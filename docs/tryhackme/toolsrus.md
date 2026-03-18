@@ -19,6 +19,9 @@ tags:
 **Difficulty:** Easy  
 **Link:** [ToolsRus](https://tryhackme.com/room/toolsrus)
 
+## Description
+"Practise using tools such as dirbuster, hydra, nmap, nikto and metasploit"
+
 ## Overview
 This "Challenge" room was presented as an opportunity to practice using basic tools rather than a whole CTF journey as is common with THM challenges. As such, this is not a full blow-by-blow walkthrough and merely details the tools and commands used to complete the tasks in the challenge.
 
