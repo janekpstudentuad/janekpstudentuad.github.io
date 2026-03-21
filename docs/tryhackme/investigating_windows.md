@@ -3,6 +3,7 @@ tags:
   - tryhackme
   - challenge
   - easy
+  - defensive
   - forensics
   - windows
 ---

@@ -3,9 +3,11 @@ tags:
   - tryhackme
   - challenge
   - easy
+  - offensive
   - web
   - linux
   - vulnerability-exploitation
+  - privilege-escalation
 ---
 
 # Ignite
