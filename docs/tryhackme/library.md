@@ -38,7 +38,7 @@ I used my go-to `ffuf` command to enumerate the website:
 `ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c`  
 ![ffuf scan output](library/ffuf_scan_output.png)  
 
-Nothing too interesting in the `ffuf` scan results.  There was a `robots.txt` file, but the only entry in it was for the root directory but only for a fictional user-agent of "rockyou". There was no `sitemap.xml` and nothing interesting in the source code.
+Nothing too interesting in the `ffuf` scan results.  There was a `robots.txt` file: the only entry in it was for the root directory but only for a fictional user-agent of "rockyou". There was no `sitemap.xml` and nothing interesting in the source code.
 
 Looking at the home page for the web application, I noted a comment form at the bottom of the page, presenting the possibility for some XSS. It was also possible to navigate to the `/images` endpoint discovered in the `ffuf` scan, which made me think that a directory traversal attack might be possible. There were links provided for other areas of the web page, but none of them were functional. Finally, there were a number of usernames shown in blog entries and comments on the page that I could use for brute forcing on the SSH service.
 

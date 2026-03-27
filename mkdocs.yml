@@ -33,7 +33,7 @@ nav:
   - Home: index.md
   - Hackviser Scenarios and Labs: hackviser/index.md
   - TryHackMe:
-    - Rooms: tryhackme/index.md
+    - Challenges: tryhackme/index.md
     - Love at First Breach: tryhackme/love_at_first_breach/index.md
   - MSc: msc/msc.md
   - Everything Between:
