@@ -1,0 +1,2105 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes and write-ups by humbledragon669">
+      
+      
+        <meta name="author" content="janekpstudentad">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/user_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>CTF collection Vol.1 - Offense, Defense, and Everything Between</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ctf-collection-vol1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Offense, Defense, and Everything Between" class="md-header__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../assets/user_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Offense, Defense, and Everything Between
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CTF collection Vol.1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Offense, Defense, and Everything Between" class="md-nav__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../assets/user_logo.png" alt="logo">
+
+    </a>
+    Offense, Defense, and Everything Between
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hackviser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hackviser Scenarios and Labs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TryHackMe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../love_at_first_breach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../msc/msc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everything Between
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Everything Between
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/conferences_events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conferences/events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 2:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 3:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 4:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 5:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 6:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 7:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 7:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 8:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 8:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 9:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 9:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 10:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 10:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 11:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 11:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 12:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 12:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 13:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 13:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 14:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 14:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 15:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 15:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 16:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 16:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 17:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 17:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 18:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 18:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 19:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 19:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 20:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 20:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 21:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task 21:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:decoding" class="md-tag">decoding</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:magic-bytes" class="md-tag">magic-bytes</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:metadata" class="md-tag">metadata</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:network-traffic-analysis" class="md-tag">network-traffic-analysis</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:osint" class="md-tag">osint</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:qr-analysis" class="md-tag">qr-analysis</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:reverse-engineering" class="md-tag">reverse-engineering</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:steganography" class="md-tag">steganography</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="ctf-collection-vol1">CTF collection Vol.1</h1>
+<p><img alt="CTF collection Vol.1 logo" src="ctf_vol1_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/ctfcollectionvol1">CTF collection Vol.1</a></p>
+<h2 id="description">Description</h2>
+<p>"Sharpening up your CTF skill with the collection. The first volume is designed for beginner."</p>
+<h2 id="task-1">Task 1:</h2>
+<p>No work required - simply click the "Check" button.</p>
+<h2 id="task-2">Task 2:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined">Artifacts examined</h3>
+<p>Encoded string: "VEhNe2p1NTdfZDNjMGQzXzdoM19iNDUzfQ=="</p>
+<h3 id="analysis">Analysis</h3>
+<p>The encoded type of the string was recognisable as base64 thanks to the <code>=</code> symbols being used as padding at the end. Decoding with the following:<br />
+<code>echo 'VEhNe2p1NTdfZDNjMGQzXzdoM19iNDUzfQ==' | base64 -d</code></p>
+<h3 id="answer">Answer</h3>
+<details class="success">
+<summary>Feed me the flag!</summary>
+<p>THM{ju57_d3c0d3_7h3_b453}</p>
+</details>
+<h2 id="task-3">Task 3:</h2>
+<p>Metadata recovery</p>
+<h3 id="artifacts-examined_1">Artifacts examined</h3>
+<p>Find_me_1577975566801.jpg (provided)</p>
+<h3 id="analysis_1">Analysis</h3>
+<p>The clue for this one was in the title of the task ("Meta meta"). I used <code>exiftool</code> to read the metadata of the image and found my flag:<br />
+<img alt="Task 3 success" src="task_3_success.png" />  </p>
+<h3 id="answer_1">Answer</h3>
+<details class="success">
+<summary>I'm hungry, I need the flag.</summary>
+<p>THM{3x1f_0r_3x17}</p>
+</details>
+<h2 id="task-4">Task 4:</h2>
+<p>Steganography</p>
+<h3 id="artifacts-examined_2">Artifacts examined</h3>
+<p>Extinction_1577976250757.jpg (provided)</p>
+<h3 id="analysis_2">Analysis</h3>
+<p>There was a clue in the description for this task ("Something is hiding") and in the image content (I think the subjects of the drawing are stegosauri). I used <code>steghide</code> on the image with the following command (blank passphrase):<br />
+<code>steghide extract -sf Extinction_1577976250757.jpg</code><br />
+<img alt="steghide success" src="steghide_success.png" /><br />
+<img alt="Task 4 success" src="task_4_success.png" />  </p>
+<h3 id="answer_2">Answer</h3>
+<details class="success">
+<summary>It is sad. Feed me the flag.</summary>
+<p>THM{500n3r_0r_l473r_17_15_0ur_7urn}</p>
+</details>
+<h2 id="task-5">Task 5:</h2>
+<p>Find the hidden text</p>
+<h3 id="artifacts-examined_3">Artifacts examined</h3>
+<p>Challenge page content</p>
+<h3 id="analysis_3">Analysis</h3>
+<p>With no provided artifacts for this one and nothing in the source code, I did the only thing I could: selected the text on the web page. The flag is right there, just in white font:<br />
+<img alt="Task 5 success" src="task_5_success.png" />  </p>
+<h3 id="answer_3">Answer</h3>
+<details class="success">
+<summary>Did you find the flag?</summary>
+<p>THM{wh173_fl46}</p>
+</details>
+<h2 id="task-6">Task 6:</h2>
+<p>QR code analysis</p>
+<h3 id="artifacts-examined_4">Artifacts examined</h3>
+<p>QR_1577976698747.png (provided)</p>
+<h3 id="analysis_4">Analysis</h3>
+<p>Not wanting to blindly scan a QR code not knowing anything about it, I used an <a href="https://qrcoderaptor.com/">online tool</a> to scan it for me and got the flag in the output:<br />
+<img alt="Task 6 success" src="task_6_success.png" />  </p>
+<h3 id="answer_4">Answer</h3>
+<details class="success">
+<summary>More flag please!</summary>
+<p>THM{qr_m4k3_l1f3_345y}</p>
+</details>
+<h2 id="task-7">Task 7:</h2>
+<p>Reverse engineering</p>
+<h3 id="artifacts-examined_5">Artifacts examined</h3>
+<p>hello_1577977122465.hello (provided)</p>
+<h3 id="analysis_5">Analysis</h3>
+<p>This file had an unusual extension (<code>.hello</code>) that didn't tell me what kind of file I was dealing with, so firstly I ran <code>file</code> on it to see if I could shed some light on the matter:<br />
+<img alt="hello file output" src="hello_file_output.png" /><br />
+Armed with the knowledge that I was dealing with a binary, I chose to run <code>strings</code> on it and got my flag:<br />
+<img alt="Task 7 success" src="task_7_success.png" />  </p>
+<h3 id="answer_5">Answer</h3>
+<details class="success">
+<summary>Found the flag?</summary>
+<p>THM{345y_f1nd_345y_60}</p>
+</details>
+<h2 id="task-8">Task 8:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined_6">Artifacts examined</h3>
+<p>Encoded string: "3agrSy1CewF9v8ukcSkPSYm3oKUoByUpKG4L"</p>
+<h3 id="analysis_6">Analysis</h3>
+<p>As the string contains digits and letters but no special characters, the type of encoding was not instantly identifiable so I turned to dCode's <a href="https://www.dcode.fr/cipher-identifier">Cipher Identifier</a> to help me out. This gave me a conservative guess of base58 encoding:<br />
+<img alt="dCode Base 58 result" src="dcode_base58_result.png" /><br />
+I was able to decode it with the following:<br />
+<code>echo '3agrSy1CewF9v8ukcSkPSYm3oKUoByUpKG4L' | base58 -d</code></p>
+<h3 id="answer_6">Answer</h3>
+<details class="success">
+<summary>Oh, Oh, Did you get it?</summary>
+<p>THM{17_h45_l3553r_l3773r5}</p>
+</details>
+<h2 id="task-9">Task 9:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined_7">Artifacts examined</h3>
+<p>Encoded string: "MAF{atbe_max_vtxltk}"</p>
+<h3 id="analysis_7">Analysis</h3>
+<p>The clue for this task suggests that there is a ROT cipher substitution at play for this string, just not ROT-13. dCode has a great <a href="https://www.dcode.fr/caesar-cipher">brute forcer</a> for these that gave me the flag immediately:<br />
+<img alt="Task 9 success" src="task_9_success.png" />  </p>
+<h3 id="answer_7">Answer</h3>
+<details class="success">
+<summary>What did you get?</summary>
+<p>THM{hail_the_caesar}</p>
+</details>
+<h2 id="task-10">Task 10:</h2>
+<p>Source code inspection</p>
+<h3 id="artifacts-examined_8">Artifacts examined</h3>
+<p>Challenge page source code</p>
+<h3 id="analysis_8">Analysis</h3>
+<p>With no string to decode and no downloadable files, I turned to the source code of the web page. This was easiest done for this dynamic page using the "Inspect" option on the right-click menu - the relevant element opens in the panel right away, and nested elements can be expanded as required. I found my flag in a hidden HTML element:<br />
+<img alt="Task 10 success" src="task_10_success.png" />  </p>
+<h3 id="answer_8">Answer</h3>
+<details class="success">
+<summary>I'm hungry now... I need the flag</summary>
+<p>THM{4lw4y5_ch3ck_7h3_c0m3mn7}</p>
+</details>
+<h2 id="task-11">Task 11:</h2>
+<p>File signature identification</p>
+<h3 id="artifacts-examined_9">Artifacts examined</h3>
+<p>spoil_1577979329740.png (provided)</p>
+<h3 id="analysis_9">Analysis</h3>
+<p>Using the clue in the challenge description, and the fact that the downloaded file was unable to be displayed, I used <code>file</code> to see if the operating system was able to identify what kind of file this was supposed to be (<code>.png</code>):<br />
+<img alt="spoil file output" src="spoil_file_output.png" /><br />
+With the OS only being able to identify the file as "data", this suggests that something may have gone wrong with the file on a hexadecimal level. I used <code>hexeditor</code> to open the file and, comparing with a <a href="https://en.wikipedia.org/wiki/List_of_file_signatures">Wikipedia entry</a>, could see that the bytes responsible for setting the file signature did not align with the expectations for a <code>.png</code> file:<br />
+<img alt="spoil file bad bytes" src="spoil_file_bad_bytes.png" /><br />
+<img alt=".png file expected signature" src="png_file_expected_signature.png" /><br />
+Updating the first bytes of the file to contain the expected values and saving the file (Ctrl+X) meant that the image could be rendered, revealing the flag:<br />
+<img alt="Task 11 success" src="task_11_success.png" />  </p>
+<h3 id="answer_9">Answer</h3>
+<details class="success">
+<summary>What is the content?</summary>
+<p>THM{y35_w3_c4n}</p>
+</details>
+<h2 id="task-12">Task 12:</h2>
+<p>OSINT</p>
+<h3 id="artifacts-examined_10">Artifacts examined</h3>
+<p>TryHackMe social media accounts</p>
+<h3 id="analysis_10">Analysis</h3>
+<p>Not going to lie - I looked up the answer for this one, mostly because this room was released 6 years before I came to actually do it, and I'm not about to trawl through 6 years of various social media posts to find one flag in an "easy" CTF with more than 20 tasks in it. I did start by using the hint to at least point me to the right platform (reddit) because first and foremost I don't have an X (Twitter) account and I'm not about to get one. Honestly, I'm not sure this one is still achievable without a lot of digging/looking at a previous write-up, not least because it looks like the original post with the answer in it has been deleted.</p>
+<h3 id="answer_10">Answer</h3>
+<details class="success">
+<summary>Did you found the hidden flag?</summary>
+<p>THM{50c14l_4cc0un7_15_p4r7_0f_051n7}</p>
+</details>
+<h2 id="task-13">Task 13:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined_11">Artifacts examined</h3>
+<p>Encoded string: "++++++++++[&gt;+&gt;+++&gt;+++++++&gt;++++++++++&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;++++++++++++++.------------.+++++.&gt;+++++++++++++++++++++++.&lt;&lt;++++++++++++++++++.&gt;&gt;-------------------.---------.++++++++++++++.++++++++++++.&lt;++++++++++++++++++.+++++++++.&lt;+++.+.&gt;----.&gt;++++."</p>
+<h3 id="analysis_11">Analysis</h3>
+<p>The encoding on this string is instantly recognisable as one of the f*ck variants due to it's excessive use of the <code>+</code> symbol. dCode has a great <a href="https://www.dcode.fr/brainfuck-language">decoder</a> for this one:<br />
+<img alt="Task 13 success" src="task_13_success.png" />  </p>
+<h3 id="answer_11">Answer</h3>
+<details class="success">
+<summary>Can you decode it?</summary>
+<p>THM{0h_my_h34d}</p>
+</details>
+<h2 id="task-14">Task 14:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined_12">Artifacts examined</h3>
+<p>String 1: "44585d6b2368737c65252166234f20626d"<br />
+String 2: "1010101010101010101010101010101010"</p>
+<h3 id="analysis_12">Analysis</h3>
+<p>When provided with two strings that are the same length for an encoding challenge, it is reasonable to assume that XOR is at play. I used an <a href="https://xor.pw/">XOR Calculator</a> to get the flag for this one:<br />
+<img alt="Task 14 success" src="task_14_success.png" />  </p>
+<h3 id="answer_12">Answer</h3>
+<details class="success">
+<summary>Did you crack it? Feed me now!</summary>
+<p>THM{3xclu51v3_0r}</p>
+</details>
+<h2 id="task-15">Task 15:</h2>
+<p>Steganography</p>
+<h3 id="artifacts-examined_13">Artifacts examined</h3>
+<p>hell_1578018688127.jpg (provided)</p>
+<h3 id="analysis_13">Analysis</h3>
+<p>There was a clue in the name of this task ("Binary walk") as to the name of the tool to use. I used <code>binwalk</code> to first confirm the existence of hidden files, and then extract them:<br />
+<img alt="Task 15 success" src="task_15_success.png" />  </p>
+<h3 id="answer_13">Answer</h3>
+<details class="success">
+<summary>Flag! Flag! Flag!</summary>
+<p>THM{y0u_w4lk_m3_0u7}</p>
+</details>
+<h2 id="task-16">Task 16:</h2>
+<p>Steganography</p>
+<h3 id="artifacts-examined_14">Artifacts examined</h3>
+<p>dark_1578020060816.png (provided)</p>
+<h3 id="analysis_14">Analysis</h3>
+<p>There was a clue in the description for this task ("There is something lurking in the dark."), which I figured might mean that the flag was hidden in one of the planes. WIth this in mind, I used <code>stegsolve</code> to examine each plane in turn, and did indeed find a flag "lurking" in one of them.</p>
+<h3 id="answer_14">Answer</h3>
+<details class="success">
+<summary>What does the flag said?</summary>
+<p>THM{7h3r3_15_h0p3_1n_7h3_d4rkn355}</p>
+</details>
+<h2 id="task-17">Task 17:</h2>
+<p>Steganography(?)</p>
+<h3 id="artifacts-examined_15">Artifacts examined</h3>
+<p>QRCTF_1579095601577.png (provided)</p>
+<h3 id="analysis_15">Analysis</h3>
+<p>As before, I wasn't keen on simply scanning an unknown QR code so I uploaded it to the same QR code analyser I had used previously. The result turned out to be a SoundCloud site so I went ahead and scanned the QR code with my phone. The track starts with a bot reading the flag out.</p>
+<h3 id="answer_15">Answer</h3>
+<details class="success">
+<summary>What does the bot said?</summary>
+<p>THM{SOUNDINGQR}</p>
+</details>
+<h2 id="task-18">Task 18:</h2>
+<p>OSINT</p>
+<h3 id="artifacts-examined_16">Artifacts examined</h3>
+<p>https://www.embeddedhacker.com/</p>
+<h3 id="analysis_16">Analysis</h3>
+<p>Once again, the description gave a pretty heavy clue for how to get this flag. I navigated to the <a href="https://web.archive.org/">Internet Archive</a> (WaybackMachine), entered the URL provided and navigated to the only snapshot for the date given. The flag is there in a comment:<br />
+<img alt="Task 18 success" src="task_18_success.png" />  </p>
+<h3 id="answer_16">Answer</h3>
+<details class="success">
+<summary>Did you found my past?</summary>
+<p>THM{ch3ck_th3_h4ckb4ck}</p>
+</details>
+<h2 id="task-19">Task 19:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined_17">Artifacts examined</h3>
+<p>Encoded string: "MYKAHODTQ{RVG_YVGGK_FAL_WXF}"</p>
+<h3 id="analysis_17">Analysis</h3>
+<p>This encoded string mentions a key, which made me think it was likely a Vigenere cipher. Unfortunately the key has allegedly been lost. Fortunately, we have a known piece of the plaintext: "TRYHACKME". I turned to dCode again for this - it has a pretty good brute forcer, and found the flag immediately:<br />
+<img alt="Task 19 success" src="task_19_success.png" />  </p>
+<h3 id="answer_17">Answer</h3>
+<details class="success">
+<summary>The deciphered text</summary>
+<p>TRYHACKME{YOU_FOUND_THE_KEY}</p>
+</details>
+<h2 id="task-20">Task 20:</h2>
+<p>Decode encoded text</p>
+<h3 id="artifacts-examined_18">Artifacts examined</h3>
+<p>Encoded string: "581695969015253365094191591547859387620042736036246486373595515576333693"</p>
+<h3 id="analysis_18">Analysis</h3>
+<p>The absence of any alpha characters gives this string away as decimal encoding, but trying to decode directly from decimal to text (ASCII) did not result in a readable string. Given the ASCII table entries can be represented by hexadecimal and binary numbers, I tried firstly <a href="https://www.rapidtables.com/convert/number/decimal-to-hex.html">converting the encoded string to hex</a>  and <a href="https://www.rapidtables.com/convert/number/hex-to-ascii.html">then to ASCII</a>, which was successful:<br />
+<img alt="Decimal to hex" src="decimal_to_hex.png" /><br />
+<img alt="Task 20 success" src="task_20_success.png" />  </p>
+<h3 id="answer_18">Answer</h3>
+<details class="success">
+<summary>What's the flag?</summary>
+<p>THM{17_ju57_4n_0rd1n4ry_b4535}</p>
+</details>
+<h2 id="task-21">Task 21:</h2>
+<p>Network traffic analysis</p>
+<h3 id="artifacts-examined_19">Artifacts examined</h3>
+<p>flag_1578026731881.pcapng (provided)</p>
+<h3 id="analysis_19">Analysis</h3>
+<p>Given the description for this task talks about what the neighbour is doing on their WiFi, rather than capturing a WiFi password or PIN, I figured this challenge might be to do with HTTP traffic in the <code>.pcapng</code> file. I opened the file in Wireshark, filtered the packets to HTTP and found a <code>GET</code> request to a "flag.txt" file:<br />
+<img alt="flag.txt GET request" src="flag_get_request.png" /><br />
+I exported the file from the capture (File &gt; Export Objects &gt; HTTP) and got my final flag from the contents:<br />
+<img alt="Task 21 success" src="task_21_success.png" />  </p>
+<h3 id="answer_19">Answer</h3>
+<details class="success">
+<summary>Did you captured my neighbor's flag?</summary>
+<p>THM{d0_n07_574lk_m3}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>base64</code> <code>exiftool</code> <code>steghide</code> <code>file</code> <code>strings</code> <code>base58</code> <code>hexeditor</code> <code>binwalk</code> <code>stegsolve</code> <code>wireshark</code></p>
+<p><strong>Date completed:</strong> 02/04/26<br />
+<strong>Date published:</strong> 02/04/26</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/janekpstudentuad" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/jane-kocan-payne-662692166/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.sections", "content.code.copy", "content.code.annotate", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
