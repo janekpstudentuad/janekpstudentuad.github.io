@@ -12,11 +12,11 @@ tags:
 # Year of the Rabbit
 ![Year of the Rabbit logo](logos/year_of_the_rabbit_logo.png)
 
-**Platform:** TryHackme  
+**Platform:** TryHackMe  
 **Type:** Challenge  
 **Difficulty:** Easy  
 **Link:** [Year of the Rabbit](https://tryhackme.com/room/yearoftherabbit)  
-**Video:**[YouTube Walkthrough](https://youtu.be/oKiGP2mNJO0)
+**Video:** [YouTube Walkthrough](https://youtu.be/oKiGP2mNJO0)
 
 ## Description
 "Time to enter the warren..."
