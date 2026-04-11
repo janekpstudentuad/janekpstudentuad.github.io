@@ -23,6 +23,7 @@
 * [Fowsniff CTF](./fowsniff_ctf.md)
 * [Year of the Rabbit](./year_of_the_rabbit.md)
 * [Pickle Rick](./pickle_rick.md)
+* [Skynet](./skynet.md)
 
 ## Love at First Breach (2026) Event
 Coined by THM as a "beginner friendly, live red-teaming CTF designed to help you fall in love with breaking things... safely", this was a ticketed event with prizes available for completing rooms within a certain time limit, accompanied with a competitive CTF with prizes awarded for first completion. My progress and related walkthroughs are detailed in a dedicated [Love at First Breach (2026)](./love_at_first_breach/index.md) page.
