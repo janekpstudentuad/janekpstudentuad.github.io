@@ -23,7 +23,7 @@
     
     
       
-        <title>Break out the cage - Offense, Defense, and Everything Between</title>
+        <title>Break Out the Cage - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#break-out-the-cage" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Break out the cage
+              Break Out the Cage
             
           </span>
         </div>
@@ -607,6 +612,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,9 +680,144 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge-type" class="md-tag">challenge type</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:decoding" class="md-tag">decoding</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:steganography" class="md-tag">steganography</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
 
 
-  <h1>Break out the cage</h1>
+
+<h1 id="break-out-the-cage">Break Out the Cage</h1>
+<p><img alt="Break Out the Cage logo" src="break_out_the_cage_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/breakoutthecage1">Break Out the Cage</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Help Cage bring back his acting career and investigate the nefarious goings on of his agent!<br />
+Let's find out what his agent is up to...."</p>
+<h2 id="enumeration">Enumeration</h2>
+<p>I generated a list of open ports for more comprehensive enumeration with the following:<br />
+<code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)</code><br />
+This revealed the following open ports:  </p>
+<ul>
+<li>21  </li>
+<li>22  </li>
+<li>80   </li>
+</ul>
+<p>I ran a full <code>nmap</code> scan to query the services for version information, as well as querying the target system for OS information with <code>nmap -p$ports -A -T4 TARGET_IP_ADDRESS</code>, which revealed the following:<br />
+<img alt="nmap scan output" src="nmap_scan_output.png" />  </p>
+<p>I used my go-to <code>ffuf</code> command to enumerate the website (<code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c</code>) as a quick directory discovery, whilst also running my standard <code>gobuster</code> command (<code>gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt</code>) to probe a bit more thoroughly, looking for files as well.  </p>
+<p>Whilst I was waiting for the <code>ffuf</code> and <code>gobuster</code> scans to complete, I navigated to the home page in a web browser. The web page contents were static - apparently it's the home page of a blog written by Nicholas Cage. There was nothing interesting in the source code and no <code>robots.txt</code> or <code>sitemap.xml</code> files.</p>
+<p>Once the <code>ffuf</code> scan was complete (there was nothing additional found in the <code>gobuster</code> scan), there were a few more directories to enumerate:<br />
+<img alt="ffuf scan output" src="ffuf_scan_output.png" /><br />
+The results of the manual enumeration of these directories were as follows:  </p>
+<ul>
+<li><code>/images</code> - contained image files (unsurprising). There were quite a few here, certainly more than I had seen on the home page. I made a note of these at the time, with the plan to come back to it if there were no other leads to follow after the rest of the enumeration process was complete.</li>
+<li><code>/html</code> - empty directory.</li>
+<li><code>/scripts</code> - contained (acting) script files (again, unsurprising). There were five scripts in this directory, all of which looked to be largely the same with slight changes to some of the thematic words. As with the image files, I made a note to come back if there were no other leads to follow after enumeration of other services.</li>
+<li><code>/contracts</code> - held one file called "FolderNotInUse". Odd as this was, with a file size of 0 bytes, I deemed this to be not of use at this stage.</li>
+<li><code>/auditions</code> - held one file called "must_practice_corrupt_file.mp3". I downloaded this to my attacking machine for further analysis later.</li>
+</ul>
+<p>WIth the initial enumeration of the web application completed, I moved onto the FTP service. The <code>nmap</code> scan had indicated that anonymous login was allowed and that there was a file to be had ("dad_tasks") so I had logged in and downloaded it, again for further analysis later.</p>
+<p>As the final act of my initial enumeration, I ran a search for any vulnerabilities for the discovered service versions with <code>searchsploit</code>, but this failed to turn up anything useful.</p>
+<h2 id="foothold">Foothold</h2>
+<p>I chose to look at the .mp3 file first, only really because it was the first one I obtained! I ran <code>exiftool</code>, <code>strings</code>, and <code>binwalk</code> on the file but found nothing. Actually listening to the file revealed a pretty poor audio recording with a burst of static close to the start. I have come across an instance of steganography in a previous CTF where a message was hidden in the spectogram for an audio file and, given that burst of static, I wondered if the same was true here. I opened the file with Audacity and turned on the Spectogram view, revealing a hidden message:<br />
+<img alt="Spectogram" src="spectogram.png" /><br />
+OK, so "namelesstwo" is presumably either a password in its own right, or possibly the phrase "nicholsca" (or something along those lines) but I didn't know whether it was a password or a username, or where to use it. Another one for the list of things to come back to.
+I moved on to the text file I downloaded:<br />
+<img alt="dads_tasks content" src="dads_tasks_content.png" /><br />
+Thinking it looked like base64 encoded, I decoded it to reveal the following:<br />
+<img alt="dads_tasks decoded" src="dads_tasks_decoded.png" /><br />
+My initial thoughts with this secondary encoding was that it was a ROT cipher but brute forcing it wit CyberChef wasn't successful. Whilst looking at the base64 decoded text, I realised that the formatting of the text looked like a list, and that the first word of each of the list lines looked like it would form the words "One", "Two", "Three", etc. If that last realisation was correct, it also proved that a straightforward ROT cipher was out of the question - the last two letters in the word that appeared to be "three" in the list were different, both of which were different from the final letter of the word that appeared to be "one". Thinking back to that word I found in the spectogram, I wondered if this encoding might instead be a Vigenere cipher, with that (or one of the variants it implied) as the keyword. Using the dCode decoder and using "nameslesstwo" proved successful:<br />
+<img alt="Vigenere 1 decoded" src="vigenere_1_decoded.png" /><br />
+I figured that the long string at the end of the message was probably a password, and given that the rest of the message refers to "Dad", I thought this was likely written by Nicholas Cage's son, whose name was provided to me on the home page ("Weston"). I used these two pieces of information to attempt an SSH login to the target machine and was successful.  </p>
+<details class="success">
+<summary>What is Weston's password?</summary>
+<p>Mydadisghostrideraintthatcoolnocausehesonfirejokes</p>
+</details>
+<p>After getting logged in (and checking my home directory for a flag - no luck), I did my usual quick checks for low-hanging fruit:  </p>
+<ul>
+<li>Checking <code>sudo</code> rights - this revealed a custom bash script I could run as <code>sudo</code>, which executed <code>wall</code> with a specific string to broadcast to system users.  </li>
+<li>Checking for SUID and SGID binaries - nothing here.  </li>
+<li>Reading <code>/etc/crontab</code> - nothing here either.  </li>
+<li>Checking groups that my logged-in user is part of - this revealed I was part of the "cage" group, which belonged to the system user of the same name. At this point, I stopped my checks and decided to follow the rabbit hole.  </li>
+</ul>
+<p>Checking for files that belonged to the "cage" group, I found an interesting folder (and accompanying contents) in <code>/opt</code>:<br />
+<img alt="Cage group files" src="cage_group_files.png" /><br />
+<img alt="Cage group script content" src="cage_group_script_content.png" /><br />
+The file contents, which I couldn't write to, showed that the <code>os.system</code> call was being called to read a file, line by line, meaning that if I could write to the file it takes as input (I could), whatever I add would be executed with <code>/bin/sh</code>. That's good because it means I can copy the system <code>bash</code> binary to a place I can access and turn it into a SUID binary for the user that executes the script, in this case the "cage" user. There was an issue with the theory - I didn't have the right to execute the script I had originally found. As I was pondering how best to proceed though, the answer appeared right on my screen - a broadcast message that was presumably a result of this script being executed from somewhere (a user-specific <code>crontab</code> or system timer perhaps), so my theory expanded into practice with one simple step: waiting. I executed the following command to add my line to the input file:<br />
+<code>echo '; cp /bin/bash /tmp/cagebash; chmod +s /tmp/cagebash ;' &gt; /opt/.dads_scripts/.files/.quotes</code><br />
+I had another broadcast message within a minute or so, at which point I was able to execute my <code>cagebash</code> binary:<br />
+<img alt="cagebash execution" src="cagebash_execution.png" /><br />
+Alright, so that gives me access to the "cage" user, so I started my search for the user flag anew, and now it was easy to find:<br />
+<img alt="User flag success" src="user_flag_success.png" />  </p>
+<details class="success">
+<summary>What's the user flag?</summary>
+<p>THM{M37AL_0R_P3N_T35T1NG}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p>I went on to enumerate the rest of the home directory for the "cage" user:<br />
+<img alt="cage user home directory" src="cage_user_home_directory.png" /><br />
+As with the odd string I had found earlier, I tried a couple of cipher identifiers on this weird string but found nothing obvious. Given that the Vigenere cipher had been used in the previous decoding element, I considered that this might be the case again, and whilst the repeated use of the word "face" in the accompanying message is contextual, it stood out a little so I gave it a try with <a href="https://www.dcode.fr/vigenere-cipher">dCode.fr</a> and got a hit:  <img alt="Vigenere 2 decoded" src="vigenere_2_decoded.png" /><br />
+Given that the username for the creep agent had basically been provided in one of the other email messages, I simply tried to switch user with the decoded string contents and was successful.  From there finding and reading the root flag was trivial:<br />
+<img alt="root flag success" src="root_flag_success.png" />  </p>
+<details class="success">
+<summary>What's the root flag?</summary>
+<p>THM{8R1NG_D0WN_7H3_C493_L0N9_L1V3_M3}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>Audacity</code></p>
+<p><strong>Date completed:</strong> 17/04/26<br />
+<strong>Date published:</strong> 17/04/26</p>
 
 
 
@@ -631,7 +825,8 @@
 
 
 
-
+  
+  
 
 
 
