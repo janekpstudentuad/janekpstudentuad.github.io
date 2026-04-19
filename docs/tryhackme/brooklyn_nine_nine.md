@@ -178,7 +178,7 @@ sudo -l
 	    (ALL) NOPASSWD: /bin/nano
 ```
 
-[GTFObins nano](https://gtfobins.org/gtfobins/nano/)
+[GTFObins `nano`](https://gtfobins.org/gtfobins/nano/)
 
 ```
 sudo nano
