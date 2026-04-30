@@ -5,3 +5,4 @@
 * [GamingServer](./gamingserver.md)
 * [RootMe](./rootme.md)
 * [Poster](./poster.md)
+* [Brute It](./brute_it.md)
