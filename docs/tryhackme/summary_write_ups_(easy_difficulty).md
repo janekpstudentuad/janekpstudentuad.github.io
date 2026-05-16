@@ -10,3 +10,4 @@
 * [Chill Hack](./chill_hack.md)
 * [Cyborg](./cyborg.md)
 * [Archangel](./archangel.md)
+* [Magician](./magician.md)
