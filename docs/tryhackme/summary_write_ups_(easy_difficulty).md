@@ -11,3 +11,4 @@
 * [Cyborg](./cyborg.md)
 * [Archangel](./archangel.md)
 * [Magician](./magician.md)
+* [JPGChat](./jpgchat.md)
