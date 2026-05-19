@@ -57,6 +57,8 @@ Choose a topic and carry out a full research project:
 - Collect and analyse data.  
 - Evaluate and present findings.  
 
-*Project title* - Evaluating Personalised Phishing Awareness Training: A Mixed Methods Study on Emotional Response, Engagement, and User Preference
+*Project title* - Evaluating Personalised Phishing Awareness Training: A Mixed Methods Study on Emotional Response, Engagement, and User Preference  
+[Dissertation](./cmp504_dissertation.pdf)  
+*Appendix.xlsx document referenced on pages 46 and 59 can be provided on request*
 
 **Grade achieved:** A+
