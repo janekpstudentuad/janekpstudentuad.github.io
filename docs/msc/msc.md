@@ -1,7 +1,9 @@
 # Ethical Hacking and Cybersecurity MSc
-I have undertaken an MSc in Ethical Hacking and Cyber Security, administered by Abertay University. It took me two years as I did it as part-time course (whilst also continuing to work full-time). Below is a brief outline of the modules that made up the course, along with the papers I submitted and their resulting grade. Further details of the course can be found on the [Abertay University website](https://www.abertay.ac.uk/course-search/postgraduate-taught/ethical-hacking-and-cybersecurity/).
+I have undertaken an MSc in Ethical Hacking and Cyber Security, administered by Abertay University. It took me two years as I did it as part-time course (whilst also continuing to work full-time). Below is a brief outline of the modules that made up the course, along with the papers I submitted and their resulting grade. My [personal thoughts](../everything_between/blog/my_msc_experience.md) on the course can be found in the Blog section of this site.
 
-I was awarded my MSc in November 2025, when I graduated **with distinction** and **a GPA of 4.33**.
+Further details of the course can be found on the [Abertay University website](https://www.abertay.ac.uk/course-search/postgraduate-taught/ethical-hacking-and-cybersecurity/).
+
+I was awarded my MSc in November 2025, when I graduated **with distinction** and a **GPA of 4.33**.
 
 ## Year 1
 ### Trimester 1
