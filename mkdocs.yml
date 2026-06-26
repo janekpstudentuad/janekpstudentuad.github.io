@@ -42,6 +42,7 @@ nav:
   - Everything Between:
     - Articles: everything_between/articles.md
     - Blog: everything_between/blog.md
+    - Cybersecurity Lab: everything_between/cybersecurity_lab.md
     - Conferences/events: everything_between/conferences_events.md
     - Resources: everything_between/resources.md
   - Tags: tags.md

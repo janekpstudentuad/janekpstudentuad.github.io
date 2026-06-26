@@ -62,5 +62,6 @@ Choose a topic and carry out a full research project:
 *Project title* - Evaluating Personalised Phishing Awareness Training: A Mixed Methods Study on Emotional Response, Engagement, and User Preference  
 [Dissertation](./cmp504_dissertation.pdf)  
 *Appendix.xlsx document referenced on pages 46 and 59 can be provided on request*
+[PhishAdapt GitHub Repo](https://github.com/janekpstudentuad/PhishAdapt)
 
 **Grade achieved:** A+
