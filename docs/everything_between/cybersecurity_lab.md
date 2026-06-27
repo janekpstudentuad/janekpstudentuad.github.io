@@ -66,6 +66,8 @@ The links below provide further detailed guidance on each step of the setup.
 1. [Windows Server 2022 Domain Controller - DC01](cybersecurity_lab/dc01.md)  
 2. [Windows 10 User Workstation - WS01](cybersecurity_lab/ws01.md)  
 3. [Windows 11 User Workstation - WS02](cybersecurity_lab/ws02.md)  
-4. [Kali Linux "Attacker" Workstation - Kali](cybersecurity_lab/kali.md)
+4. [Kali Linux "Attacker" Workstation - Kali](cybersecurity_lab/kali.md)  
 At this point, the lab is already fully functional for many of the goals I set, but further machines and configuration are required for defensive monitoring and digital forensic capabilities. These are set out in the documents below.  
-5. [Ubuntu Server - Splunk](cybersecurity_lab/splunk.md)
+5. [Ubuntu Server - Splunk](cybersecurity_lab/splunk.md)  
+With Splunk installed, the lab now has defensive monitoring capabilities. I went a step further to create opportunities to use both offensive and defensive capabilities: I created a Linux machine to host deliberately vulnerable applications and a Metasploitable instance. The documentation for those machines is below.
+6. [Ubuntu LTS - LX01](cybersecurity_lab/lx01.md)
