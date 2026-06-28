@@ -23,7 +23,7 @@
     
     
       
-        <title>Ubuntu Desktop LTS - LX01 - Offense, Defense, and Everything Between</title>
+        <title>Metasploitable 2 - MS2 - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ubuntu-desktop-lts-lx01" class="md-skip">
+        <a href="#metasploitable-2-ms2" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ubuntu Desktop LTS - LX01
+              Metasploitable 2 - MS2
             
           </span>
         </div>
@@ -643,119 +643,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-virtual-machine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create Virtual Machine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operating-system-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Operating System Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#post-os-installation-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Post OS Installation Configuration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-application-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Application Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-juice-shop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Install Juice Shop
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-dvwa" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Install DVWA
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-configure-splunk" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Install and Configure Splunk
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install and Configure Splunk">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -771,119 +658,7 @@
 
 
 
-<h1 id="ubuntu-desktop-lts-lx01">Ubuntu Desktop LTS - LX01</h1>
-<h2 id="create-virtual-machine">Create Virtual Machine</h2>
-<p>After downloading the ISO for Ubuntu Desktop LTS (available <a href="https://ubuntu.com/download/desktop">here</a>), create a new virtual machine in VMware Workstation Pro (File &gt; New Virtual Machine), with the following settings:  </p>
-<ul>
-<li>Typical (Recommended) configuration  </li>
-<li>Installer disc image file: Ubuntu Desktop LTS ISO  </li>
-<li>Full name/User name/Password: as desired (trivial - will be set during OS installation)</li>
-<li>Virtual machine name: LX01  </li>
-<li>Location: desired location for VMHD files  </li>
-<li>Specify Disk Capacity options: increase size to 60GB    </li>
-</ul>
-<h2 id="operating-system-installation">Operating System Installation</h2>
-<p><em>Use default network adapter (NAT) during OS installation - replace with custom VMnet once installation completed</em><br />
-Power on the virtual machine and proceed with Ubuntu installation using the following settings:  </p>
-<ul>
-<li>Language/keyboard layout: as required  </li>
-<li>Accept all other defaults  </li>
-<li>Name: as desired  </li>
-<li>Computer name: LX01  </li>
-<li>Username/Password: as desired</li>
-<li>Accept all other defaults  </li>
-</ul>
-<h2 id="post-os-installation-configuration">Post OS Installation Configuration</h2>
-<p>Once the OS has finished installing:  </p>
-<ul>
-<li>
-<p>Run the post-installation setup wizard:  </p>
-<ul>
-<li>Skip Ubuntu Pro  </li>
-<li>Don't share system data  </li>
-<li>Don't install more applications  </li>
-<li>Apply updates (<code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code>)  </li>
-</ul>
-<h2 id="additional-application-installation">Additional Application Installation</h2>
-<p><div class="highlight"><pre><span></span><code>sudo apt install -y openssh-server apache2 mysql-server samba docker.io php php-sqli php-gd php-mbstring mariadb-server
-</code></pre></div>
-* (optional) take snapshot of fresh installation  </p>
-<h2 id="install-juice-shop">Install Juice Shop</h2>
-<p><div class="highlight"><pre><span></span><code>sudo docker run --rm -p 3000:3000 bkimminich/juice-shop
-</code></pre></div>
-<em>Successful installation can be found at http://127.0.0.1:3000 in an internet browser</em></p>
-<h2 id="install-dvwa">Install DVWA</h2>
-<div class="highlight"><pre><span></span><code>sudo git clone https://github.com/digininja/DVWA.git /var/www/html/dvwa
-sudo cp /var/www/html/dvwa/config/config.inc.php.dist /var/www/html/dvwa/config/config.inc.php
-sudo mysql -u root -p
-CREATE DATABASE dvwa;
-CREATE USER &#39;dvwa&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;&lt;password&gt;&#39;;
-GRANT ALL PRIVILEGES ON dvwa.* TO &#39;dvwa&#39;@&#39;localhost&#39;;
-FLUSH PRIVILEGES;
-EXIT;
-</code></pre></div>
-</li>
-<li>
-<p>Update <code>/var/www/html/dvwa/config/config.inc.php</code> with password entered in SQL commands  </p>
-</li>
-<li>Navigate to http://localhost/dvwa/setup.php and click "Create/Reset Database."
-<em>Successful installation can be found at http://localhost/dvwa in an internet browser</em></li>
-</ul>
-<h2 id="install-and-configure-splunk">Install and Configure Splunk</h2>
-<h3 id="installation">Installation</h3>
-<ul>
-<li>Obtain  the <code>wget</code> link to download the Splunk Universal Forwarder from <a href="https://www.splunk.com/en_us/download/universal-forwarder.html">here</a>  </li>
-<li>Execute <code>wget</code> command  </li>
-<li>Shut down and change network adapter to custom VMnet network adapter<br />
-<em>This is necessary for events to be sent to Splunk and to protect the deliberately vulnerable applications on the virtual machine from the public-facing internet</em>  </li>
-<li>Find adapter name with <code>ip a</code>  </li>
-<li>Choose a host address in the custom VMnet network that doesn't fall into the DHCP range from the DC<br />
-<em>I chose .99</em></li>
-<li>Overwrite contents of <code>/etc/netplan/50-cloud-init.yaml</code> with the following:<br />
-<div class="highlight"><pre><span></span><code>network:
-  version: 2
-  ethernets:
-    &lt;hostOnlyAdapterName&gt;:
-      dhcp4: no
-      addresses:
-        - &lt;lx01IpAddress&gt;/24
-      gateway4: &lt;dcIpAddress&gt;
-      nameservers:
-        addresses:
-          - &lt;dcIpAddress&gt;
-</code></pre></div></li>
-<li>Restart network service to apply configuration (<code>sudo netplan apply</code>)  </li>
-<li>Install and start Splunk Universal Forwarder (set admin credentials as the ones created during Splunk installation when prompted):<br />
-<div class="highlight"><pre><span></span><code>sudo /opt/splunkforwarder/bin/splunk start --accept-license
-</code></pre></div></li>
-</ul>
-<h3 id="configuration">Configuration</h3>
-<ul>
-<li>Create <code>/opt/splunkforwarder/etc/system/local/outputs.conf</code> with the following contents:<br />
-<div class="highlight"><pre><span></span><code>[tcpout]
-defaultGroup = default-autolb-group
-
-[tcpout:default-autolb-group]
-server = &lt;splunkMachineIpAddress&gt;:9997
-
-[tcpout-server://&lt;server = &lt;splunkMachineIpAddress&gt;:9997]
-</code></pre></div></li>
-<li>Create <code>/opt/splunkforwarder/etc/system/local/inputs.conf</code> with the following contents:<br />
-<div class="highlight"><pre><span></span><code>[default]
-host = LX01
-
-[monitor:///var/log/auth.log]
-disabled = 0
-
-[monitor:///var/log/syslog]
-disabled = 0
-
-[monitor:///var/log/messages]
-disabled = 0
-</code></pre></div></li>
-<li>Restart the Splunk Forwarder service (<code>sudo /opt/splunkforwarder/bin/splunk restart</code>)  </li>
-<li>Snapshot!</li>
-</ul>
+<h1 id="metasploitable-2-ms2">Metasploitable 2 - MS2</h1>
 
 
 
