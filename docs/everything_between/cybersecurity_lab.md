@@ -71,4 +71,6 @@ At this point, the lab is already fully functional for many of the goals I set, 
 5. [Ubuntu Server - Splunk](cybersecurity_lab/splunk.md)  
 With Splunk installed, the lab now has defensive monitoring capabilities. I went a step further to create opportunities to use both offensive and defensive capabilities: I created a Linux machine to host deliberately vulnerable applications and a Metasploitable instance. The documentation for those machines is below.
 6. [Ubuntu Desktop LTS - LX01](cybersecurity_lab/lx01.md)  
-7. [Metasploitable 2 - MS2](cybersecurity_lab/ms2.md)
+7. [Metasploitable 2 - MS2](cybersecurity_lab/ms2.md)  
+This is another really great place decide that the lab is finished. I went another step further to provide *network* montitoring (IDS/IPS) capabilities to complement the host monitoring capabilities already set up, and placed the whole thing behind a firewall to allow the lab machines access to the internet from here on.  This was, by far, the most difficult part of the set up to work through, and requires a lot of hard drive space to satisfy the software requirements.  
+8. [Security Onion - Onion](cybersecurity_lab/onion.md)
