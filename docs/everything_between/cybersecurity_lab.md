@@ -70,4 +70,5 @@ The links below provide further detailed guidance on each step of the setup.
 At this point, the lab is already fully functional for many of the goals I set, but further machines and configuration are required for defensive monitoring and digital forensic capabilities. These are set out in the documents below.  
 5. [Ubuntu Server - Splunk](cybersecurity_lab/splunk.md)  
 With Splunk installed, the lab now has defensive monitoring capabilities. I went a step further to create opportunities to use both offensive and defensive capabilities: I created a Linux machine to host deliberately vulnerable applications and a Metasploitable instance. The documentation for those machines is below.
-6. [Ubuntu LTS - LX01](cybersecurity_lab/lx01.md)
+6. [Ubuntu Desktop LTS - LX01](cybersecurity_lab/lx01.md)  
+7. [Metasploitable 2 - MS2](cybersecurity_lab/ms2.md)
