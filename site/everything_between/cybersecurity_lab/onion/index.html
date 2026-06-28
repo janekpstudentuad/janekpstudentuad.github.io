@@ -23,7 +23,7 @@
     
     
       
-        <title>Metasploitable 2 - MS2 - Offense, Defense, and Everything Between</title>
+        <title>Security Onion - Onion - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#metasploitable-2-ms2" class="md-skip">
+        <a href="#security-onion-onion" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Metasploitable 2 - MS2
+              Security Onion - Onion
             
           </span>
         </div>
@@ -643,47 +643,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-virtual-machine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create Virtual Machine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#set-static-ip-address" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Set Static IP Address
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configure-for-splunk-logging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configure for Splunk Logging
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -699,70 +658,7 @@
 
 
 
-<h1 id="metasploitable-2-ms2">Metasploitable 2 - MS2</h1>
-<h2 id="create-virtual-machine">Create Virtual Machine</h2>
-<p>After downloading the VMHD (and extracting) for Metasploitable2 (available <a href="https://www.rapid7.com/products/metasploit/metasploitable/">here</a>):  </p>
-<ul>
-<li>Open the virtual machine in VMware Workstation Pro (File &gt; Open)  </li>
-<li>(optional) Rename the virtual machine as required  </li>
-<li>Change the network adapted to connect to the custom VMnet network  </li>
-</ul>
-<h2 id="set-static-ip-address">Set Static IP Address</h2>
-<ul>
-<li>Power on the virtual machine  </li>
-<li>Obtain the network adapter name (<code>ip a</code>)  </li>
-<li>Open the <code>/etc/network/interfaces</code> file and update the stanza with the relevant network adapter name with the following content:<br />
-<div class="highlight"><pre><span></span><code>iface &lt;adapterName&gt; inet static
-    address &lt;metasploitableIpAddress&gt;
-    netmask 255.255.255.0
-    dns-nameservers &lt;dcIpAddress&gt;
-</code></pre></div>
-<em>I used the .98 host address from the custom VMnet network</em></li>
-<li>(optional but highly recommended) Shut down and take snapshot of fresh OS installation  </li>
-</ul>
-<h2 id="configure-for-splunk-logging">Configure for Splunk Logging</h2>
-<ul>
-<li>Append the following to <code>sudo nano /etc/syslog.conf</code>:<br />
-<div class="highlight"><pre><span></span><code>*.*   @&lt;splunkMachineIpAddress&gt;
-</code></pre></div></li>
-<li>Reboot<br />
-<strong>!!The rest of the steps on this page need to be performed on the Splunk virtual machine!!</strong><br />
-<div class="highlight"><pre><span></span><code>sudo systemctl enable --now rsyslog
-sudo systemctl status rsyslog --no-pager
-sudo mkdir -p /var/log/remote
-sudo chown syslog:adm /var/log/remote
-sudo chmod 0755 /var/log/remote
-sudo usermod -aG adm splunk
-</code></pre></div></li>
-<li>Add the following contents to <code>/etc/rsyslog.d/10-splunk-remote.conf</code>:<br />
-<div class="highlight"><pre><span></span><code># Accept remote syslog via UDP and TCP
-module(load=&quot;imudp&quot;)
-input(type=&quot;imudp&quot; port=&quot;514&quot;)
-
-module(load=&quot;imtcp&quot;)
-input(type=&quot;imtcp&quot; port=&quot;514&quot;)
-
-# Template to write logs into per-host directory and per-program file
-template(name=&quot;RemoteLogs&quot; type=&quot;string&quot; string=&quot;/var/log/remote/%HOSTNAME%/%PROGRAMNAME%.log&quot;)
-
-# Write everything to the template
-*.* ?RemoteLogs
-&amp; stop
-</code></pre></div></li>
-<li>Restart the <code>rsyslog</code> service (<code>sudo systemctl restart rsyslog</code>)  </li>
-<li>Create the <code>/opt/splunk/etc/system/local/inputs.conf</code> file with the following contents:<br />
-<div class="highlight"><pre><span></span><code>[default]
-host = splunk
-
-[monitor:///var/log/remote]
-disabled = false
-index = main
-recursive = true
-sourcetype = syslog
-</code></pre></div></li>
-<li>Restart the Splunk service (<code>sudo /opt/splunk/bin/splunk restart</code>)  </li>
-<li>Snapshot! (for both Splunk and MSF2 machines)</li>
-</ul>
+<h1 id="security-onion-onion">Security Onion - Onion</h1>
 
 
 
