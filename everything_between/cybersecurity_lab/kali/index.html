@@ -867,7 +867,7 @@
 <p><em>Most of the following could be automated into a single <code>bash</code> script very easily. I have left everything separated out for transparency and adaptability</em><br />
 <em>As an optional (but recommended) step, a snapshot can be taken after each batch of tools are installed</em></p>
 <h3 id="pen-test-and-ctf-tools">Pen Test and CTF tools</h3>
-<p><div class="highlight"><pre><span></span><code>sudo apt install -y netcat-openbsd seclists dirsearch gdb gdb-multiarch apktool bettercap bloohound docker.io docker-compose rizin-cutter
+<p><div class="highlight"><pre><span></span><code>sudo apt install -y netcat-openbsd seclists dirsearch gdb gdb-multiarch apktool bettercap bloodhound docker.io docker-compose rizin-cutter
 </code></pre></div>
 Unzip <code>rockyou.txt</code>:
 <div class="highlight"><pre><span></span><code>sudo gzip -d /usr/share/wordlists/rockyou.txt.gz
@@ -907,9 +907,8 @@ source &lt;venvLocaltion&gt;/bin/activate
 pip install pwntools bs4 dnspython python-whois yara-python impacket sublist3r
 </code></pre></div>
 <h3 id="reverse-engineering">Reverse engineering</h3>
-<div class="highlight"><pre><span></span><code>clone https://github.com/pwndbg/pwndbg.git &lt;gitRepoSaveDirectory&gt;/pwndbg
+<div class="highlight"><pre><span></span><code>git clone https://github.com/pwndbg/pwndbg.git &lt;gitRepoSaveDirectory&gt;/pwndbg
 ./&lt;pwndbgSaveDirectory&gt;/setup.sh
-echo &quot;alias pwn=&#39;cd ~/gits/pwn&#39;&quot; &gt;&gt; ~/.zshrc
 sudo apt install -y openjdk-11-jdk gnupg2 ghidra
 </code></pre></div>
 <h3 id="active-directorywindows-tools">Active Directory/Windows tools</h3>
