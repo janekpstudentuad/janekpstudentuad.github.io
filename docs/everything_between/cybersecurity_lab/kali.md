@@ -17,7 +17,7 @@ After downloading the VMHD for Kali Linux (available [here](https://www.kali.org
 *As an optional (but recommended) step, a snapshot can be taken after each batch of tools are installed*
 ### Pen Test and CTF tools
 ```
-sudo apt install -y netcat-openbsd seclists dirsearch gdb gdb-multiarch apktool bettercap bloohound docker.io docker-compose rizin-cutter
+sudo apt install -y netcat-openbsd seclists dirsearch gdb gdb-multiarch apktool bettercap bloodhound docker.io docker-compose rizin-cutter
 ```
 Unzip `rockyou.txt`:
 ```
@@ -67,9 +67,8 @@ pip install pwntools bs4 dnspython python-whois yara-python impacket sublist3r
 ```
 ### Reverse engineering
 ```
-clone https://github.com/pwndbg/pwndbg.git <gitRepoSaveDirectory>/pwndbg
+git clone https://github.com/pwndbg/pwndbg.git <gitRepoSaveDirectory>/pwndbg
 ./<pwndbgSaveDirectory>/setup.sh
-echo "alias pwn='cd ~/gits/pwn'" >> ~/.zshrc
 sudo apt install -y openjdk-11-jdk gnupg2 ghidra
 ```
 ### Active Directory/Windows tools
