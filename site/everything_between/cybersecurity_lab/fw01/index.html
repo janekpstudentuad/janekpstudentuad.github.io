@@ -23,7 +23,7 @@
     
     
       
-        <title>Security Onion - Onion - Offense, Defense, and Everything Between</title>
+        <title>pfSense - FW1 - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#security-onion-onion" class="md-skip">
+        <a href="#pfsense-fw1" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Security Onion - Onion
+              pfSense - FW1
             
           </span>
         </div>
@@ -643,47 +643,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-virtual-machine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create Virtual Machine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-the-static-ip-address" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setting the Static IP Address
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -699,55 +658,7 @@
 
 
 
-<h1 id="security-onion-onion">Security Onion - Onion</h1>
-<h2 id="create-virtual-machine">Create Virtual Machine</h2>
-<p>After downloading the ISO for Security Onion (available <a href="https://docs.securityonion.net/en/2.4/download.html">here</a>), create a new virtual machine in VMware Workstation Pro (File &gt; New Virtual Machine), with the following settings:  </p>
-<ul>
-<li>Typical (Recommended) configuration  </li>
-<li>Installer disc image file: Security Onion LTS ISO  </li>
-<li>Virtual machine name: Onion  </li>
-<li>Location: desired location for VMHD files  </li>
-<li>Specify Disk Capacity options: increase size to 100GB  </li>
-<li>Change amount of RAM to 8GB  </li>
-<li>Change number of processors to 4  </li>
-<li>Add a second network adapter to connect to the custom VMnet network   </li>
-</ul>
-<h2 id="installation">Installation</h2>
-<ul>
-<li>Power on the virtual machine - the installer will start once you type "yes" at the prompt  </li>
-<li>Set username and password as desired  </li>
-<li>Once the installation is complete, reboot as prompted and then login with the administrator credentials created during set up  </li>
-<li>Installation responses:  <ul>
-<li>Install  </li>
-<li>Evaluation mode  </li>
-<li>Standard  </li>
-<li>Hostname: onion  </li>
-<li>Pick the NAT network adapter as the management NIC (MAC addresses can be confirmed in the "Advanced" section of the Network Adapter settings in VMware Workstation Pro)  </li>
-<li>DHCP (this would be different in a production environment - we are going to set it to a static address later)  </li>
-<li>Direct connection  </li>
-<li>Keep the default Docker range  </li>
-<li>Select the other NIC for the Monitoring interface (hit the SPACE bar)  </li>
-<li>Enter an email address for the administrator account (this does not have to be valid!)  </li>
-<li>Create a password for the administrator account  </li>
-<li>Access the web interface by IP  </li>
-<li>Allow access to the installation via the web interface  </li>
-<li>Enter network address for the NAT network in CIDR notation (e.g., 192.168.1.0/24)  </li>
-<li>Do not allow SOC telemetry </li>
-</ul>
-</li>
-<li>This installation takes a good while, despite the fact that the machine has been beefed up so I would definitely recommend taking a snapshot when it's complete</li>
-</ul>
-<h2 id="setting-the-static-ip-address">Setting the Static IP Address</h2>
-<ul>
-<li>Confirm the name and leased IP address of the NAT network adapter (<code>ip a</code>)  </li>
-<li>Set the network adapter configuration:<br />
-<div class="highlight"><pre><span></span><code>sudo nmcli con delete &lt;natAdapterName&gt;
-sudo nmcli con add type ethernet ifname &lt;natAdapterName&gt; con-name &lt;natAdapterName&gt; ipv4.addresses &lt;leasedIpAddress&gt;/24 ipv4.gateway &lt;natSubnet&gt;.2 ipv4.dns 8.8.8.8 ipv4.method manual
-sudo nmcli con up &lt;natAdapterName&gt;
-</code></pre></div></li>
-<li>Snapshot!<br />
-<em>The web management interface should be available in a browser window on the Kali machine at http://onionIpAddress using the email and password credentials created during the installation</em></li>
-</ul>
+<h1 id="pfsense-fw1">pfSense - FW1</h1>
 
 
 

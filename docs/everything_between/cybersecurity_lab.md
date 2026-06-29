@@ -60,7 +60,7 @@ In order for the lab to stay appropriately isolated, I created a custom virtual 
 ![Disable local DHCP](cybersecurity_lab/untick_dhcp.png)  
 4. (optional) Choose the subnet if you want something other than the one automatically generated
 
-## Guide
+## Lab Setup
 The links below provide further detailed guidance on each step of the setup.  
 
 1. [Windows Server 2022 Domain Controller - DC01](cybersecurity_lab/dc01.md)  
@@ -74,4 +74,7 @@ With Splunk installed, the lab now has defensive monitoring capabilities. I went
 7. [Metasploitable 2 - MS2](cybersecurity_lab/ms2.md)  
 This is another really great place decide that the lab is finished. I went another step further to provide *network* montitoring (IDS/IPS) capabilities to complement the host monitoring capabilities already set up, and placed the whole thing behind a firewall to allow the lab machines access to the internet from here on.  This was, by far, the most difficult part of the set up to work through, and requires a lot of hard drive space to satisfy the software requirements.  
 8. [Security Onion - Onion](cybersecurity_lab/onion.md)  
-9. [pfSense - FW1](cybersecurity_lab/fw01.md)
+9. [pfSense - FW1](cybersecurity_lab/fw01.md)  
+Congratulations, at this point you should have a fully functioning lab with firewalled internet access for the domain-joined machines, host monitoring in Splunk, network monitoring in Elastic, an attacker machine, and several vulnerable components to play with! I added two more machines (a SIFT workstation for digital forensics work and a REMnux workstation for malware analysis) to really encompass as many of the technical realms of cybersecurity as possible - these are very easy to set up and stay isolated away from both the internet and the rest of the lab network but they are optional.  
+10. [SIFT Workstation - SIFT](cybersecurity_lab/sift.md)  
+11. [REMnux - REMnux](cybersecurity_lab/REMnux.md)
