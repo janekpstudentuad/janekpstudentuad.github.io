@@ -23,7 +23,7 @@
     
     
       
-        <title>pfSense - FW1 - Offense, Defense, and Everything Between</title>
+        <title>SIFT Workstation - SIFT - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pfsense-fw1" class="md-skip">
+        <a href="#sift-workstation-sift" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              pfSense - FW1
+              SIFT Workstation - SIFT
             
           </span>
         </div>
@@ -661,102 +661,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
+  <a href="#install-volatility" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installation
+        Install Volatility
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reconfigure-endpoints-for-pfsense" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reconfigure Endpoints for pfSense
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Reconfigure Endpoints for pfSense">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dc01" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        DC01
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ws01-and-ws02" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        WS01 and WS02
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lx01" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LX01
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#elk-stack-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ELK Stack Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ELK Stack Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#onion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Onion
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fw01" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FW01
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -777,73 +688,25 @@
 
 
 
-<h1 id="pfsense-fw1">pfSense - FW1</h1>
+<h1 id="sift-workstation-sift">SIFT Workstation - SIFT</h1>
 <h2 id="create-virtual-machine">Create Virtual Machine</h2>
-<p>After downloading the ISO for pfSense (available <a href="https://www.pfsense.org/download/">here</a>), create a new virtual machine in VMware Workstation Pro (File &gt; New Virtual Machine), with the following settings:  </p>
+<p>After downloading the VMHD for SIFT Workstation (available <a href="https://www.sans.org/tools/sift-workstation">here</a>. You will need a SANS account but the download is free):  </p>
 <ul>
-<li>Typical (Recommended) configuration  </li>
-<li>Installer disc image file: pfSense ISO  </li>
-<li>Virtual machine name: FW01  </li>
-<li>Location: desired location for VMHD files   </li>
-<li>Change amount of RAM to 1GB   </li>
-<li>Add a second network adapter to connect to the custom VMnet network   </li>
-</ul>
-<h2 id="installation">Installation</h2>
-<ul>
-<li>Power on the virtual machine  </li>
-<li>Set the WAN interface to the NAT network adapter  </li>
-<li>Set the LAN interface to the custom VMnet network adapter  </li>
-<li>Set the static IP address for the LAN network interface (choose an IP address not in the DHCP range set on the DC)<br />
-<em>I used the .1 address in the custom VMnet network</em>  </li>
-<li>Set the start and end IP addresses of the DHCP range set on the DC  </li>
-<li>Install pfSense CE  </li>
-<li>Accept all other defaults  </li>
+<li>Open the virtual machine in VMware Workstation Pro (File &gt; Open)  </li>
+<li>(optional) Rename the virtual machine as required  </li>
 <li>Snapshot!</li>
 </ul>
-<h2 id="reconfigure-endpoints-for-pfsense">Reconfigure Endpoints for pfSense</h2>
-<h3 id="dc01">DC01</h3>
+<h2 id="install-volatility">Install Volatility</h2>
 <ul>
-<li>Update default gateway and primary DNS server in network adapter IPv4 settings to pfSense LAN IP address  </li>
-<li>Navigate to https://pfsenseIpAddress and login with default credentials (admin:pfsense), run through initial setup, accepting all defaults and resetting admin password  </li>
-<li>Open DHCP (from Server Manager) &gt; dc01.homelab.local &gt; IPv4 &gt; Scope &gt; Scope Options &gt; right-click white space &gt; Configure Options  </li>
-<li>Tick 003 &gt; add pfSense Ip Address in IP address &gt; Add</li>
-</ul>
-<h3 id="ws01-and-ws02">WS01 and WS02</h3>
-<ul>
-<li>Update primary DNS server in network adapter IPv4 settings to DC IP address<br />
-<div class="highlight"><pre><span></span><code>ipconfig /release
-ipconfig /renew
-</code></pre></div></li>
-<li>Snapshot! (for DC01, WS01, and WS02)</li>
-</ul>
-<h3 id="lx01">LX01</h3>
-<ul>
-<li>Update the <code>gateway4</code> address in the <code>sudo nano /etc/netplan/50-cloud-init.yaml</code> to the pfSense IP address  </li>
-<li>Apply the new configuration (<code>sudo netplan apply</code>)  </li>
-<li>Snapshot! (LX01 and FW01)</li>
-</ul>
-<h2 id="elk-stack-configuration">ELK Stack Configuration</h2>
-<h3 id="onion">Onion</h3>
-<ul>
-<li>Confirm monitoring interface name (<code>nmcli con show</code>)</li>
-<li>Update the contents of <code>/opt/so/conf/suricata/suricata.yaml</code> as shown below. 
-<em><code>vi</code> required - enter "/af-packet" to find correct config setting, then "i" to enter editing mode. When done, press ESC, then ":wq" to save and exit</em><br />
-<div class="highlight"><pre><span></span><code>af-packet:
-  - interface: &lt;monitoringInterfaceName&gt;
-</code></pre></div></li>
-<li>Update the contents of <code>/opt/so/conf/zeek/node.cfg</code> with:<br />
-<div class="highlight"><pre><span></span><code>[zeek]
-type=worker
-host=localhost
-interface=&lt;monitoringInterfaceName&gt;
+<li>Power on the virtual machine and update (<code>sudo apt update &amp;&amp; sudo apt full-upgrade -y</code>)  </li>
+<li>Volatility installation:<br />
+<div class="highlight"><pre><span></span><code>sudo apt install -y python3-pip libfuzzy-dev libdistorm3-dev yara
+python3 -m pip install --upgrade pip
+python3 -m pip install volatility3
+echo &#39;export PATH=$PATH:/home/sansforensics/.local/bin&#39; &gt;&gt; ~/.bashrc
+source ~/.bashrc
 </code></pre></div></li>
 <li>Snapshot!</li>
-</ul>
-<h3 id="fw01">FW01</h3>
-<ul>
-<li>On DC01, navigate to pfSense admin console and login  </li>
-<li>Status &gt; System Logs &gt; Settings &gt; Remote Logging Options &gt; check the box for "Send log messages to remote syslog server" &gt; enter onionIpAddress:514 in the first "Remote log servers" box &gt; Save  </li>
-<li>Snapshot! (FW01)</li>
 </ul>
 
 

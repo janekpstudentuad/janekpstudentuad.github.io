@@ -77,4 +77,6 @@ This is another really great place decide that the lab is finished. I went anoth
 9. [pfSense - FW1](cybersecurity_lab/fw01.md)  
 Congratulations, at this point you should have a fully functioning lab with firewalled internet access for the domain-joined machines, host monitoring in Splunk, network monitoring in Elastic, an attacker machine, and several vulnerable components to play with! I added two more machines (a SIFT workstation for digital forensics work and a REMnux workstation for malware analysis) to really encompass as many of the technical realms of cybersecurity as possible - these are very easy to set up and stay isolated away from both the internet and the rest of the lab network but they are optional.  
 10. [SIFT Workstation - SIFT](cybersecurity_lab/sift.md)  
-11. [REMnux - REMnux](cybersecurity_lab/REMnux.md)
+11. [REMnux - REMnux](cybersecurity_lab/REMnux.md)  
+## Operating notes
+By now, the lab should be complete. [Here](cybersecurity_lab/operating_notes.md) is a small document with some useful notes for actually operating the lab - URLs for management consoles, default credentials for installed systems (it should go without saying - change these!), and some command snippets to get ad-hoc tools up and running.
