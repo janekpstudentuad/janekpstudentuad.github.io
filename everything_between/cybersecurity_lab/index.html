@@ -670,10 +670,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guide" class="md-nav__link">
+  <a href="#lab-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guide
+        Lab Setup
       
     </span>
   </a>
@@ -900,10 +900,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guide" class="md-nav__link">
+  <a href="#lab-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guide
+        Lab Setup
       
     </span>
   </a>
@@ -1027,7 +1027,7 @@
 <img alt="Disable local DHCP" src="untick_dhcp.png" />  </li>
 <li>(optional) Choose the subnet if you want something other than the one automatically generated</li>
 </ol>
-<h2 id="guide">Guide</h2>
+<h2 id="lab-setup">Lab Setup</h2>
 <p>The links below provide further detailed guidance on each step of the setup.  </p>
 <ol>
 <li><a href="dc01/">Windows Server 2022 Domain Controller - DC01</a>  </li>
@@ -1041,7 +1041,10 @@ With Splunk installed, the lab now has defensive monitoring capabilities. I went
 <li><a href="ms2/">Metasploitable 2 - MS2</a><br />
 This is another really great place decide that the lab is finished. I went another step further to provide <em>network</em> montitoring (IDS/IPS) capabilities to complement the host monitoring capabilities already set up, and placed the whole thing behind a firewall to allow the lab machines access to the internet from here on.  This was, by far, the most difficult part of the set up to work through, and requires a lot of hard drive space to satisfy the software requirements.  </li>
 <li><a href="onion/">Security Onion - Onion</a>  </li>
-<li><a href="fw01/">pfSense - FW1</a></li>
+<li><a href="fw01/">pfSense - FW1</a><br />
+Congratulations, at this point you should have a fully functioning lab with firewalled internet access for the domain-joined machines, host monitoring in Splunk, network monitoring in Elastic, an attacker machine, and several vulnerable components to play with! I added two more machines (a SIFT workstation for digital forensics work and a REMnux workstation for malware analysis) to really encompass as many of the technical realms of cybersecurity as possible - these are very easy to set up and stay isolated away from both the internet and the rest of the lab network but they are optional.  </li>
+<li><a href="sift/">SIFT Workstation - SIFT</a>  </li>
+<li><a href="REMnux/">REMnux - REMnux</a></li>
 </ol>
 
 
