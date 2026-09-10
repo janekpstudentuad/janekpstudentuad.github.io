@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>Neighbour - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#neighbour" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              Neighbour
             
           </span>
         </div>
@@ -635,6 +640,88 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flag
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -649,37 +736,122 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
-<ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
-<li><a href="../startup/">Startup</a></li>
-<li><a href="../chill_hack/">Chill Hack</a></li>
-<li><a href="../cyborg/">Cyborg</a></li>
-<li><a href="../archangel/">Archangel</a></li>
-<li><a href="../magician/">Magician</a></li>
-<li><a href="../jpgchat/">JPGChat</a></li>
-<li><a href="../couch/">Couch</a></li>
-<li><a href="../h4cked/">h4cked</a></li>
-<li><a href="../vulnnet_roasted/">VulnNet: Roasted</a>  </li>
-<li><a href="../shadow_trace/">Shadow Trace</a>  </li>
-<li><a href="../neighbour/">Neighbour</a></li>
-</ul>
+<h1 id="neighbour">Neighbour</h1>
+<p><img alt="Neighbour logo" src="../logos/neighbour_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/neighbour">Neighbour</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Check out our new cloud service, Authentication Anywhere. Can you find other user's secrets?</p>
+<p>Check out our new cloud service, Authentication Anywhere -- log in from anywhere you would like! Users can enter their username and password, for a totally secure login process! You definitely wouldn't be able to find any secrets that other people have in their profile, right?"</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<p><div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 4a:4d:cb:94:ac:36:a0:1e:f7:52:a4:53:12:3f:0f:e6 (RSA)
+|   256 97:da:79:0a:3f:d2:20:b5:1f:34:53:15:4c:99:69:16 (ECDSA)
+|_  256 0a:fc:66:a2:4f:44:40:c6:95:63:0c:ea:7c:3d:aa:e7 (ED25519)
+80/tcp open  http    Apache httpd 2.4.53 ((Debian))
+|_http-title: Login
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-server-header: Apache/2.4.53 (Debian)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone|specialized
+Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X (93%), Adtran embedded (92%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/h:adtran:424rg
+Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 4.15 (96%), Linux 5.4 - 5.15 (96%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Adtran 424RG FTTH gateway (92%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div></p>
+<h3 id="http-enumeration">HTTP Enumeration</h3>
+<div class="highlight"><pre><span></span><code>ffuf -u http://TARGET_IP_ADDRESS/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -c
+gobuster dir -u TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -x php,html,txt
+</code></pre></div>
+<p><strong>Notes</strong><br />
+- No <code>robots.txt</code> file<br />
+- No <code>sitemap.xml</code> file<br />
+- Source code contains guest credentials to use (guest:guest)<br />
+- Source code contains user name for administrator account (admin)<br />
+- Fuzzing finds <code>assets</code> and <code>db</code> pages - both return "Forbidden" message</p>
+<h3 id="vulnerability-enumeration">Vulnerability enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 8.2p1  # No results
+searchsploit httpd 2.4.53   # Only finding: DoS
+</code></pre></div>
+<h2 id="flag">Flag</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Log in to web portal using guest credentials<br />
+Guest user account referenced in URL (IDOR):<br />
+<img alt="Guest account IDOR" src="guest_idor.png" /></p>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Update URL to include "admin" user found in source code
+<img alt="Admin account IDOR" src="admin_idor.png" /></p>
+<details class="success">
+<summary>Find the flag on your neighbor's logged in page!</summary>
+<p>flag{66be95c478473d91a5358f2440c7af1f}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>Web browser</code></p>
+<p><strong>Date completed:</strong> 09/09/26<br />
+<strong>Date published:</strong> 09/09/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

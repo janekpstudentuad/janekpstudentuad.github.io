@@ -17,3 +17,4 @@
 * [VulnNet: Roasted](./vulnnet_roasted.md)  
 * [Shadow Trace](./shadow_trace.md)  
 * [Neighbour](./neighbour.md)
+* [Tetrix](./tetrix.md)
