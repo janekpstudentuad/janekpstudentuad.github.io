@@ -23,7 +23,7 @@
     
     
       
-        <title>Summary write ups (easy difficulty) - Offense, Defense, and Everything Between</title>
+        <title>The Game - Offense, Defense, and Everything Between</title>
       
     
     
@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#the-game" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Summary write ups (easy difficulty)
+              The Game
             
           </span>
         </div>
@@ -635,6 +640,88 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#artifact-provided" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact provided
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifacts-examined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts examined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Answer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -649,38 +736,91 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:binary-analysis" class="md-tag">binary-analysis</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
 
 
-  <h1>Summary write ups (easy difficulty)</h1>
 
-<ul>
-<li><a href="../brooklyn_nine_nine/">Brooklyn Nine Nine</a>  </li>
-<li><a href="../smag_grotto/">Smag Grotto</a>  </li>
-<li><a href="../bounty_hunter/">Bounty Hunter</a>  </li>
-<li><a href="../easy_peasy/">Easy Peasy</a></li>
-<li><a href="../gamingserver/">GamingServer</a></li>
-<li><a href="../rootme/">RootMe</a></li>
-<li><a href="../poster/">Poster</a></li>
-<li><a href="../brute_it/">Brute It</a></li>
-<li><a href="../startup/">Startup</a></li>
-<li><a href="../chill_hack/">Chill Hack</a></li>
-<li><a href="../cyborg/">Cyborg</a></li>
-<li><a href="../archangel/">Archangel</a></li>
-<li><a href="../magician/">Magician</a></li>
-<li><a href="../jpgchat/">JPGChat</a></li>
-<li><a href="../couch/">Couch</a></li>
-<li><a href="../h4cked/">h4cked</a></li>
-<li><a href="../vulnnet_roasted/">VulnNet: Roasted</a>  </li>
-<li><a href="../shadow_trace/">Shadow Trace</a>  </li>
-<li><a href="../neighbour/">Neighbour</a></li>
-<li><a href="../tetrix/">Tetrix</a></li>
-</ul>
+<h1 id="the-game">The Game</h1>
+<p><img alt="The Game logo" src="../logos/the_game_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/hfb1thegame">The Game</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Practice your Game Hacking skills.</p>
+<p>Cipher has gone dark, but intel reveals he’s hiding critical secrets inside Tetris, a popular video game. Hack it and uncover the encrypted data buried in its code.</p>
+<p><em>This challenge was originally a part of the Hackfinity Battle 2025 CTF Event.</em>"</p>
+<h2 id="artifact-provided">Artifact provided</h2>
+<p>Zip file containing <code>Tetrix.exe</code> file</p>
+<h2 id="task">Task:</h2>
+<p>Examine the file provided to find the flag.</p>
+<h3 id="artifacts-examined">Artifacts examined</h3>
+<p><code>Tetrix.exe</code></p>
+<h3 id="analysis">Analysis</h3>
+<p>Identify file type:
+<div class="highlight"><pre><span></span><code>file Tetrix.exe
+</code></pre></div>
+<img alt="File identification" src="file_identification.png" /></p>
+<p>Check for plaintext strings:
+<div class="highlight"><pre><span></span><code>strings Tetrix.exe  # Output extensive, limit to strings with characters at least as long as flag length
+strings Tetrix.exe -n 22
+</code></pre></div>
+<img alt="strings_output" src="strings_output.png" /></p>
+<h3 id="answer">Answer</h3>
+<details class="success">
+<summary>What is the flag?</summary>
+<p>THM{I_CAN_READ_IT_ALL}</p>
+</details>
+<p><strong>Tools Used</strong><br />
+<code>strings</code></p>
+<p><strong>Date completed:</strong> 10/09/26<br />
+<strong>Date published:</strong> 10/09/26</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
