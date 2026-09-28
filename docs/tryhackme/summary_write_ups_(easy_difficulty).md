@@ -19,3 +19,4 @@
 * [Neighbour](./neighbour.md)
 * [Tetrix](./tetrix.md)
 * [MD2PDF](./md2pdf.md)
+* [Lo-Fi](./lo-fi.md)
