@@ -23,7 +23,7 @@
     
     
       
-        <title>Lo-Fi - Offense, Defense, and Everything Between</title>
+        <title>Corridor - Offense, Defense, and Everything Between</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lo-fi" class="md-skip">
+        <a href="#corridor" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lo-Fi
+              Corridor
             
           </span>
         </div>
@@ -756,7 +756,7 @@
       
       
       
-        <a href="../../tags/#tag:lfi" class="md-tag">lfi</a>
+        <a href="../../tags/#tag:idor" class="md-tag">idor</a>
       
     
       
@@ -784,38 +784,32 @@
 
 
 
-<h1 id="lo-fi">Lo-Fi</h1>
-<p><img alt="Lo-Fi logo" src="../logos/lo-fi_logo.png" /></p>
+<h1 id="corridor">Corridor</h1>
+<p><img alt="Corridor logo" src="../logos/corridor_logo.png" /></p>
 <p><strong>Platform:</strong> TryHackMe<br />
 <strong>Type:</strong> Challenge<br />
 <strong>Difficulty:</strong> Easy<br />
-<strong>Link:</strong> <a href="https://tryhackme.com/room/lofi">Lo-Fi</a>  </p>
+<strong>Link:</strong> <a href="https://tryhackme.com/room/corridor">Corridor</a>  </p>
 <h2 id="description">Description</h2>
-<p>"Want to hear some lo-fi beats, to relax or study to? We've got you covered!"</p>
+<p>"Can you escape the Corridor?</p>
+<p>You have found yourself in a strange corridor. Can you find your way back to where you came?</p>
+<p>In this challenge, you will explore potential IDOR vulnerabilities. Examine the URL endpoints you access as you navigate the website and note the hexadecimal values you find (they look an awful lot like a hash, don't they?). This could help you uncover website locations you were not expected to access."</p>
 <h2 id="enumeration">Enumeration</h2>
 <h3 id="port-scanning">Port Scanning</h3>
-<p><div class="highlight"><pre><span></span><code><span class="nv">ports</span><span class="o">=</span><span class="k">$(</span>nmap<span class="w"> </span>-p-<span class="w"> </span>--min-rate<span class="o">=</span><span class="m">1000</span><span class="w"> </span>TARGET_IP_ADDRESS<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>s/,$//<span class="k">)</span>
-nmap<span class="w"> </span>-p<span class="nv">$ports</span><span class="w"> </span>-A<span class="w"> </span>-T4<span class="w"> </span>TARGET_IP_ADDRESS
+<p><div class="highlight"><pre><span></span><code>ports=$(nmap -p- --min-rate=1000 TARGET_IP_ADDRESS | grep ^[0-9] | cut -d &#39;/&#39; -f 1 | tr &#39;\n&#39; &#39;,&#39; | sed s/,$//)
+nmap -p$ports -A -T4 TARGET_IP_ADDRESS
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Host is up (0.019s latency).
 
 PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.4 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
-|   3072 c9:7b:dc:67:fd:1d:07:fc:f8:71:26:07:ff:c6:b0:be (RSA)
-|   256 87:0b:63:98:ef:cf:58:f9:72:12:18:c2:99:79:82:50 (ECDSA)
-|_  256 13:23:0f:6a:b5:71:1e:1e:c4:6d:92:73:ef:64:49:76 (ED25519)
-80/tcp open  http    Apache httpd 2.2.22 ((Ubuntu))
-|_http-title: Lo-Fi Music
-|_http-server-header: Apache/2.2.22 (Ubuntu)
+80/tcp open  http    Werkzeug httpd 2.0.3 (Python 3.10.2)
+|_http-title: Corridor
 Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
-Device type: general purpose|phone|specialized
-Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X (93%), Adtran embedded (92%)
-OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/h:adtran:424rg
-Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 4.15 (96%), Linux 5.4 - 5.15 (96%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Adtran 424RG FTTH gateway (92%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%)
-No exact OS matches for host (test conditions non-ideal).
+Device type: general purpose
+Running: Linux 4.X|5.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
+OS details: Linux 4.15 - 5.19
 Network Distance: 3 hops
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 </code></pre></div></p>
 <h3 id="http-enumeration">HTTP enumeration</h3>
 <p><div class="highlight"><pre><span></span><code>ffuf<span class="w"> </span>-u<span class="w"> </span>http://TARGET_IP_ADDRESS/FUZZ<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt<span class="w"> </span>-ic<span class="w"> </span>-c
@@ -823,38 +817,72 @@ gobuster<span class="w"> </span>dir<span class="w"> </span>-u<span class="w"> </
 </code></pre></div>
 <strong>Notes</strong><br />
 - No <code>robots.txt</code> file<br />
-- No <code>sitemap.xml</code> file<br />
-- Nothing interesting in the source code<br />
-- Navigating through the links listed on the page reveals pages are retrieved using LFI:<br />
-<img alt="LFI" src="lfi.png" /><br />
-- Fuzzing returns no hidden pages  </p>
+- No <code>sitemap</code><br />
+- Fuzzing returns no hidden pages<br />
+- <code>curl</code> to obtain source code reveals each image is a hyperlink - URIs appear to be hashes:
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css&quot;</span>
+        <span class="na">integrity</span><span class="o">=</span><span class="s">&quot;sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk&quot;</span> <span class="na">crossorigin</span><span class="o">=</span><span class="s">&quot;anonymous&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Corridor<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/css/main.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/img/corridor.png&quot;</span> <span class="na">usemap</span><span class="o">=</span><span class="s">&quot;#image-map&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">map</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;image-map&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;c4ca4238a0b923820dcc509a6f75849b&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;c4ca4238a0b923820dcc509a6f75849b&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;c4ca4238a0b923820dcc509a6f75849b&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;257,893,258,332,325,351,325,860&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;c81e728d9d4c2f636f067f89cc14862c&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;c81e728d9d4c2f636f067f89cc14862c&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;c81e728d9d4c2f636f067f89cc14862c&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;469,766,503,747,501,405,474,394&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;eccbc87e4b5ce2fe28308fd9f2a7baf3&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;eccbc87e4b5ce2fe28308fd9f2a7baf3&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;eccbc87e4b5ce2fe28308fd9f2a7baf3&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;585,698,598,691,593,429,584,421&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;a87ff679a2f3e71d9181a67b7542122c&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;a87ff679a2f3e71d9181a67b7542122c&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;a87ff679a2f3e71d9181a67b7542122c&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;650,658,644,437,658,652,655,437&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;e4da3b7fbbce2345d7772b0674a318d5&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;e4da3b7fbbce2345d7772b0674a318d5&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;e4da3b7fbbce2345d7772b0674a318d5&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;692,637,690,455,695,628,695,467&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;1679091c5a880faf6fb5e6087eb1b2dc&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;1679091c5a880faf6fb5e6087eb1b2dc&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;1679091c5a880faf6fb5e6087eb1b2dc&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;719,620,719,458,728,471,728,609&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;8f14e45fceea167a5a36dedd4bea2543&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;8f14e45fceea167a5a36dedd4bea2543&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;8f14e45fceea167a5a36dedd4bea2543&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;857,612,933,610,936,456,852,455&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;c9f0f895fb98ab9159f51fd0297e236d&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;c9f0f895fb98ab9159f51fd0297e236d&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;c9f0f895fb98ab9159f51fd0297e236d&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;1475,857,1473,354,1537,335,1541,901&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;45c48cce2e2d7fbdea1afc51c7c6ad26&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;45c48cce2e2d7fbdea1afc51c7c6ad26&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;45c48cce2e2d7fbdea1afc51c7c6ad26&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;1324,766,1300,752,1303,401,1325,397&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;d3d9446802a44259755d38e6d163e820&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;d3d9446802a44259755d38e6d163e820&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;d3d9446802a44259755d38e6d163e820&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;1202,695,1217,704,1222,423,1203,423&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;6512bd43d9caa6e02c990b0a82652dca&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;6512bd43d9caa6e02c990b0a82652dca&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;6512bd43d9caa6e02c990b0a82652dca&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;1154,668,1146,661,1144,442,1157,442&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;c20ad4d76fe97759aa27a0c99bff6710&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;c20ad4d76fe97759aa27a0c99bff6710&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;c20ad4d76fe97759aa27a0c99bff6710&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;1105,628,1116,633,1113,447,1102,447&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">area</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;c51ce410c124a10e0db5e4b97fc2af39&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;c51ce410c124a10e0db5e4b97fc2af39&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;c51ce410c124a10e0db5e4b97fc2af39&quot;</span> <span class="na">coords</span><span class="o">=</span><span class="s">&quot;1073,609,1081,620,1082,459,1073,463&quot;</span> <span class="na">shape</span><span class="o">=</span><span class="s">&quot;poly&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">map</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>  
+</code></pre></div>
+- Navigating to each link reveals a "dead end":<br />
+<img alt="Dead end" src="dead_end.png" /></p>
 <h3 id="vulnerability-enumeration">Vulnerability enumeration</h3>
-<div class="highlight"><pre><span></span><code>searchsploit OpenSSH 8.2p1  # No results
-searchsploit httpd 2.2.22   # Only result: DoS
+<div class="highlight"><pre><span></span><code>searchsploit<span class="w"> </span>httpd<span class="w"> </span><span class="m">2</span>.0.3<span class="w">    </span><span class="c1"># Only result: DoS exploit</span>
 </code></pre></div>
 <h2 id="flag">Flag</h2>
 <p><strong>Action</strong><br />
-<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Attempt to exploit LFI with assumed absolute paths 
-<strong>Payloads</strong><br />
-- <code>http://&lt;TARGET_IP_ADDRESS&gt;/?page=/etc/passwd</code><br />
-<img alt="LFI failure" src="lfi_failure.png" />
-- <code>http://&lt;TARGET_IP_ADDRESS&gt;/?page=../etc/passwd</code> and <code>http://&lt;TARGET_IP_ADDRESS&gt;/?page=../../etc/passwd</code><br />
-<img alt="LFI path traversal failure" src="lfi_path_traversal_failure.png" />
-- <code>http://&lt;TARGET_IP_ADDRESS&gt;/?page=../../../etc/passwd</code><br />
-<img alt="LFI path traversal failure" src="lfi_path_traversal_success.png" /></p>
-<p><strong>Notes</strong><br />
-- Challenge note states flag can be found in the <strong>root of the filesystem</strong>  </p>
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Use <a href="https://crackstation.net/">Crackstation</a> to see if URLs are hashes that can be cracked<br />
+<strong>Notes</strong><br />
+- Hashes revealed to be MD5<br />
+- Hashes convert to numeric characters (1, 2, etc):<br />
+<img alt="Numeric hashes" src="numeric_hashes.png" /><br />
+- 13 doors present on the home page image map  </p>
 <p><strong>Action</strong><br />
-<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Attempt to retrieve flag by guessing file name in LFI payload<br />
-<strong>Payload</strong><br />
-- <code>http://&lt;TARGET_IP_ADDRESS&gt;/?page=../../../flag.txt</code><br />
-<img alt="Flag" src="flag.png" /></p>
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Attempt to retrieve pages with MD5 hashes that translate to "0" and "14" respectively  (use Google to obtain hash for "0")<br />
+<strong>Payloads</strong><br />
+- "14": <code>http://&lt;TARGET_IP_ADDRESS/aab3238922bcc25a6f606eb525ffdc56</code><br />
+<img alt="14" src="14.png" />
+- "0": <code>http://&lt;TARGET_IP_ADDRESS/cfcd208495d565ef66e7dff9f98764da</code><br />
+<img alt="0" src="0.png" /></p>
 <details class="success">
-<summary>Climb the filesystem to find the flag!</summary>
-<p>flag{e4478e0eab69bd642b8238765dcb7d18}</p>
+<summary>What is the flag?</summary>
+<p>flag{2477ef02448ad9156661ac40a6b8862e}</p>
 </details>
-<p><strong>Date completed:</strong> 28/09/26<br />
-<strong>Date published:</strong> 28/09/26</p>
+<p><strong>Date completed:</strong> 29/09/26<br />
+<strong>Date published:</strong> 29/09/26</p>
 
 
 
