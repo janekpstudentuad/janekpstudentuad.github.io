@@ -5,6 +5,7 @@ tags:
   - easy
   - offensive
   - linux
+  - lfi
 ---
 
 # Lo-Fi
@@ -53,6 +54,7 @@ gobuster dir -u http://TARGET_IP_ADDRESS -w /usr/share/wordlists/seclists/Discov
 **Notes**  
 - No `robots.txt` file  
 - No `sitemap.xml` file  
+- Nothing interesting in the source code  
 - Navigating through the links listed on the page reveals pages are retrieved using LFI:  
 ![LFI](lo-fi/lfi.png)  
 - Fuzzing returns no hidden pages  
