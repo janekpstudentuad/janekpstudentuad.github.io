@@ -20,4 +20,5 @@
 * [Tetrix](./tetrix.md)
 * [MD2PDF](./md2pdf.md)
 * [Lo-Fi](./lo-fi.md)  
-* [Corridor](./corridor.md)
+* [Corridor](./corridor.md)  
+* [Committed](./committed.md)
