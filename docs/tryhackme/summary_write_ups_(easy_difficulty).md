@@ -22,3 +22,4 @@
 * [Lo-Fi](./lo-fi.md)  
 * [Corridor](./corridor.md)  
 * [Committed](./committed.md)
+* [IDE](./ide.md)
